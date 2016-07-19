@@ -1,0 +1,8 @@
+prefix=/home/adrian/bachelor_thesis/ws/devel
+
+Name: iai_naive_kinematics_sim
+Description: Description of iai_naive_kinematics_sim
+Version: 0.0.1
+Cflags: -I/home/adrian/bachelor_thesis/ws/src/iai_naive_kinematics_sim/include
+Libs: -L/home/adrian/bachelor_thesis/ws/devel/lib 
+Requires: roscpp urdf sensor_msgs std_msgs

@@ -1,0 +1,8 @@
+prefix=/home/adrian/bachelor_thesis/ws/install
+
+Name: giskard
+Description: Description of giskard
+Version: 0.1.0
+Cflags: -I/home/adrian/bachelor_thesis/ws/install/include
+Libs: -L/home/adrian/bachelor_thesis/ws/install/lib 
+Requires: expressiongraph qpoases kdl_parser

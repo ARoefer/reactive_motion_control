@@ -1,0 +1,8 @@
+prefix=/home/adrian/bachelor_thesis/ws/devel
+
+Name: magnetic_controller
+Description: Description of magnetic_controller
+Version: 0.0.0
+Cflags: 
+Libs: -L/home/adrian/bachelor_thesis/ws/devel/lib 
+Requires: 

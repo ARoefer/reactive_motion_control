@@ -1,0 +1,2 @@
+expressiongraph:giskard:giskard_examples:giskard_high:giskard_msgs:iai_naive_kinematics_sim:magnetic_controller:r_libs
+-DCATKIN_DEVEL_PREFIX=/home/adrian/bachelor_thesis/ws/devel -DCMAKE_INSTALL_PREFIX=/home/adrian/bachelor_thesis/ws/install -G Unix Makefiles

@@ -1,0 +1,8 @@
+prefix=/home/adrian/bachelor_thesis/ws/devel
+
+Name: giskard_msgs
+Description: Description of giskard_msgs
+Version: 0.1.0
+Cflags: -I/home/adrian/bachelor_thesis/ws/devel/include
+Libs: -L/home/adrian/bachelor_thesis/ws/devel/lib 
+Requires: std_msgs geometry_msgs message_runtime
