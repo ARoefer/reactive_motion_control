@@ -14,6 +14,7 @@ find_package(catkin REQUIRED COMPONENTS
   std_msgs
   tf_conversions
   r_libs
+  interactive_markers
 )
 
 add_definitions(-std=c++11 -Wall -g)

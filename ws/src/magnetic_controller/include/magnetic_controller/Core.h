@@ -29,9 +29,9 @@ class MagneticCore
 		SParameters() 
 		: vel(0.2)
 		, mass(1)
-		, I_k(1)
+		, I_k(6)
 		, k_a(1)
-		, k_d(1)
+		, k_d(20)
 		{}
 
 
@@ -65,6 +65,7 @@ public:
 
 	void refreshParams() { parameters.refresh(); }
 
+	bool bDrawDebug;
 private:
 	NodeHandle nh;
 	VisualizationManager visManager;

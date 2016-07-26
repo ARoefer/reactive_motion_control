@@ -1,8 +1,0 @@
-prefix=/home/adrian/bachelor_thesis/ws/install
-
-Name: r_libs
-Description: Description of r_libs
-Version: 0.0.0
-Cflags: -I/home/adrian/bachelor_thesis/ws/install/include
-Libs: -L/home/adrian/bachelor_thesis/ws/install/lib 
-Requires: 

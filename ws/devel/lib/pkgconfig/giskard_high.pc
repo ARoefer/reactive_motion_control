@@ -1,8 +1,0 @@
-prefix=/home/adrian/bachelor_thesis/ws/devel
-
-Name: giskard_high
-Description: Description of giskard_high
-Version: 0.0.0
-Cflags: 
-Libs: -L/home/adrian/bachelor_thesis/ws/devel/lib 
-Requires: 

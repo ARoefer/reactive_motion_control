@@ -1,8 +1,0 @@
-prefix=/home/adrian/bachelor_thesis/ws/devel
-
-Name: giskard_examples
-Description: Description of giskard_examples
-Version: 0.1.0
-Cflags: -I/home/adrian/bachelor_thesis/ws/src/giskard_examples/include
-Libs: -L/home/adrian/bachelor_thesis/ws/devel/lib 
-Requires: roscpp roslib giskard tf2_ros tf2_geometry_msgs interactive_markers geometry_msgs giskard_msgs kdl_conversions

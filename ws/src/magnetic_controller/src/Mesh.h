@@ -21,4 +21,5 @@ class Mesh
 {
 public:
 	vector<Surface> surfaces;
+	Vector3d dimensions;
 };
