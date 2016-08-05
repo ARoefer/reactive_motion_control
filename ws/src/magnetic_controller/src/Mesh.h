@@ -23,3 +23,15 @@ public:
 	vector<Surface> surfaces;
 	Vector3d dimensions;
 };
+
+struct SParticle
+{
+	Vector3d position;
+	Vector3d normal;
+	double size;
+};
+
+class ParticleCloud {
+public:
+	vector<SParticle> particles;
+};

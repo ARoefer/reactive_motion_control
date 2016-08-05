@@ -1,98 +1,7 @@
-#include <ros/ros.h>
-#include <eigen3/Eigen/Eigen>
-#include <tf/transform_listener.h>
-#include <tf_conversions/tf_eigen.h>
 
-#include <std_msgs/Float64.h>
-#include <std_msgs/ColorRGBA.h>
-#include <visualization_msgs/Marker.h>
-#include <visualization_msgs/MarkerArray.h>
-
-#include <r_libs/VisualizationManager.h>
-
-#include "magnetic_controller/Core.h"
+#include "utils.h"
+#include "MeshManager.h"
 #include "Mesh.h"
-#include "ObjectBase.h"
-#include <cmath>
-
-using namespace Eigen;
-using namespace ros;
-using namespace std;
-
-std_msgs::ColorRGBA hsv2rgb(double h, double s, double v)
-{
-    double      hh, p, q, t, ff;
-    long        i;
-    std_msgs::ColorRGBA out;
-
-    if(s <= 0.0) {       // < is bogus, just shuts up warnings
-        out.r = v;
-        out.g = v;
-        out.b = v;
-        return out;
-    }
-    hh = h;
-    if(hh >= 360.0) hh = 0.0;
-    hh /= 60.0;
-    i = (long)hh;
-    ff = hh - i;
-    p = v * (1.0 - s);
-    q = v * (1.0 - (s * ff));
-    t = v * (1.0 - (s * (1.0 - ff)));
-
-    switch(i) {
-    case 0:
-        out.r = v;
-        out.g = t;
-        out.b = p;
-        break;
-    case 1:
-        out.r = q;
-        out.g = v;
-        out.b = p;
-        break;
-    case 2:
-        out.r = p;
-        out.g = v;
-        out.b = t;
-        break;
-
-    case 3:
-        out.r = p;
-        out.g = q;
-        out.b = v;
-        break;
-    case 4:
-        out.r = t;
-        out.g = p;
-        out.b = v;
-        break;
-    case 5:
-    default:
-        out.r = v;
-        out.g = p;
-        out.b = q;
-        break;
-    }
-
-    out.a = 1;
-    return out;     
-}
-
-void makeCubeMesh(Mesh &m, Vector3d dim) {
-	Vector3d X(1,0,0);
-	Vector3d Y(0,1,0);
-	Vector3d Z(0,0,1);
-
-	m.surfaces.push_back(Surface( X * 0.5 * dim[0],  X, dim[1] * dim[2]));
-	m.surfaces.push_back(Surface(-X * 0.5 * dim[0], -X, dim[1] * dim[2]));
-	m.surfaces.push_back(Surface( Y * 0.5 * dim[1],  Y, dim[0] * dim[2]));
-	m.surfaces.push_back(Surface(-Y * 0.5 * dim[1], -Y, dim[0] * dim[2]));
-	m.surfaces.push_back(Surface( Z * 0.5 * dim[2],  Z, dim[1] * dim[0]));
-	m.surfaces.push_back(Surface(-Z * 0.5 * dim[2], -Z, dim[1] * dim[0]));
-
-	m.dimensions = dim;
-}
 
 class ControllerNode
 {
@@ -123,34 +32,32 @@ public:
 		pubZ = nh.advertise<std_msgs::Float64>("/jointZ_velocity_controller/command", 1);
 		pubVis = nh.advertise<visualization_msgs::MarkerArray>("/magnetic_controller/visualization", 10);
 
-		Mesh boardMesh, wallMesh, innerWallMesh, backWallMesh;
-		makeCubeMesh(boardMesh, Vector3d(0.4, 1.2, 0.04));
-		makeCubeMesh(wallMesh, Vector3d(0.4, 0.04, 1.2));
-		makeCubeMesh(innerWallMesh, Vector3d(0.4, 0.04, 0.4));
-		makeCubeMesh(backWallMesh, Vector3d(0.04, 1.2, 1.2));
-
-		meshes.push_back(boardMesh);
-		meshes.push_back(wallMesh);
-		meshes.push_back(innerWallMesh);
-		meshes.push_back(backWallMesh);
-
-		Mesh* pBoardMesh = &meshes[0];
-		Mesh* pWallMesh = &meshes[1];
-		Mesh* pInnerWallMesh = &meshes[2];
-		Mesh* pBackWallMesh = &meshes[3];
+		ParticleCloud* pBoardMesh, *pWallMesh, *pInnerWallMesh, *pBackWallMesh, *pUnitCubeMesh;
+		pBoardMesh      = meshManager.getNewMesh("board");
+		pWallMesh 		= meshManager.getNewMesh("wall");
+		pInnerWallMesh  = meshManager.getNewMesh("inner_wall");
+		pBackWallMesh   = meshManager.getNewMesh("back_wall");
+		pUnitCubeMesh   = meshManager.getNewMesh("unit_cube");
+		makeCubeMesh(pBoardMesh, Vector3d(0.4, 1.2, 0.04));
+		makeCubeMesh(pWallMesh, Vector3d(0.4, 0.04, 1.2));
+		makeCubeMesh(pInnerWallMesh, Vector3d(0.4, 0.04, 0.4));
+		makeCubeMesh(pBackWallMesh, Vector3d(0.04, 1.2, 1.2));
+		makeCubeMesh(pUnitCubeMesh, Vector3d(1, 1, 1));
 
 		objects.reserve(10);
 
-		objects.push_back(TFObject(pWallMesh, "wall_r", &tfListener)); 
-		objects.push_back(TFObject(pWallMesh, "wall_l", &tfListener));
-		objects.push_back(TFObject(pBackWallMesh, "wall_b", &tfListener)); 
-		objects.push_back(TFObject(pInnerWallMesh, "wall_1", &tfListener)); 
-		objects.push_back(TFObject(pInnerWallMesh, "wall_2", &tfListener)); 
-		objects.push_back(TFObject(pInnerWallMesh, "wall_3", &tfListener)); 
-		objects.push_back(TFObject(pBoardMesh, "board_0", &tfListener)); 
-		objects.push_back(TFObject(pBoardMesh, "board_1", &tfListener)); 
-		objects.push_back(TFObject(pBoardMesh, "board_2", &tfListener)); 
-		objects.push_back(TFObject(pBoardMesh, "board_3", &tfListener));
+		objects.push_back(TFObject<ParticleCloud>(pUnitCubeMesh, "cylinder1", &tfListener));
+		objects.push_back(TFObject<ParticleCloud>(pUnitCubeMesh, "cylinder2", &tfListener));
+		/*objects.push_back(TFObject<ParticleCloud>(pWallMesh, "wall_r", &tfListener)); 
+		objects.push_back(TFObject<ParticleCloud>(pWallMesh, "wall_l", &tfListener));
+		objects.push_back(TFObject<ParticleCloud>(pBackWallMesh, "wall_b", &tfListener)); 
+		objects.push_back(TFObject<ParticleCloud>(pInnerWallMesh, "wall_1", &tfListener)); 
+		objects.push_back(TFObject<ParticleCloud>(pInnerWallMesh, "wall_2", &tfListener)); 
+		objects.push_back(TFObject<ParticleCloud>(pInnerWallMesh, "wall_3", &tfListener)); 
+		objects.push_back(TFObject<ParticleCloud>(pBoardMesh, "board_0", &tfListener)); 
+		objects.push_back(TFObject<ParticleCloud>(pBoardMesh, "board_1", &tfListener)); 
+		objects.push_back(TFObject<ParticleCloud>(pBoardMesh, "board_2", &tfListener)); 
+		objects.push_back(TFObject<ParticleCloud>(pBoardMesh, "board_3", &tfListener));//*/
 
 		for (int i = 0; i < objects.size(); i++) {
 			core.objects.push_back(&objects[i]);
@@ -161,6 +68,7 @@ public:
 		for (int i = 0; i < eMAX; i++) {
 			visManager.addNamespace(i, namespaces[i]);
 		}
+		visObjManager.addNamespace(0, "point_cloud_objects");
 	}
 	
 	void refreshGoal(geometry_msgs::Point point) {
@@ -179,8 +87,12 @@ public:
 
 		visualization_msgs::MarkerArray visFieldMsg;
 		drawField(visFieldMsg, Vector3d::Zero());
+
+		visualizeObjects(core.objects, visFieldMsg.markers, 0, visObjManager);
+
 		cout << "Init finished" << endl;
 		pubVis.publish(visFieldMsg);
+
 
 		while(ros::ok()) {
 			visManager.beginNewDrawCycle();
@@ -220,9 +132,11 @@ public:
 					std_msgs::Float64 velZ;
 					velZ.data = velLimited[2];
 					
-					pubX.publish(velX);
-					pubY.publish(velY);
-					pubZ.publish(velZ);//*/
+					if (velX.data == velX.data && velY.data == velY.data && velZ.data == velZ.data) {
+						pubX.publish(velX);
+						pubY.publish(velY);
+						pubZ.publish(velZ);//*/
+					}
 
 					cout << vel << endl;
 				}
@@ -231,10 +145,6 @@ public:
 			}
 
 			visMsg.markers.push_back(visManager.trailMarker(eTrail, visitedPoints, 0.02f));
-			//visMsg.markers.push_back(visManager.vectorMarker(eForce, pos, core.debug.F_v, 1, 0, 0));
-			for (ObjectBase* pObj: core.objects) {
-				visMsg.markers.push_back(visManager.shapeMarker(eObjects, Affine3d::Identity(), visualization_msgs::Marker::CUBE, pObj->pMesh->dimensions, 0.5f,0.5f,0.5f, 1.f, pObj->name));
-			}
 			visMsg.markers.push_back(visManager.sphereMarker(eGoal, goal, 0.1f, 1,0,1,0.5f));
 			visManager.endDrawCycle(visMsg.markers);
 
@@ -248,9 +158,9 @@ public:
 	void drawField(visualization_msgs::MarkerArray& visMsg, Vector3d vel) {
 		int gridWidth = 4;
 		int gridRes = 5;
-		int gridHeight = 2;
+		int gridHeight = 0;
 		double spaceStep = 1.0 / gridRes;
-		Vector3d zero(0, -2, -0.5); 
+		Vector3d zero(0, -2, -0); 
 
 		visualization_msgs::Marker marker;
 		marker.ns = "field";
@@ -261,6 +171,10 @@ public:
 		marker.scale.x = marker.scale.y = 0.04;
 
 		core.bDrawDebug = false;
+
+		vector<double> strengths;
+		double highestS = 0.1;
+
 		for (int x = 0; x <= gridWidth * gridRes; ++x)
 		{
 			for (int y = 0; y <= gridWidth * gridRes; ++y)
@@ -270,19 +184,23 @@ public:
 					Vector3d pos = zero + Vector3d(x * spaceStep, y * spaceStep, z * spaceStep);
 					core.calculateAccel(pos, goal, vel);
 
-					if (core.debug.B > 0.1) 
+                    double auxB = 0.02 * core.debug.B;
+					if (auxB > 0.1) 
 					{
 						geometry_msgs::Point point;
 						point.x = pos[0];
 						point.y = pos[1];
 						point.z = pos[2]; // Visual offset
 						marker.points.push_back(point);
-						marker.colors.push_back(hsv2rgb((1 - core.debug.B) * 240, 1 , 1));
+						marker.colors.push_back(hsv2rgb(max(0.0, 1.0 - auxB) * 240, 1 , 1));
 					} //else
 						//cout << core.debug.B << endl;
 				}
 			}
 		}
+
+		//marker.colors.reserve(strengths.size());
+		
 		core.bDrawDebug = true;
 
 		visMsg.markers.push_back(marker);
@@ -295,15 +213,16 @@ private:
 
 	tf::TransformListener tfListener;
 
-	MagneticCore core;
+	MagneticCore_ParticleModel core;
+	MeshManager<ParticleCloud> meshManager;
+	vector<TFObject<ParticleCloud>> objects;
 
 	Vector3d goal;
 
 	VisualizationManager visManager;
+	VisualizationManager visObjManager;
 
 	vector<Vector3d> visitedPoints;
-	vector<Mesh> meshes;
-	vector<TFObject> objects;
 };
 
 int main(int argc, char** argv)
