@@ -74,6 +74,18 @@ Eigen::Matrix4f GeometrymsgsTFToEigenM44F (geometry_msgs::Transform pose){
   return Eigen::Matrix4f(poseEigen.matrix());
 }
 
+Eigen::Vector3d PointToVector(geometry_msgs::Point point) {
+  return Eigen::Vector3d(point.x, point.y, point.z);
+}
+
+geometry_msgs::Point VectorToPoint(Eigen::Vector3d vec) {
+  geometry_msgs::Point out;
+  out.x = vec[0];
+  out.y = vec[1];
+  out.z = vec[2];
+  return out;
+}
+
 tf::Transform EigenToTfTransform(Eigen::Affine3d eTransform) {
   tf::Transform out;
 

@@ -239,6 +239,14 @@ void VisualizationManager::poseMarker(vector<visualization_msgs::Marker> &array,
     array.push_back(arrowMarker(ns, pos, pos + Vector3d(pose.matrix().block(0,2,3,1)) * arrowLength, 0, 0, 1, a, 0.01, 0.01, frame_id));
 }
 
+int VisualizationManager::consumeId(int ns) {
+  ids[ns]++;
+  return ids[ns]-1;
+}
+
+string VisualizationManager::getNamespace(int ns) {
+  return namespaces[ns];
+}
 
 void VisualizationManager::beginNewDrawCycle() {
   lastIds = ids;

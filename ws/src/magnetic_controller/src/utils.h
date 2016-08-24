@@ -9,7 +9,12 @@
 #include <visualization_msgs/MarkerArray.h>
 
 #include <r_libs/VisualizationManager.h>
+#include <r_libs/R_Conversions.h>
 #include <cmath>
+#include <fstream>
+
+#include <boost/property_tree/ptree.hpp>
+#include <boost/property_tree/xml_parser.hpp>
 
 #include "magnetic_controller/Core.h"
 #include "Mesh.h"
@@ -18,6 +23,7 @@
 using namespace Eigen;
 using namespace ros;
 using namespace std;
+using boost::property_tree::ptree;
 
 template <class A, class B, class C>
 C division(A a, B b) {
@@ -89,7 +95,7 @@ std_msgs::ColorRGBA hsv2rgb(double h, double s, double v)
     return out;     
 }
 
-void makeCubeMesh(Mesh* m, Vector3d dim) {
+void makeCubeMesh(Mesh* m, Vector3d dim, double resolution = 0.1) {
     Vector3d X(1,0,0);
     Vector3d Y(0,1,0);
     Vector3d Z(0,0,1);
@@ -123,12 +129,12 @@ void makeVertStrip(Mesh* m, Vector3d edge, Vector3d pos) {
     m->dimensions = edge;
 }
 
-void makeCubeMesh(ParticleCloud* cloud, Vector3d dim) {
+void makeCubeMesh(ParticleCloud* cloud, Vector3d dim, double resolution = 0.1) {
     double dimX = dim[0], dimY = dim[1], dimZ = dim[2];
 
     cout << endl << "dim(" << dim[0] << ", " << dim[1] << ", " << dim[2] << ")" << endl;
 
-    double desStep = 0.1;
+    double desStep = resolution;
     Vector3i steps = (dim / desStep).cast<int>();
 
     Vector3d stepsNonZero(1,1,1);
@@ -185,7 +191,7 @@ void makeCubeMesh(ParticleCloud* cloud, Vector3d dim) {
 
                     SParticle particle;
                     particle.position = origin + multiply<Vector3d, Vector3d, Vector3d>(stepWidth, Vector3d(x,y,z));
-                    particle.size = multiply<Vector3d, Vector3d, Vector3d>((baseNormal + normalX + normalY + normalZ), stepWidth).norm() * 0.5;
+                    particle.size = 1;//multiply<Vector3d, Vector3d, Vector3d>((baseNormal + normalX + normalY + normalZ), stepWidth).norm() * 0.5;
                     particle.normal = (baseNormal + normalX + normalY + normalZ).normalized();
                     cout << "(" << x << ", " << y << ", " << z << ") : "
                          << "p(" << particle.position[0] << ", " << particle.position[1] << ", " << particle.position[2] << ") " //<< endl
@@ -197,57 +203,12 @@ void makeCubeMesh(ParticleCloud* cloud, Vector3d dim) {
         }        
     }
 
-/*    Vector3i border = Vector3i::Zero();
-    for (int i = 0; i < 3; i++) {
-        Vector3d origin = -dim * 0.5;
-        Vector3d originB = origin;
-        originB[(i+2) % 3] = dim[(i+2) % 3] * 0.5;
+    double partSize = (2 * dim[0] * dim[1] + 2 * dim[0] * dim[2] + 2 * dim[1] * dim[2]) / cloud->particles.size();
 
-        if (steps[i] == 0)
-            origin[i] = 0;
-
-        // If there is only going to be 
-        if (steps[(i+1) % 3] == 0)
-            origin[(i+1) % 3] = 0;    
-
-        double particleSize = (stepWidth[i] + stepWidth[(i+1) % 3]) * 0.25;
-        Vector3d stepX = Vector3d::Zero();
-        Vector3d stepY = stepX;
-        stepX[i] = stepWidth[i];
-        stepY[(i+1) % 3] = stepWidth[(i+1) % 3];
-
-        int borderX = border[i];
-        int borderY = border[(i+1) % 3];
-
-        int stepsX = steps[i];
-        int stepsY = steps[(i+1) % 3];
-
-        for (int x = border[i]; x <= stepsX - borderX; x++) {
-            Vector3d normalX = Vector3d::Zero(); 
-            if((x == 0 || x == stepsX) && 0 != stepsX)
-                normalX = (Vector3d::Unit(i) * (x== 0? -1 : 1));
-            
-            for (int y = border[(i+1) % 3]; y <= stepsY - borderY; y++) {
-                Vector3d normalY = Vector3d::Zero();
-                if ((y == 0 || y == stepsY) && 0 != stepsY)
-                    normalY = (Vector3d::Unit((i+1) % 3) * (y== 0? -1 : 1));
-                
-                SParticle particleA;
-                SParticle particleB;
-                particleA.size = particleSize;
-                particleB.size = particleSize;
-                particleA.position = origin + x * stepX + y * stepY;
-                particleA.normal = (-Vector3d::Unit((i+2) % 3) + normalX + normalY).normalized();
-
-                particleB.position = originB + x * stepX + y * stepY;
-                particleB.normal = (Vector3d::Unit((i+2) % 3) + normalX + normalY).normalized();
-                cloud->particles.push_back(particleA);
-                cloud->particles.push_back(particleB);
-            }
-        }
-        border[i] = 1;
-        border[(i+2) % 3] = 1;
-    }//*/
+    for (int i = 0; i < cloud->particles.size(); ++i)
+    {
+        cloud->particles[i].size = partSize;
+    }
 }
 
 void visualizeObjects(vector<ObjectBase<Mesh>*> &objects, vector<visualization_msgs::Marker> &markers, int ns, VisualizationManager &vis) {
@@ -261,12 +222,119 @@ void visualizeObjects(vector<ObjectBase<Mesh>*> &objects, vector<visualization_m
     }//   
 }
 
+void makeXYRectangleMesh(ParticleCloud* cloud, Vector3d dim) {
+    double dimX = dim[0], dimY = dim[1], dimZ = dim[2];
+
+    cout << endl << "dim(" << dim[0] << ", " << dim[1] << ", " << dim[2] << ")" << endl;
+
+    double desStep = 0.1;
+    Vector3i steps = (dim / desStep).cast<int>();
+
+    Vector3d stepsNonZero(1,1,1);
+    for (int i = 0; i < 3; ++i)
+    {
+        if (steps[i] != 0)
+            stepsNonZero[i] = (double)steps[i];
+    }
+
+    Vector3d stepWidth = division<Vector3d, Vector3d, Vector3d>(dim, stepsNonZero);
+
+    cout << "stepWidth(" << stepWidth[0] << ", " << stepWidth[1] << ", " << stepWidth[2] << ")" << endl;
+
+    Vector3d baseNormal = Vector3d::Zero();
+    Vector3d origin = -dim * 0.5;
+    if (steps[0] == 0) {
+        origin[0] = 0;
+        baseNormal[0] = 1;
+    }
+
+    if (steps[1] == 0) {
+        origin[1] = 0;
+        baseNormal[1] = 1;
+    }
+
+    for (int x = 0; x <= steps[0]; ++x)
+    {
+        for (int y = 0; y <= steps[1]; ++y)
+        {
+            if (x == 0 || y == 0 || x == steps[0] || y == steps[1]) {
+                Vector3d normalX = Vector3d::Zero();
+                Vector3d normalY = Vector3d::Zero();
+
+                if((x == 0 || x == steps[0]) && 0 != steps[0]) {
+                    normalX = (Vector3d::UnitX() * (x== 0? -1 : 1));
+                }
+
+                if ((y == 0 || y == steps[1]) && 0 != steps[1]) {
+                    normalY = (Vector3d::UnitY() * (y== 0? -1 : 1));
+                }
+
+                SParticle particle;
+                particle.position = origin + multiply<Vector3d, Vector3d, Vector3d>(stepWidth, Vector3d(x,y,0));
+                particle.size = 1;//multiply<Vector3d, Vector3d, Vector3d>((baseNormal + normalX + normalY + normalZ), stepWidth).norm() * 0.5;
+                particle.normal = (baseNormal + normalX + normalY).normalized();
+                /*cout << "(" << x << ", " << y << ", " << ") : "
+                     << "p(" << particle.position[0] << ", " << particle.position[1] << ", " << particle.position[2] << ") " //<< endl
+                     << "size(" << particle.size << ") " // << endl 
+                     << "n(" << particle.normal[0] << ", " << particle.normal[1] << ", " << particle.normal[2] << ")" << endl;//*/
+                cloud->particles.push_back(particle);
+            }
+        }        
+    }
+
+    double partSize = (2 * dim[0] * dim[1] + 2 * dim[0] * dim[2] + 2 * dim[1] * dim[2]) / cloud->particles.size();
+
+    for (int i = 0; i < cloud->particles.size(); ++i)
+    {
+        cloud->particles[i].size = partSize;
+    }
+}
+
+void loadFromFile(ParticleCloud* cloud, string path) {
+    ifstream file(path);
+
+    if (file.is_open()) {
+        while (!file.eof()) {
+            string cmd;
+            file >> cmd;
+
+            if (cmd.compare("v") == 0) {
+                double px, py, pz, nx, ny, nz, a;
+                file >> px;
+                file >> py;
+                file >> pz;
+                file >> nx;
+                file >> ny;
+                file >> nz;
+                file >> a;
+
+                SParticle particle;
+                particle.position = Vector3d(px,py,pz);
+                particle.normal = Vector3d(nx,ny,nz);
+                particle.size = a;
+
+                cloud->particles.push_back(particle);
+            } else 
+                cerr << "Unrecognized control '" << cmd << "'" << endl;
+        }
+    } else {
+        cerr << "Opening of file '" << path << "' failed!" << endl;
+    }
+}
+
+
 void visualizeObjects(vector<ObjectBase<ParticleCloud>*> &objects, vector<visualization_msgs::Marker> &markers, int ns, VisualizationManager &vis) {
     for (ObjectBase<ParticleCloud>* pObj: objects) {
         cout << "visualizing " << pObj->name << " with " << pObj->pMesh->particles.size() << " particles" << endl;
         visualization_msgs::Marker marker;
         marker.ns = vis.getNamespace(ns);
-        marker.header.frame_id = pObj->name;
+        if (pObj->statc) {
+            marker.header.frame_id = "odom_combined";
+            marker.pose = EigenToGeometrymsgs(pObj->getTransform());
+        } else {
+            marker.header.frame_id = pObj->name;
+            marker.pose.orientation.w = 1.0;
+        }
         marker.header.stamp = ros::Time::now();
         marker.id = vis.consumeId(ns);
         marker.type = visualization_msgs::Marker::POINTS;
@@ -282,16 +350,39 @@ void visualizeObjects(vector<ObjectBase<ParticleCloud>*> &objects, vector<visual
             point.z = pObj->pMesh->particles[i].position[2]; // Visual offset
             marker.points.push_back(point);
 
+            Vector3d normal = pObj->pMesh->particles[i].normal;
+
             std_msgs::ColorRGBA color;
-            color.r = 0.5 + pObj->pMesh->particles[i].normal[0] * 0.5;
-            color.g = 0.5 + pObj->pMesh->particles[i].normal[1] * 0.5;
-            color.b = 0.5 + pObj->pMesh->particles[i].normal[2] * 0.5;
+            color.r = 0.5 + normal[0] * 0.5;
+            color.g = 0.5 + normal[1] * 0.5;
+            color.b = 0.5 + normal[2] * 0.5;
             color.a = 1;
             marker.colors.push_back(color);
 
-            //markers.push_back(vis.vectorMarker(ns, pObj->pMesh->particles[i].position, pObj->pMesh->particles[i].normal, 1,0,0,1,0.01,0.02, pObj->name));
+            //markers.push_back(vis.vectorMarker(ns, pObj->pMesh->particles[i].position, pObj->pMesh->particles[i].normal * 0.1, 1,0,0,1,0.01,0.02, marker.header.frame_id));
         }
 
         markers.push_back(marker);
     }//*/
+}
+
+Vector3d parsePosition(ptree &node) {
+    ptree &attrs = node.get_child("<xmlattr>");
+    return Vector3d(attrs.get<double>("posX"), attrs.get<double>("posY"), attrs.get<double>("posZ"));
+}
+
+Affine3d parseTransform(ptree &node) {
+    ptree &attrs = node.get_child("<xmlattr>");
+    Matrix3d m;
+    m = AngleAxisd(attrs.get<double>("rotZ"), Vector3d::UnitZ())
+      * AngleAxisd(attrs.get<double>("rotY"), Vector3d::UnitY())
+      * AngleAxisd(attrs.get<double>("rotX"), Vector3d::UnitX());
+
+    Quaterniond quat(m);
+    Vector3d pos = parsePosition(node);
+    Affine3d transform = Affine3d::Identity();
+    transform.translate(pos);
+    transform.rotate(quat);
+
+    return transform;
 }

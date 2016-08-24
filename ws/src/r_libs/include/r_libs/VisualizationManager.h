@@ -111,6 +111,10 @@ public:
                                             float g = 0, 
                                             float b = 0, 
                                             float a = 0);
+
+    int consumeId(int ns);
+    string getNamespace(int ns);
+
 private:
     geometry_msgs::Point vec2Point(Vector3d vec);
     geometry_msgs::Quaternion quat2QuatMsg(Quaterniond quat);

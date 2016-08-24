@@ -1,0 +1,16 @@
+<scene name="Scene2">
+	<obstacle name="Cylinder" mesh="meshes/Cylinder_01_02.vc" static="1">
+		<transform posX="1.0" posY="-1.0" posZ="0.0" rotX="0.0" rotY="-0.0" rotZ="0.0"/>
+	</obstacle>
+	<obstacle name="Cylinder.001" mesh="meshes/Cylinder_01_02.vc" static="1">
+		<transform posX="1.0" posY="0.0" posZ="0.0" rotX="0.0" rotY="-0.0" rotZ="0.0"/>
+	</obstacle>
+	<obstacle name="Cylinder.002" mesh="meshes/Cylinder_01_02.vc" static="1">
+		<transform posX="1.0" posY="1.0" posZ="0.0" rotX="0.0" rotY="-0.0" rotZ="0.0"/>
+	</obstacle>
+	<goal name="goal1.001" posX="2.0" posY="0.4000000059604645" posZ="0.0"/>
+	<goal name="goal2.001" posX="0.6999999284744263" posY="-0.5" posZ="0.0"/>
+	<goal name="goal3.001" posX="1.1999999284744263" posY="0.30000001192092896" posZ="0.0"/>
+	<goal name="goal3.002" posX="-1.1920928955078125e-07" posY="0.0" posZ="0.0"/>
+	<start name="Start1.001" posX="0.0" posY="0.0" posZ="0.0"/>
+</scene>

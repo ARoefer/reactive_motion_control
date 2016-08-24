@@ -139,7 +139,7 @@ include_directories(
 # add_dependencies(magnetic_controller ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 
 ## Declare a C++ executable
-add_executable(magnetic_controller src/main.cpp src/Core.cpp)# src/ObjectBase.cpp src/MeshManager.cpp)
+add_executable(magnetic_controller src/main.cpp src/Core.cpp src/ControllerBridge.cpp)# src/ObjectBase.cpp src/MeshManager.cpp)
 
 ## Add cmake target dependencies of the executable
 ## same as for the library above

@@ -14,16 +14,17 @@ template<class T>
 class ObjectBase
 {
 public:
-	ObjectBase(T* _pMesh, string _name)
+	ObjectBase(T* _pMesh, string _name, bool _statc)
 	: pMesh(_pMesh)
 	, name(_name)
+	, statc(_statc)
 	{}
 	
 	virtual Affine3d getTransform() const = 0;
 
 	T* pMesh;
 	const string name;
-
+	const bool statc;
 };
 
 template<class T>
@@ -31,7 +32,7 @@ class TFObject : public ObjectBase<T>
 {
 public:
 	TFObject(T* _pMesh, string _name, tf::TransformListener* _pTfListener)
-	: ObjectBase<T>(_pMesh, _name)
+	: ObjectBase<T>(_pMesh, _name, false)
 	{
 		pTfListener = _pTfListener;
 	}
@@ -53,4 +54,22 @@ public:
 
 private:
 	tf::TransformListener* pTfListener;
+};
+
+template<class T>
+class StaticObject : public ObjectBase<T>
+{
+public:
+	StaticObject(T* _pMesh, string _name, Affine3d _transform)
+	: ObjectBase<T>(_pMesh, _name, true)
+	{
+		transform = _transform;
+	}
+	
+	Affine3d getTransform() const  {
+		return transform;
+	}
+
+private:
+	Affine3d transform;
 };

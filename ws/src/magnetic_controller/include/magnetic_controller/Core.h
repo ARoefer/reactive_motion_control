@@ -59,9 +59,14 @@ protected:
 public:
 	MagneticCore(const NodeHandle &_nh);
 
-	vector<ObjectBase<T>*> objects;
 
 	virtual Vector3d calculateAccel(Vector3d pos, Vector3d goal, Vector3d velV) = 0;
+	virtual void addObject(ObjectBase<T>* pObj) {
+		if (!pObj)
+			return;
+
+		objects.push_back(pObj);
+	}
 
 	struct 
 	{
@@ -72,7 +77,9 @@ public:
 	void refreshParams() { parameters.refresh(); }
 
 	bool bDrawDebug;
+	vector<ObjectBase<T>*> objects;
 protected:
+	size_t pointCount;
 	NodeHandle nh;
 	VisualizationManager visManager;
 	Publisher visPub;
@@ -85,6 +92,7 @@ public:
 	MagneticCore_ParticleModel(const NodeHandle &_nh);
 
 	Vector3d calculateAccel(Vector3d pos, Vector3d goal, Vector3d velV);
+	void addObject(ObjectBase<ParticleCloud>* pObj);
 };
 
 class MagneticCore_SurfaceModel : public MagneticCore<Mesh>
