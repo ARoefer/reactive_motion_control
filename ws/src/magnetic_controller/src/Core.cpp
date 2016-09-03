@@ -76,31 +76,45 @@ Vector3d MagneticCore_ParticleModel::calculateAccel(Vector3d pos, Vector3d goalP
 
 	for (ObjectBase<ParticleCloud>* pObj: objects) {
 		Affine3d objPose = pObj->getTransform(); // Pose of the object
+		Affine3d objPoseI = objPose.inverse(); // Transform w -> object
+
 		Vector3d m_j_com = objPose.translation(); // Center of mass
 		Matrix3d rotM = objPose.rotation(); // Rotation matrix
+		Matrix3d rotMI = rotM.inverse(); // Inverted rotation matrix
 
-		Vector3d B_j = Vector3d::Zero(); // Magnetic field vector per object
-		Vector3d d_j = pos + b * ((m_j_com - pos).dot(b) / b_sq) - m_j_com; // Shortest vector between b an m_j_com
+		// ALL THINGS IN OBJECT SPACE FROM HERE ON OUT
+		Vector3d pos_O 		= objPoseI * pos;
+		Vector3d velV_O 	= objPoseI * velV;
+		Vector3d vel_dir_O 	= rotMI * vel_dir;
+		Vector3d b_O 		= rotMI * b;
+		Vector3d goal_O		= objPoseI * goalPos;
 
-		Vector3d r_j = rotM.block(0,2,3,1); // Rotation vector default is Z-Axis of object rotation. Always normalized
-		if (d_j.squaredNorm() > 0)
-			r_j = d_j.cross(b).normalized();
+
+		Vector3d B_j_O = Vector3d::Zero(); // Magnetic field vector per object
+		Vector3d d_j_O = pos_O + b_O * (-pos_O.dot(b_O) / b_sq); // Shortest vector between b an m_j_com
+
+		Vector3d r_j_O = Vector3d::UnitZ(); // Rotation vector default is Z-Axis of object rotation. Always normalized
+		if (d_j_O.squaredNorm() > 0)
+			r_j_O = d_j_O.cross(b_O).normalized();
 
 		for (size_t i = 0; i < pObj->pMesh->particles.size(); i++) {
-			SParticle* p = &(pObj->pMesh->particles[i]);
-			Vector3d paP = objPose * p->position; // Particle position in WS. 
-			Vector3d paN = rotM * p->normal; // Particle normal in WS
-			double scale = -paN.dot(vel_dir); // Scale the particles influence accoring to its angle to vel_dir
-			double l_j_i_sq = (pos - paP).squaredNorm(); // Squared distance between position and particle i 
-			Vector3d c_j_i = r_j.cross(paN); // Current direction at this particle
-			Vector3d inc_dir = (paP - pos).normalized();
-			double dir_scale = vel_dir.dot(inc_dir) * 0.5 + 0.5;
-			scale *= dir_scale;
+			SParticle* 	p 		 = &(pObj->pMesh->particles[i]);
+			Vector3d 	paP 	 = p->position; // Particle position in OS. 
+			Vector3d 	paN 	 = p->normal; // Particle normal in OS
+			Vector3d	pGoal_dir= (goal_O - paP).normalized();
+			double 		scale 	 = copysign(1.0, -paN.dot(vel_dir_O)); // Scale the particles influence accoring to its angle to vel_dir
+			double 		l_j_i 	 = (pos_O - paP).norm(); //max((pos_O - paP).norm() - 0.1, 0.001); // Squared distance between position and particle i 
+			double		l_j_i_sq = l_j_i * l_j_i;
+			Vector3d 	c_j_i 	 = r_j_O.cross(paN); // Current direction at this particle
+			Vector3d 	inc_dir  = (paP - pos_O).normalized();
+			double 		dir_scale= vel_dir_O.dot(inc_dir);
+			double		goal_scale = pGoal_dir.dot(paN);
+			//scale *= dir_scale;
 
-			//if (scale >= 0) {
-				Vector3d B_j_i = I_k * (c_j_i.cross(vel_dir) / l_j_i_sq) * p->size * scale;
-				B_j += B_j_i;
-
+			if (goal_scale < 0) 
+			{
+				Vector3d B_j_i_O = I_k * (c_j_i.cross(vel_dir_O) / l_j_i_sq) * p->size * scale;
+				B_j_O += B_j_i_O;
 /*			if (scale > 0) {
 				Vector3d B_j_i = I_k * (c_j_i.cross(vel_dir) / l_j_i_sq) * p->size;// * scale;
 				B_j += B_j_i;
@@ -108,30 +122,31 @@ Vector3d MagneticCore_ParticleModel::calculateAccel(Vector3d pos, Vector3d goalP
 
 #ifndef	SIM
 				if (bDrawDebug) {
-					markerA.points.push_back(VectorToPoint(paP));
+					markerA.points.push_back(VectorToPoint(objPose * paP));
 
 		            std_msgs::ColorRGBA color;
-		            Vector3d B_norm = B_j_i.normalized();
+		            Vector3d B_norm = B_j_i_O.normalized();
 		            color.r = 0.5 + B_norm[0] * 0.5;
 		            color.g = 0.5 + B_norm[1] * 0.5;
 		            color.b = 0.5 + B_norm[2] * 0.5;
-		            color.a = 0.5 * scale + 0.5;
+		            color.a = 1.0;//0.5 * scale + 0.5;
 		            markerA.colors.push_back(color);
 					//vis.markers.push_back(visManager.vectorMarker(eCurrent, paP, paN * 0.1, 1,1,0));
-					//vis.markers.push_back(visManager.vectorMarker(eCurrent, paP, c_j_i * 0.1, 1,0,0));
+					vis.markers.push_back(visManager.vectorMarker(eCurrent, objPose * paP, c_j_i * 0.1, 1,0,0));
 					//vis.markers.push_back(visManager.vectorMarker(eCurrent, paP, B_j_i, 0,1,0));
 				}
 #endif
-			//}
+			}
 		}
 
+		Vector3d B_j = rotM * B_j_O;
 		F_v += velV.cross(B_j);
 		B += B_j;
 
 #ifndef SIM
 		if (bDrawDebug) {
-			visManager.annotatedVector(vis.markers, eMath, pos, r_j, "r_j");
-			visManager.annotatedVector(vis.markers, eMath, m_j_com, d_j, "d_j");
+			visManager.annotatedVector(vis.markers, eMath, pos, (rotM * r_j_O), "r_j");
+			visManager.annotatedVector(vis.markers, eMath, m_j_com, (rotM * d_j_O), "d_j");
 		}
 #endif
 

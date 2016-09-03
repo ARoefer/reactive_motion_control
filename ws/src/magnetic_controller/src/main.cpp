@@ -119,7 +119,7 @@ public:
 							Vector3d velLimited = magnitude*direction;
 							distanceTraveled += step * velLimited.norm();
 							commander.setVelocity(velLimited);
-							//vel = velLimited;
+							vel = velLimited;
 						}
 
 #ifndef SIM
