@@ -1,0 +1,17 @@
+<launch>
+  <include file="$(find iai_naive_kinematics_sim)/launch/pr2.launch"/>
+
+  <node pkg="magnetic_controller" type="pr2_r_vel_controller" name="pr2_controller" output="screen">
+    <rosparam param="joint_names"
+      file="$(find magnetic_controller)/config/pr2_left_upper_body.yaml" />
+    <param name="controller_description" 
+      textfile="$(find magnetic_controller)/controller_specs/pr2_cart_cart_control.yaml" />
+    <param name="frame_id" value="base_link" />
+    <remap from="~joint_states" to="/joint_states" />
+    <param name="nWSR" value="1000"/>
+  </node>
+
+<!-- <node pkg="tf" type="static_transform_publisher" name="trololo"
+        output="screen" args="0 0 0 0 0 0 1 odom_combined odom  100" /> --> 
+
+</launch>

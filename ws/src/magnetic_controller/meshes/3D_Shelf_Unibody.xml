@@ -1,0 +1,9 @@
+<scene name="3D_Shelf_Unibody">
+	<goal name="3D_Goal_1.001" posX="0.8490248322486877" posY="0.3279849886894226" posZ="0.06936119496822357"/>
+	<goal name="3D_Goal_2.001" posX="0.91447514295578" posY="0.0" posZ="-0.11261294037103653"/>
+	<goal name="3D_Goal_3.001" posX="0.8433488011360168" posY="-0.4000000059604645" posZ="0.0"/>
+	<start name="3D_Shelf_start.001" posX="0.0" posY="0.0" posZ="0.0"/>
+	<obstacle name="DaShelf" mesh="meshes/DaShelf.vc" static="1">
+		<transform posX="1.0" posY="0.0" posZ="0.0" rotX="0.0" rotY="0.0" rotZ="0.0"/>
+	</obstacle>
+</scene>

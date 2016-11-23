@@ -1,0 +1,34 @@
+<testbench>
+	<test name="test4" file="meshes/2D_Walls_Followup_Test.xml" rate="100">
+		<paths>
+			<path name="Path1" maxTime="20">
+				<node name="Start.003"/>
+				<node name="Goal.003"/>
+			</path>
+		</paths>
+		<configs>
+			<config I_k="32" k_a="1" k_d="1" filter="n" surfFollow="0"/>
+			<config I_k="64" k_a="1" k_d="1" filter="n" surfFollow="0"/>
+			<config I_k="16" k_a="1" k_d="1" filter="d" surfFollow="0"/>
+			<config I_k="32" k_a="1" k_d="1" filter="d" surfFollow="0"/>
+			<config I_k="32" k_a="1" k_d="1.5" filter="n" surfFollow="0"/>
+			<config I_k="64" k_a="1" k_d="1.5" filter="n" surfFollow="0"/>
+			<config I_k="16" k_a="1" k_d="1.5" filter="d" surfFollow="0"/>
+			<config I_k="32" k_a="1" k_d="1.5" filter="d" surfFollow="0"/>
+			<config I_k="32" k_a="1" k_d="2" filter="n" surfFollow="0"/>
+			<config I_k="64" k_a="1" k_d="2" filter="n" surfFollow="0"/>
+			<config I_k="16" k_a="1" k_d="2" filter="d" surfFollow="0"/>
+			<config I_k="32" k_a="1" k_d="2" filter="d" surfFollow="0"/>
+			<config I_k="16" k_a="1" k_d="1" filter="g" surfFollow="0"/>
+			<config I_k="16" k_a="1" k_d="1.5" filter="g" surfFollow="0"/>
+			<config I_k="16" k_a="1" k_d="2" filter="g" surfFollow="0"/>
+
+			<config I_k="16" k_a="1" k_d="1" filter="a" surfFollow="0"/>
+			<config I_k="16" k_a="1" k_d="1.5" filter="a" surfFollow="0"/>
+			<config I_k="16" k_a="1" k_d="2" filter="a" surfFollow="0"/>
+			<config I_k="32" k_a="1" k_d="1" filter="a" surfFollow="0"/>
+			<config I_k="32" k_a="1" k_d="1.5" filter="a" surfFollow="0"/>
+			<config I_k="32" k_a="1" k_d="2" filter="a" surfFollow="0"/>
+		</configs>
+	</test>
+</testbench>

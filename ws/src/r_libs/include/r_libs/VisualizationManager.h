@@ -104,7 +104,17 @@ public:
                     string frame_id = "odom_combined");
 
     visualization_msgs::Marker meshMarker(int ns, 
-                                            Affine3d pose, 
+                                            Affine3d pose,
+                                            Vector3d scale, 
+                                            string resource, 
+                                            string frame_id = "odom_combined", 
+                                            Vector4f color = Vector4f::Zero()) {
+        return meshMarker(ns, pose, scale, resource, frame_id, color[0], color[1], color[2], color[3]);
+    }
+
+    visualization_msgs::Marker meshMarker(int ns, 
+                                            Affine3d pose,
+                                            Vector3d scale, 
                                             string resource, 
                                             string frame_id = "odom_combined", 
                                             float r = 0, 

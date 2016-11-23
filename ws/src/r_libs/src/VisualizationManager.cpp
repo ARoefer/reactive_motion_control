@@ -196,7 +196,7 @@ visualization_msgs::Marker VisualizationManager::trailMarker(int ns, const vecto
   return marker;
 }
 
-visualization_msgs::Marker VisualizationManager::meshMarker(int ns, Affine3d pose, string resource, string frame_id, float r, float g, float b, float a) {
+visualization_msgs::Marker VisualizationManager::meshMarker(int ns, Affine3d pose, Vector3d scale, string resource, string frame_id, float r, float g, float b, float a) {
       visualization_msgs::Marker marker;
   marker.ns = namespaces[ns];
   marker.header.frame_id = frame_id;
@@ -216,9 +216,9 @@ visualization_msgs::Marker VisualizationManager::meshMarker(int ns, Affine3d pos
     marker.pose.orientation.z = ori.z();
     marker.pose.orientation.w = ori.w();
 
-  marker.scale.x = 1;
-  marker.scale.y = 1;
-  marker.scale.z = 1;
+  marker.scale.x = scale[0];
+  marker.scale.y = scale[1];
+  marker.scale.z = scale[2];
 
   marker.color.r = r;
   marker.color.g = g;

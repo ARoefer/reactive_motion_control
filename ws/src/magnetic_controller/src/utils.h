@@ -1,3 +1,4 @@
+#pragma once
 #include <ros/ros.h>
 #include <eigen3/Eigen/Eigen>
 #include <tf/transform_listener.h>
@@ -327,10 +328,14 @@ void visualizeObjects(vector<ObjectBase<ParticleCloud>*> &objects, vector<visual
     for (ObjectBase<ParticleCloud>* pObj: objects) {
         cout << "visualizing " << pObj->name << " with " << pObj->pMesh->particles.size() << " particles" << endl;
         visualization_msgs::Marker marker;
+
+        Affine3d pose = Affine3d::Identity();
+
         marker.ns = vis.getNamespace(ns);
         if (pObj->statc) {
             marker.header.frame_id = "odom_combined";
-            marker.pose = EigenToGeometrymsgs(pObj->getTransform());
+            pose = pObj->getTransform();
+            marker.pose = EigenToGeometrymsgs(pose);
         } else {
             marker.header.frame_id = pObj->name;
             marker.pose.orientation.w = 1.0;
@@ -339,6 +344,8 @@ void visualizeObjects(vector<ObjectBase<ParticleCloud>*> &objects, vector<visual
         marker.id = vis.consumeId(ns);
         marker.type = visualization_msgs::Marker::POINTS;
         marker.scale.x = marker.scale.y = 0.04;
+
+        Matrix3d mat = pose.rotation();
 
         marker.points.reserve(pObj->pMesh->particles.size());
         marker.colors.reserve(pObj->pMesh->particles.size());
@@ -350,7 +357,7 @@ void visualizeObjects(vector<ObjectBase<ParticleCloud>*> &objects, vector<visual
             point.z = pObj->pMesh->particles[i].position[2]; // Visual offset
             marker.points.push_back(point);
 
-            Vector3d normal = pObj->pMesh->particles[i].normal;
+            Vector3d normal = mat * pObj->pMesh->particles[i].normal;
 
             std_msgs::ColorRGBA color;
             color.r = 0.5 + normal[0] * 0.5;

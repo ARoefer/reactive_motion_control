@@ -74,6 +74,9 @@ Vector3d MagneticCore_ParticleModel::calculateAccel(Vector3d pos, Vector3d goalP
 	markerA.color.a = 1.0;
 #endif
 
+	bool overrideDirection = false;
+	Vector3d overrideVector = Vector3d::Zero();
+
 	for (ObjectBase<ParticleCloud>* pObj: objects) {
 		Affine3d objPose = pObj->getTransform(); // Pose of the object
 		Affine3d objPoseI = objPose.inverse(); // Transform w -> object
@@ -93,46 +96,67 @@ Vector3d MagneticCore_ParticleModel::calculateAccel(Vector3d pos, Vector3d goalP
 		Vector3d B_j_O = Vector3d::Zero(); // Magnetic field vector per object
 		Vector3d d_j_O = pos_O + b_O * (-pos_O.dot(b_O) / b_sq); // Shortest vector between b an m_j_com
 
+		// Dynamic vector based on closest distance
 		Vector3d r_j_O = Vector3d::UnitZ(); // Rotation vector default is Z-Axis of object rotation. Always normalized
 		if (d_j_O.squaredNorm() > 0)
 			r_j_O = d_j_O.cross(b_O).normalized();
+
+		// if (goalPos[1] > pos[1])
+		// 	r_j_O = -r_j_O;
+
+		Vector3d c_j = Vector3d::Zero();
 
 		for (size_t i = 0; i < pObj->pMesh->particles.size(); i++) {
 			SParticle* 	p 		 = &(pObj->pMesh->particles[i]);
 			Vector3d 	paP 	 = p->position; // Particle position in OS. 
 			Vector3d 	paN 	 = p->normal; // Particle normal in OS
 			Vector3d	pGoal_dir= (goal_O - paP).normalized();
-			double 		scale 	 = copysign(1.0, -paN.dot(vel_dir_O)); // Scale the particles influence accoring to its angle to vel_dir
-			double 		l_j_i 	 = (pos_O - paP).norm(); //max((pos_O - paP).norm() - 0.1, 0.001); // Squared distance between position and particle i 
-			double		l_j_i_sq = l_j_i * l_j_i;
+			double 		scale 	 = 1;//copysign(1.0, -paN.dot(vel_dir_O)); // Scale the particles influence accoring to its angle to vel_dir
+			double 		l_j_i 	 = max((pos_O - paP).norm(), 0.01); // Capped distance between point and particle
+			double		l_j_i_sq = l_j_i * l_j_i; // Squared distance between position and particle i 
 			Vector3d 	c_j_i 	 = r_j_O.cross(paN); // Current direction at this particle
 			Vector3d 	inc_dir  = (paP - pos_O).normalized();
-			double 		dir_scale= vel_dir_O.dot(inc_dir);
-			double		goal_scale = pGoal_dir.dot(paN);
-			//scale *= dir_scale;
+			double 		inc_ang	 = vel_dir_O.dot(inc_dir);
+			double 		vel_face_ang= vel_dir_O.dot(paN);
+			double 		face_ang = inc_dir.dot(paN);
+			double		goal_ang = pGoal_dir.dot(paN);
+			//scale *= inc_ang;
 
-			if (goal_scale < 0) 
+			bool filterOK = true;
+			switch(parameters.filter) {
+				case 'd':
+				filterOK = face_ang < 0;
+				break;
+				case 'g':
+				filterOK = face_ang < 0 && (goal_ang < 0);
+				break;
+				case 'a':
+				filterOK = face_ang < 0 && ((goal_ang < 0) || (inc_ang > 0 && vel_face_ang < 0));
+			}
+
+			if (filterOK) 
 			{
+				if(parameters.surfFollowing && l_j_i < 0.06 && goal_ang < 0.7) {
+					c_j += c_j_i * 0.1 / l_j_i;
+					overrideDirection = true;
+				}
+
 				Vector3d B_j_i_O = I_k * (c_j_i.cross(vel_dir_O) / l_j_i_sq) * p->size * scale;
 				B_j_O += B_j_i_O;
-/*			if (scale > 0) {
-				Vector3d B_j_i = I_k * (c_j_i.cross(vel_dir) / l_j_i_sq) * p->size;// * scale;
-				B_j += B_j_i;
-			}//*/
 
 #ifndef	SIM
 				if (bDrawDebug) {
 					markerA.points.push_back(VectorToPoint(objPose * paP));
 
 		            std_msgs::ColorRGBA color;
-		            Vector3d B_norm = B_j_i_O.normalized();
+		            Vector3d B_norm = c_j_i;//B_j_i_O.normalized();
 		            color.r = 0.5 + B_norm[0] * 0.5;
 		            color.g = 0.5 + B_norm[1] * 0.5;
 		            color.b = 0.5 + B_norm[2] * 0.5;
 		            color.a = 1.0;//0.5 * scale + 0.5;
 		            markerA.colors.push_back(color);
 					//vis.markers.push_back(visManager.vectorMarker(eCurrent, paP, paN * 0.1, 1,1,0));
-					vis.markers.push_back(visManager.vectorMarker(eCurrent, objPose * paP, c_j_i * 0.1, 1,0,0));
+					vis.markers.push_back(visManager.vectorMarker(eCurrent, objPose * paP, (rotM * c_j_i) * 0.1, 1,0,0));
 					//vis.markers.push_back(visManager.vectorMarker(eCurrent, paP, B_j_i, 0,1,0));
 				}
 #endif
@@ -140,6 +164,7 @@ Vector3d MagneticCore_ParticleModel::calculateAccel(Vector3d pos, Vector3d goalP
 		}
 
 		Vector3d B_j = rotM * B_j_O;
+		overrideVector += rotM * c_j;
 		F_v += velV.cross(B_j);
 		B += B_j;
 
@@ -167,7 +192,12 @@ Vector3d MagneticCore_ParticleModel::calculateAccel(Vector3d pos, Vector3d goalP
 	debug.B = B.norm();
 
 	Vector3d acceleration = -k_a * (pos - goalPos) + F_v - k_d * velV;
-	return acceleration;
+	if (overrideDirection) {
+		cout << "overriding direction" << endl;
+		return overrideVector.normalized() * 0.2;
+	} else {
+		return velV + acceleration * 0.005;
+	}
 }
 
 Vector3d MagneticCore_SurfaceModel::calculateAccel(Vector3d pos, Vector3d goalPos, Vector3d velV) {

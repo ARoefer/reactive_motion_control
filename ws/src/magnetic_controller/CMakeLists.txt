@@ -15,6 +15,7 @@ find_package(catkin REQUIRED COMPONENTS
   tf_conversions
   r_libs
   interactive_markers
+  giskard
 )
 
 add_definitions(-std=c++11 -g)
@@ -126,12 +127,15 @@ include_directories(
   include
   ${catkin_INCLUDE_DIRS}
   ${r_libs_INCLUDE_DIRS}
+  ${YAML_CPP_INCLUDE_DIRS}
 )
 
 ## Declare a C++ library
-#add_library(magnetic_controller
-#   src/${PROJECT_NAME}/magnetic_controller.cpp
-#)
+add_library(magnetic_controller_lib
+  src/Core.cpp
+)
+
+add_dependencies(magnetic_controller_lib r_libs_visualization r_libs_conversions)
 
 ## Add cmake target dependencies of the library
 ## as an example, code may need to be generated before libraries
@@ -139,18 +143,38 @@ include_directories(
 # add_dependencies(magnetic_controller ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 
 ## Declare a C++ executable
-add_executable(magnetic_controller src/main.cpp src/Core.cpp src/ControllerBridge.cpp)# src/ObjectBase.cpp src/MeshManager.cpp)
+add_executable(magnetic_controller src/main.cpp src/ControllerBridge.cpp)# src/ObjectBase.cpp src/MeshManager.cpp)
+add_executable(magnetic_tester src/Autotester.cpp src/ControllerBridge.cpp)# src/ObjectBase.cpp src/MeshManager.cpp)
 
 ## Add cmake target dependencies of the executable
 ## same as for the library above
-add_dependencies(magnetic_controller r_libs_visualization r_libs_conversions)
+add_dependencies(magnetic_controller magnetic_controller_lib)
+add_dependencies(magnetic_tester magnetic_controller_lib)
 
 ## Specify libraries to link a library or executable target against
-target_link_libraries(magnetic_controller
+target_link_libraries(magnetic_controller_lib
    ${catkin_LIBRARIES}
    r_libs_visualization
    r_libs_conversions
 )
+
+target_link_libraries(magnetic_controller
+   ${catkin_LIBRARIES}
+   r_libs_visualization
+   r_libs_conversions
+   magnetic_controller_lib
+)
+
+target_link_libraries(magnetic_tester
+   ${catkin_LIBRARIES}
+   r_libs_visualization
+   r_libs_conversions
+   magnetic_controller_lib
+)
+
+add_executable(pr2_r_vel_controller src/pr2_r_vel_controller.cpp)
+add_dependencies(pr2_r_vel_controller giskard_msgs_gencpp)
+target_link_libraries(pr2_r_vel_controller ${catkin_LIBRARIES} yaml-cpp)
 
 #############
 ## Install ##

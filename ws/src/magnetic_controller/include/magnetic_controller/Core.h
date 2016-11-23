@@ -31,6 +31,7 @@ protected:
 
 	vector<string> namespaces;
 
+public:
 	struct SParameters {
 		SParameters() 
 		: vel(0.2)
@@ -38,6 +39,8 @@ protected:
 		, I_k(2)
 		, k_a(1)
 		, k_d(1)
+		, filter('n')
+		, surfFollowing(false)
 		{}
 
 
@@ -47,16 +50,23 @@ protected:
 			ros::param::get("I_k", I_k);
 			ros::param::get("k_a", k_a);
 			ros::param::get("k_d", k_d);
+			string fTemp = &filter;
+			ros::param::get("filter", fTemp);
+			if (fTemp.size() > 0)
+				filter = fTemp[0];
+			ros::param::get("surface_following", surfFollowing);
 		}
 
+		// 'n', 'd', 'g', 'a'
+		char filter;
+		bool surfFollowing;
 		double vel;
 		double mass;
 		double I_k;
 		double k_a;
 		double k_d;
-	} parameters;
+	};
 
-public:
 	MagneticCore(const NodeHandle &_nh);
 
 
@@ -75,10 +85,12 @@ public:
 	} debug;
 
 	void refreshParams() { parameters.refresh(); }
+	void setParams(SParameters params) { parameters = params; }
 
 	bool bDrawDebug;
 	vector<ObjectBase<T>*> objects;
 protected:
+	SParameters parameters;
 	size_t pointCount;
 	NodeHandle nh;
 	VisualizationManager visManager;

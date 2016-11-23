@@ -1,0 +1,115 @@
+<testbench>
+	<test name="test1" file="meshes/2D_Wall_Test.xml" rate="100">
+		<paths>
+			<path name="Path1" maxTime="20">
+				<node name="Start"/>
+				<node name="Goal"/>
+			</path>
+		</paths>
+		<configs>
+			<config I_k="2" k_a="1" k_d="1" filter="n" surfFollow="0"/>
+			<config I_k="4" k_a="1" k_d="1" filter="n" surfFollow="0"/>
+			<config I_k="8" k_a="1" k_d="1" filter="n" surfFollow="0"/>
+			<config I_k="16" k_a="1" k_d="1" filter="n" surfFollow="0"/>
+			<config I_k="32" k_a="1" k_d="1" filter="n" surfFollow="0"/>
+			<config I_k="32" k_a="1" k_d="1.5" filter="n" surfFollow="0"/>
+			<config I_k="32" k_a="1" k_d="2" filter="n" surfFollow="0"/>
+			<config I_k="2" k_a="1" k_d="1" filter="d" surfFollow="0"/>
+			<config I_k="4" k_a="1" k_d="1" filter="d" surfFollow="0"/>
+			<config I_k="8" k_a="1" k_d="1" filter="d" surfFollow="0"/>
+			<config I_k="16" k_a="1" k_d="1" filter="d" surfFollow="0"/>
+			<config I_k="16" k_a="1" k_d="1.5" filter="d" surfFollow="0"/>
+			<config I_k="16" k_a="1" k_d="2" filter="d" surfFollow="0"/>
+			<config I_k="16" k_a="1" k_d="1" filter="g" surfFollow="0"/>
+			<config I_k="16" k_a="1" k_d="1.5" filter="g" surfFollow="0"/>
+			<config I_k="16" k_a="1" k_d="2" filter="g" surfFollow="0"/>
+		</configs>
+	</test>
+	<test name="test2" file="meshes/2D_Walls_Test.xml" rate="100">
+		<paths>
+			<path name="Path1" maxTime="20">
+				<node name="Start"/>
+				<node name="Goal"/>
+			</path>
+		</paths>
+		<configs>
+			<config I_k="32" k_a="1" k_d="1" filter="n" surfFollow="0"/>
+			<config I_k="64" k_a="1" k_d="1" filter="n" surfFollow="0"/>
+			<config I_k="16" k_a="1" k_d="1" filter="d" surfFollow="0"/>
+			<config I_k="32" k_a="1" k_d="1" filter="d" surfFollow="0"/>
+			<config I_k="32" k_a="1" k_d="1.5" filter="n" surfFollow="0"/>
+			<config I_k="64" k_a="1" k_d="1.5" filter="n" surfFollow="0"/>
+			<config I_k="16" k_a="1" k_d="1.5" filter="d" surfFollow="0"/>
+			<config I_k="32" k_a="1" k_d="1.5" filter="d" surfFollow="0"/>
+			<config I_k="32" k_a="1" k_d="2" filter="n" surfFollow="0"/>
+			<config I_k="64" k_a="1" k_d="2" filter="n" surfFollow="0"/>
+			<config I_k="16" k_a="1" k_d="2" filter="d" surfFollow="0"/>
+			<config I_k="32" k_a="1" k_d="2" filter="d" surfFollow="0"/>
+			<config I_k="16" k_a="1" k_d="1" filter="g" surfFollow="0"/>
+			<config I_k="16" k_a="1" k_d="1.5" filter="g" surfFollow="0"/>
+			<config I_k="16" k_a="1" k_d="2" filter="g" surfFollow="0"/>
+
+			<config I_k="16" k_a="1" k_d="1" filter="a" surfFollow="0"/>
+			<config I_k="16" k_a="1" k_d="1.5" filter="a" surfFollow="0"/>
+			<config I_k="16" k_a="1" k_d="2" filter="a" surfFollow="0"/>
+			<config I_k="32" k_a="1" k_d="1" filter="a" surfFollow="0"/>
+			<config I_k="32" k_a="1" k_d="1.5" filter="a" surfFollow="0"/>
+			<config I_k="32" k_a="1" k_d="2" filter="a" surfFollow="0"/>
+		</configs>
+	</test>
+	<test name="test3" file="meshes/2D_Cave.xml" rate="100">
+		<paths>
+			<path name="Path1" maxTime="20">
+				<node name="Start"/>
+				<node name="Goal"/>
+			</path>
+		</paths>
+		<configs>
+			<config I_k="16" k_a="1" k_d="1" filter="n" surfFollow="0"/>
+			<config I_k="16" k_a="1" k_d="1.5" filter="n" surfFollow="0"/>
+			<config I_k="16" k_a="1" k_d="2" filter="n" surfFollow="0"/>
+			<config I_k="32" k_a="1" k_d="1" filter="n" surfFollow="0"/>
+			<config I_k="32" k_a="1" k_d="1.5" filter="n" surfFollow="0"/>
+			<config I_k="32" k_a="1" k_d="2" filter="n" surfFollow="0"/>
+			<config I_k="64" k_a="1" k_d="1" filter="n" surfFollow="0"/>
+			<config I_k="64" k_a="1" k_d="1.5" filter="n" surfFollow="0"/>
+			<config I_k="64" k_a="1" k_d="2" filter="n" surfFollow="0"/>
+			<config I_k="16" k_a="1" k_d="1" filter="d" surfFollow="0"/>
+			<config I_k="16" k_a="1" k_d="1.5" filter="d" surfFollow="0"/>
+			<config I_k="16" k_a="1" k_d="2" filter="d" surfFollow="0"/>
+			<config I_k="32" k_a="1" k_d="1" filter="d" surfFollow="0"/>
+			<config I_k="32" k_a="1" k_d="1.5" filter="d" surfFollow="0"/>
+			<config I_k="32" k_a="1" k_d="2" filter="d" surfFollow="0"/>
+			<config I_k="64" k_a="1" k_d="1" filter="d" surfFollow="0"/>
+			<config I_k="64" k_a="1" k_d="1.5" filter="d" surfFollow="0"/>
+			<config I_k="64" k_a="1" k_d="2" filter="d" surfFollow="0"/>
+			<config I_k="16" k_a="1" k_d="1" filter="g" surfFollow="0"/>
+			<config I_k="16" k_a="1" k_d="1.5" filter="g" surfFollow="0"/>
+			<config I_k="16" k_a="1" k_d="2" filter="g" surfFollow="0"/>
+			<config I_k="32" k_a="1" k_d="1" filter="g" surfFollow="0"/>
+			<config I_k="32" k_a="1" k_d="1.5" filter="g" surfFollow="0"/>
+			<config I_k="32" k_a="1" k_d="2" filter="g" surfFollow="0"/>
+			<config I_k="64" k_a="1" k_d="1" filter="g" surfFollow="0"/>
+			<config I_k="64" k_a="1" k_d="1.5" filter="g" surfFollow="0"/>
+			<config I_k="64" k_a="1" k_d="2" filter="g" surfFollow="0"/>
+			<config I_k="16" k_a="1" k_d="1" filter="a" surfFollow="0"/>
+			<config I_k="16" k_a="1" k_d="1.5" filter="a" surfFollow="0"/>
+			<config I_k="16" k_a="1" k_d="2" filter="a" surfFollow="0"/>
+			<config I_k="32" k_a="1" k_d="1" filter="a" surfFollow="0"/>
+			<config I_k="32" k_a="1" k_d="1.5" filter="a" surfFollow="0"/>
+			<config I_k="32" k_a="1" k_d="2" filter="a" surfFollow="0"/>
+			<config I_k="64" k_a="1" k_d="1" filter="a" surfFollow="0"/>
+			<config I_k="64" k_a="1" k_d="1.5" filter="a" surfFollow="0"/>
+			<config I_k="64" k_a="1" k_d="2" filter="a" surfFollow="0"/>
+			<config I_k="16" k_a="1" k_d="1" filter="a" surfFollow="1"/>
+			<config I_k="16" k_a="1" k_d="1.5" filter="a" surfFollow="1"/>
+			<config I_k="16" k_a="1" k_d="2" filter="a" surfFollow="1"/>
+			<config I_k="32" k_a="1" k_d="1" filter="a" surfFollow="1"/>
+			<config I_k="32" k_a="1" k_d="1.5" filter="a" surfFollow="1"/>
+			<config I_k="32" k_a="1" k_d="2" filter="a" surfFollow="1"/>
+			<config I_k="64" k_a="1" k_d="1" filter="a" surfFollow="1"/>
+			<config I_k="64" k_a="1" k_d="1.5" filter="a" surfFollow="1"/>
+			<config I_k="64" k_a="1" k_d="2" filter="a" surfFollow="1"/>
+		</configs>
+	</test>
+</testbench>

@@ -34,19 +34,19 @@
     </inertial-->
   </link>
 
-  <joint name="jointX" type="prismatic">
+  <joint name="jointX_joint" type="prismatic">
     <parent link="link0"/>
     <child link="link1"/>
     <axis xyz="1 0 0"/>
     <limit effort="1000.0" lower="-100" upper="100" velocity="0.2"/>
   </joint>
-  <joint name="jointY" type="prismatic">
+  <joint name="jointY_joint" type="prismatic">
     <parent link="link1"/>
     <child link="link2"/>
     <axis xyz="0 1 0"/>
     <limit effort="1000.0" lower="-100" upper="100" velocity="0.2"/>
   </joint>
-  <joint name="jointZ" type="prismatic">
+  <joint name="jointZ_joint" type="prismatic">
     <axis xyz="0 0 1"/>
     <limit effort="1000.0" lower="-100" upper="100" velocity="0.2"/>
     <parent link="link2"/>

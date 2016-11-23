@@ -1,0 +1,9 @@
+<scene name="Cave">
+	<goal name="3D_Goal_2.005" posX="2.124736785888672" posY="0.0" posZ="0.0"/>
+	<goal name="3D_Goal_2.006" posX="1.399999976158142" posY="0.0" posZ="0.0"/>
+	<goal name="3D_Goal_2.007" posX="0.0" posY="0.0" posZ="0.0"/>
+	<start name="3D_Shelf_start.003" posX="0.0" posY="0.0" posZ="0.0"/>
+	<obstacle name="Cube" mesh="meshes/Cube.vc" static="1">
+		<transform posX="1.7000000476837158" posY="-3.725290298461914e-09" posZ="-3.725290298461914e-09" rotX="0.0" rotY="0.0" rotZ="0.0"/>
+	</obstacle>
+</scene>

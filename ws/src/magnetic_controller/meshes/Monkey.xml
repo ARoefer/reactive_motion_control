@@ -1,0 +1,18 @@
+<scene name="Monkey">
+	<obstacle name="Icosphere" mesh="meshes/Icosphere.vc" static="1">
+		<transform posX="0.6359082460403442" posY="0.2535798251628876" posZ="0.03627999871969223" rotX="0.0" rotY="0.0" rotZ="0.0"/>
+	</obstacle>
+	<obstacle name="Icosphere.001" mesh="meshes/Icosphere.vc" static="1">
+		<transform posX="1.0495623350143433" posY="-0.26706960797309875" posZ="0.35696032643318176" rotX="0.0" rotY="0.0" rotZ="0.0"/>
+	</obstacle>
+	<obstacle name="Icosphere.002" mesh="meshes/Icosphere.vc" static="1">
+		<transform posX="0.28803229331970215" posY="-0.4182540774345398" posZ="0.11708545684814453" rotX="0.0" rotY="0.0" rotZ="0.0"/>
+	</obstacle>
+	<goal name="Monkey_Goal1" posX="1.0741204023361206" posY="0.049374647438526154" posZ="-0.15391071140766144"/>
+	<goal name="Monkey_Goal2" posX="2.6000001430511475" posY="0.0" posZ="0.0"/>
+	<start name="Monkey_Goal2.001" posX="0.0" posY="0.0" posZ="0.0"/>
+	<goal name="Monkey_Goal3" posX="0.0" posY="0.0" posZ="0.0"/>
+	<obstacle name="Plane.008" mesh="meshes/Suzanne.vc" static="1">
+		<transform posX="1.3819966316223145" posY="-0.028821799904108047" posZ="-0.01996666193008423" rotX="4.368542671203613" rotY="0.7731758952140808" rotZ="-1.2533138990402222"/>
+	</obstacle>
+</scene>

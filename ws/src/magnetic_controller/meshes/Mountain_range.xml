@@ -1,0 +1,9 @@
+<scene name="Mountain_range">
+	<goal name="3D_Goal_2.002" posX="3.6144752502441406" posY="1.6822552680969238" posZ="-0.12577536702156067"/>
+	<goal name="3D_Goal_2.003" posX="2.3657119274139404" posY="-1.4569188356399536" posZ="-0.09521523118019104"/>
+	<goal name="3D_Goal_2.004" posX="0.924736738204956" posY="1.513919711112976" posZ="-0.02802509069442749"/>
+	<start name="3D_Shelf_start.002" posX="0.0" posY="0.0" posZ="0.0"/>
+	<obstacle name="Grid" mesh="meshes/Grid.vc" static="1">
+		<transform posX="2.0" posY="0.0" posZ="0.0" rotX="0.0" rotY="0.0" rotZ="0.0"/>
+	</obstacle>
+</scene>

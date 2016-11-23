@@ -1,0 +1,31 @@
+<scene name="PR2_3D_Shelf">
+	<start name="3D_Shelf_start.005" posX="0.32261350750923157" posY="-0.2559869587421417" posZ="0.5941811203956604"/>
+	<obstacle name="Back.004" mesh="meshes/Cover.vc" static="1">
+		<transform posX="0.699999988079071" posY="-0.10000000894069672" posZ="0.6000000238418579" rotX="3.141592502593994" rotY="1.5707952976226807" rotZ="0.0"/>
+	</obstacle>
+	<obstacle name="Back.005" mesh="meshes/Cover.vc" static="1">
+		<transform posX="0.699999988079071" posY="-0.10000000894069672" posZ="0.9399999976158142" rotX="3.141592502593994" rotY="1.5707952976226807" rotZ="0.0"/>
+	</obstacle>
+	<goal name="Compartment_BL" posX="0.6465530395507812" posY="0.10798497498035431" posZ="0.6577223539352417"/>
+	<goal name="Compartment_BR" posX="0.6444751024246216" posY="-0.30000001192092896" posZ="0.654238760471344"/>
+	<goal name="Compartment_UL" posX="0.6375293135643005" posY="0.10999995470046997" posZ="0.9959326386451721"/>
+	<goal name="Compartment_UR" posX="0.6375293135643005" posY="-0.30000004172325134" posZ="0.9959326386451721"/>
+	<obstacle name="Shelf_Wall" mesh="meshes/Shelf_Wall.vc" static="1">
+		<transform posX="0.699999988079071" posY="0.30000001192092896" posZ="0.75" rotX="0.0" rotY="0.0" rotZ="0.0"/>
+	</obstacle>
+	<obstacle name="Shelf_Wall.001" mesh="meshes/Shelf_Wall.vc" static="1">
+		<transform posX="0.699999988079071" posY="-0.09999999403953552" posZ="1.0899999141693115" rotX="0.0" rotY="0.0" rotZ="0.0"/>
+	</obstacle>
+	<obstacle name="Shelf_Wall.002" mesh="meshes/Shelf_Wall.vc" static="1">
+		<transform posX="0.699999988079071" posY="-0.5" posZ="0.75" rotX="0.0" rotY="0.0" rotZ="0.0"/>
+	</obstacle>
+	<obstacle name="Shelf_Wall.003" mesh="meshes/Shelf_Wall.vc" static="1">
+		<transform posX="0.699999988079071" posY="-0.09999999403953552" posZ="0.75" rotX="0.0" rotY="0.0" rotZ="0.0"/>
+	</obstacle>
+	<obstacle name="Shelf_Wall.004" mesh="meshes/Shelf_Wall.vc" static="1">
+		<transform posX="0.699999988079071" posY="-0.5" posZ="1.0899999141693115" rotX="0.0" rotY="0.0" rotZ="0.0"/>
+	</obstacle>
+	<obstacle name="Shelf_Wall.005" mesh="meshes/Shelf_Wall.vc" static="1">
+		<transform posX="0.699999988079071" posY="0.30000001192092896" posZ="1.0899999141693115" rotX="0.0" rotY="0.0" rotZ="0.0"/>
+	</obstacle>
+</scene>

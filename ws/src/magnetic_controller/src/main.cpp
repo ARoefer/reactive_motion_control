@@ -4,7 +4,7 @@
 #include "MeshManager.h"
 #include "Mesh.h"
 #include "ControllerBridge.h"
-
+#include "Scenery.h"
 
 class ControllerNode
 {
@@ -34,11 +34,6 @@ public:
 		, commander(nh)
 #endif
 	{ }
-
-	struct SNamedPoint {
-		string name;
-		Vector3d pos;
-	};
 
 	void init(string scene) {
 		pubVis = nh.advertise<visualization_msgs::MarkerArray>("/magnetic_controller/visualization", 10);
@@ -70,7 +65,7 @@ public:
 		drawField(visFieldMsg, Vector3d::Zero());
 
 		visObjManager.beginNewDrawCycle();
-		visualizeObjects(core.objects, visFieldMsg.markers, 0, visObjManager);
+		visualizeObjects(core.objects, visFieldMsg.markers, eObjects, visObjManager);
 		visObjManager.endDrawCycle(visFieldMsg.markers);
 
 		cout << "Init finished" << endl;
@@ -93,7 +88,9 @@ public:
 				
 				Affine3d eef;
 				if (commander.getCurrentEEFPose(eef)) {
-					pos = eef.translation();
+					Vector3d tempPos = eef.translation();
+					distanceTraveled += (pos - tempPos).norm();
+					pos = tempPos;
 
 					if (visitedPoints.size() == 0 || (visitedPoints[visitedPoints.size() - 1] - pos).norm() >= 0.05)
 						visitedPoints.push_back(pos);
@@ -107,7 +104,7 @@ public:
 #ifndef SIM
 						core.refreshParams();
 #endif
-						Vector3d newVel = vel + core.calculateAccel(pos, goal, vel) * step;
+						Vector3d newVel = core.calculateAccel(pos, goal, vel);// * step;
 
 						if (newVel[0] == newVel[0] && newVel[1] == newVel[1] && newVel[2] == newVel[2]) {
 						// if (vel.norm() > 0.2)
@@ -117,7 +114,6 @@ public:
 							Vector3d direction = vel.normalized();
 							double magnitude = min(vel.norm(), 1.0);
 							Vector3d velLimited = magnitude*direction;
-							distanceTraveled += step * velLimited.norm();
 							commander.setVelocity(velLimited);
 							vel = velLimited;
 						}
@@ -127,8 +123,12 @@ public:
 #endif
 					} else {
 						goalIndex++;
+						commander.setVelocity(Vector3d::Zero());
 						if (goalIndex == goals.size()) {
-							cout << "All goals reached!" << endl;
+							cout << "All goals reached!" << endl 
+								 << "          Time taken: " << timeTaken << endl
+								 << "   Distance traveled: " << distanceTraveled << endl
+								 << "       Average Speed: " << distanceTraveled / timeTaken << endl;
 #ifdef SIM
 							visManager.beginNewDrawCycle();
 							visualization_msgs::MarkerArray visMsg;
@@ -157,7 +157,21 @@ public:
 					visManager.beginNewDrawCycle();
 					visualization_msgs::MarkerArray visMsg;
 					visMsg.markers.push_back(visManager.trailMarker(eTrail, visitedPoints, 0.02f));
-					visMsg.markers.push_back(visManager.sphereMarker(eGoal, goal, 0.1f, 1,0,1,0.5f));
+					for (size_t i = 0; i < goals.size(); i++) {
+						SNamedPoint& g = goals[i];
+						Affine3d gPose = Affine3d::Identity();
+						gPose.translate(g.pos);
+						Vector3d scale = Vector3d(1,1,1);
+						Vector4f color = Vector4f::Zero();
+						if (i == goalIndex) {
+							scale *= 1.2;
+							visMsg.markers.push_back(visManager.sphereMarker(eGoal, g.pos, 0.02f, 1,0,1,0.5f));
+							color[1] = color[3] = 1.f;
+						}
+						visMsg.markers.push_back(visManager.meshMarker(eGoal, gPose, scale, "package://magnetic_controller/meshes/marker_goal.dae", "odom_combined", color));
+						visMsg.markers.push_back(visManager.textMarker(eGoal, g.pos + Vector3d(0,0,0.2), g.name, 1,1,1,1,.1));
+					}
+					visualizeObjects(core.objects, visMsg.markers, eObjects, visManager);
 					visManager.endDrawCycle(visMsg.markers);
 
 					pubVis.publish(visMsg);
@@ -180,8 +194,9 @@ public:
 				string cmd;
 				cin >> cmd;
 				if (cmd.compare("r") == 0) {
-					commander.setPosition(starts[0].pos);
 					commander.setVelocity(Vector3d::Zero());
+					commander.setPosition(starts[0].pos);
+					pos = starts[0].pos;
 					goalIndex = 0;
 					visitedPoints.clear();
 					core.refreshParams();

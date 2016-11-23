@@ -25,6 +25,20 @@ private:
 	ros::Publisher pubX, pubY, pubZ;
 };
 
+class PR2Commander : public ICommander {
+public:
+	PR2Commander(ros::NodeHandle &nh);
+
+	void setVelocity(Eigen::Vector3d vel);
+	bool getCurrentEEFPose(Eigen::Affine3d &out);
+	void setPosition(Eigen::Vector3d pos);
+
+private:
+	tf::TransformListener tfListener;
+	ros::Publisher pub;
+};
+
+
 class SimCommander : public ICommander {
 public:
 	SimCommander(double step = 0.005);
@@ -35,4 +49,22 @@ public:
 private:
 	Eigen::Vector3d currentPos;
 	double step;
+};
+
+
+class FakestCommander : public ICommander {
+public:
+	FakestCommander();
+	FakestCommander(ros::NodeHandle &nh);
+
+	void setVelocity(Eigen::Vector3d vel);
+	bool getCurrentEEFPose(Eigen::Affine3d &out);
+	void setPosition(Eigen::Vector3d pos);
+
+private:
+	void refreshPosition();
+
+	Eigen::Vector3d currentPos;
+	Eigen::Vector3d lastVelocity;
+	ros::Time lastSet;
 };

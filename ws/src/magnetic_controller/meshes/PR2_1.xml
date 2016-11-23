@@ -1,0 +1,17 @@
+<scene name="PR2_1">
+	<goal name="3D_Goal_2.008" posX="0.6000000238418579" posY="0.4826064109802246" posZ="1.0"/>
+	<goal name="3D_Goal_2.009" posX="0.7529215812683105" posY="-0.5568236708641052" posZ="1.0"/>
+	<start name="3D_Shelf_start.004" posX="0.32526928186416626" posY="0.0" posZ="1.0"/>
+	<obstacle name="Cerial_Box" mesh="meshes/Cerial.vc" static="1">
+		<transform posX="0.7939772009849548" posY="-0.04428814351558685" posZ="0.9295868277549744" rotX="0.0" rotY="0.0" rotZ="0.0"/>
+	</obstacle>
+	<obstacle name="Cylinder.003" mesh="meshes/Some_Cylinder.vc" static="1">
+		<transform posX="0.6135900616645813" posY="0.17112033069133759" posZ="1.0295867919921875" rotX="0.0" rotY="0.0" rotZ="0.0"/>
+	</obstacle>
+	<obstacle name="Cylinder.004" mesh="meshes/Some_Cylinder.vc" static="1">
+		<transform posX="0.8046539425849915" posY="-0.2161313146352768" posZ="1.0295867919921875" rotX="0.0" rotY="0.0" rotZ="0.0"/>
+	</obstacle>
+	<obstacle name="Table" mesh="meshes/Cube.001.vc" static="1">
+		<transform posX="0.7000000476837158" posY="-3.725290298461914e-09" posZ="0.7795844078063965" rotX="0.0" rotY="0.0" rotZ="0.0"/>
+	</obstacle>
+</scene>
