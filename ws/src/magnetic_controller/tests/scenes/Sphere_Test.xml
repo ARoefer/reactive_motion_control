@@ -1,0 +1,7 @@
+<scene name="Sphere_Test">
+	<goal name="Goal" posX="0.0" posY="1.0" posZ="0.0"/>
+	<obstacle name="Sphere" mesh="meshes/Sphere.vc" static="1">
+		<transform posX="0.0" posY="0.4999999701976776" posZ="0.0" rotX="0.0" rotY="0.0" rotZ="0.0"/>
+	</obstacle>
+	<start name="Start" posX="0.0" posY="0.0" posZ="0.0"/>
+</scene>

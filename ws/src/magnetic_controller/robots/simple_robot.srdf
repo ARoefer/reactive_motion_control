@@ -1,0 +1,5 @@
+<?xml version="1.0"?>
+
+<robot name="point_robot">
+<virtual_joint name="virtual_joint" type="fixed" parent_frame="odom_combined" child_link="link0" />
+</robot>

@@ -13,8 +13,9 @@ template<class T>
 class Scenery
 {
 public:
-	Scenery(MeshManager<T>* _pMeshManager, tf::TransformListener* _pTfListener) 
+	Scenery(MeshManager<T>* _pMeshManager, MeshManager<shape_msgs::Mesh>* _pPhysMeshManager, tf::TransformListener* _pTfListener) 
 		: pMeshManager(_pMeshManager)
+		, pPhysMeshManager(_pPhysMeshManager)
 		, pTfListener(_pTfListener) 
 		  {};
 
@@ -27,13 +28,18 @@ public:
 		ptree pt;
 
 		read_xml(filename, pt);
+		string sceneDir = "";
+		size_t dirSep = filename.rfind('/');
+		if (dirSep != string::npos)
+			sceneDir = filename.substr(0, dirSep + 1);
 
+		cout << "Scene base directory: " << sceneDir << endl;
 		ptree &sceneNode = pt.get_child("scene");
 
 		for (const pair<string, ptree> &p: sceneNode) {
 			ptree node = p.second;
 			if (p.first.compare("obstacle") == 0) {
-				loadObject(node);
+				loadObject(node, sceneDir);
 			} else if (p.first.compare("goal") == 0) {
 				SNamedPoint goal;
 				goal.name = node.get<string>("<xmlattr>.name");
@@ -50,7 +56,13 @@ public:
 		}
 	};
 
-	bool getPoint(string name, SNamedPoint &point) {
+	void getPointNames(vector<string>& names) const {
+		for (auto it = points.begin(); it != points.end(); it++) {
+			names.push_back(it->first);
+		}
+	}
+
+	bool getPoint(const string& name, SNamedPoint &point) const {
 		auto it = points.find(name);
 		if (it != points.end()) {
 			point = it->second;
@@ -60,7 +72,7 @@ public:
 		return false;
 	};
 
-	bool getGoal(size_t idx, SNamedPoint &point) {
+	bool getGoal(size_t idx, SNamedPoint &point) const {
 		if (goals.size() > idx) {
 			point = goals[idx];
 			return true;
@@ -69,7 +81,7 @@ public:
 		return false;
 	};
 
-	bool getStart(size_t idx, SNamedPoint &point) {
+	bool getStart(size_t idx, SNamedPoint &point) const {
 		if (starts.size() > idx) {
 			point = starts[idx];
 			return true;
@@ -78,7 +90,7 @@ public:
 		return false;
 	};
 
-	vector<ObjectBase<T>*> getObjects() {
+	vector<ObjectBase<T>*> getObjects() const {
 		vector<ObjectBase<T>*> out;
 		for (auto ptr: objects)
 			out.push_back(ptr.get());
@@ -86,23 +98,28 @@ public:
 	}
 
 private:
-	void loadObject(ptree &node) {
+	void loadObject(ptree &node, const string& baseDir) {
 		string mesh = node.get<string>("<xmlattr>.mesh");
 		string name = node.get<string>("<xmlattr>.name");
 		bool stat = node.get<bool>("<xmlattr>.static");
 		
 		T *pMesh = pMeshManager->getMeshByName(mesh);
+		shape_msgs::Mesh* pPhys = pPhysMeshManager->getMeshByName(mesh);
 		if (!pMesh) {
 			pMesh = pMeshManager->getNewMesh(mesh);
-			loadFromFile(pMesh, mesh);
+			loadFromFile(pMesh, baseDir + mesh);
+
+			string physName = baseDir + mesh.substr(0, mesh.rfind('.')) + "_phys.obj";
+			pPhys = pPhysMeshManager->getNewMesh(mesh);
+			loadFromFile(pPhys, physName);
 		}
 
 		boost::shared_ptr<ObjectBase<T>> objectPtr;
 		if (stat) {
 			Affine3d transform = parseTransform(node.get_child("transform"));
-			objectPtr = boost::shared_ptr<ObjectBase<T>>(new StaticObject<T>(pMesh, name, transform));
+			objectPtr = boost::shared_ptr<ObjectBase<T>>(new StaticObject<T>(pMesh, pPhys, name, transform));
 		} else {
-			objectPtr = boost::shared_ptr<ObjectBase<T>>(new TFObject<T>(pMesh, name, pTfListener));
+			objectPtr = boost::shared_ptr<ObjectBase<T>>(new TFObject<T>(pMesh, pPhys, name, pTfListener));
 		}
 
 		objects.push_back(objectPtr);
@@ -111,6 +128,7 @@ private:
 	tf::TransformListener* pTfListener;
 
 	MeshManager<T>* pMeshManager;
+	MeshManager<shape_msgs::Mesh>* pPhysMeshManager;
 	unordered_map<string, SNamedPoint> points;
 	vector<SNamedPoint> goals;
 	vector<SNamedPoint> starts;

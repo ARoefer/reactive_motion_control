@@ -1,0 +1,230 @@
+<testbench>
+	<test name="complex_magnetic" file="scenes/Complex_test.xml" rate="100" controller="circular">
+		<robots>
+			<robot package="magnetic_controller" urdf="robots/pr2.urdf" srdf="robots/pr2.srdf" controlled_joints="robots/pr2_controlled_joints_r_arm.yaml" giskard="controller_specs/pr2_r_arm_vel_control.yaml"/>
+		</robots>
+		<paths>
+			<path name="AB" maxTime="30">
+				<initial_states>
+					<state robot="pr2" package="magnetic_controller" file="robots/start_config_pr2_complex_A.yaml"/>
+				</initial_states>
+				<nodes>
+					<node name="GA"/>
+					<node name="GB"/>
+				</nodes>
+			</path>
+			<path name="BA" maxTime="30">
+				<initial_states>
+					<state robot="pr2" package="magnetic_controller" file="robots/start_config_pr2_complex_B.yaml"/>
+				</initial_states>
+				<nodes>
+					<node name="GB"/>
+					<node name="GA"/>
+				</nodes>
+			</path>
+			<path name="CD" maxTime="30">
+				<initial_states>
+					<state robot="pr2" package="magnetic_controller" file="robots/start_config_pr2_complex_C.yaml"/>
+				</initial_states>
+				<nodes>
+					<node name="GC"/>
+					<node name="GD"/>
+				</nodes>
+			</path>
+			<path name="DC" maxTime="30">
+				<initial_states>
+					<state robot="pr2" package="magnetic_controller" file="robots/start_config_pr2_complex_D.yaml"/>
+				</initial_states>
+				<nodes>
+					<node name="GD"/>
+					<node name="GC"/>
+				</nodes>
+			</path>
+
+			<path name="AC" maxTime="30">
+				<initial_states>
+					<state robot="pr2" package="magnetic_controller" file="robots/start_config_pr2_complex_A.yaml"/>
+				</initial_states>
+				<nodes>
+					<node name="GA"/>
+					<node name="GC"/>
+				</nodes>
+			</path>
+			<path name="CA" maxTime="30">
+				<initial_states>
+					<state robot="pr2" package="magnetic_controller" file="robots/start_config_pr2_complex_C.yaml"/>
+				</initial_states>
+				<nodes>
+					<node name="GC"/>
+					<node name="GA"/>
+				</nodes>
+			</path>
+			<path name="BD" maxTime="30">
+				<initial_states>
+					<state robot="pr2" package="magnetic_controller" file="robots/start_config_pr2_complex_B.yaml"/>
+				</initial_states>
+				<nodes>
+					<node name="GB"/>
+					<node name="GD"/>
+				</nodes>
+			</path>
+			<path name="DB" maxTime="30">
+				<initial_states>
+					<state robot="pr2" package="magnetic_controller" file="robots/start_config_pr2_complex_D.yaml"/>
+				</initial_states>
+				<nodes>
+					<node name="GD"/>
+					<node name="GB"/>
+				</nodes>
+			</path>
+
+			<path name="AD" maxTime="30">
+				<initial_states>
+					<state robot="pr2" package="magnetic_controller" file="robots/start_config_pr2_complex_A.yaml"/>
+				</initial_states>
+				<nodes>
+					<node name="GA"/>
+					<node name="GD"/>
+				</nodes>
+			</path>
+			<path name="DA" maxTime="30">
+				<initial_states>
+					<state robot="pr2" package="magnetic_controller" file="robots/start_config_pr2_complex_D.yaml"/>
+				</initial_states>
+				<nodes>
+					<node name="GD"/>
+					<node name="GA"/>
+				</nodes>
+			</path>
+			<path name="BC" maxTime="30">
+				<initial_states>
+					<state robot="pr2" package="magnetic_controller" file="robots/start_config_pr2_complex_B.yaml"/>
+				</initial_states>
+				<nodes>
+					<node name="GB"/>
+					<node name="GC"/>
+				</nodes>
+			</path>
+			<path name="CB" maxTime="30">
+				<initial_states>
+					<state robot="pr2" package="magnetic_controller" file="robots/start_config_pr2_complex_C.yaml"/>
+				</initial_states>
+				<nodes>
+					<node name="GC"/>
+					<node name="GB"/>
+				</nodes>
+			</path>
+		</paths>
+		<configs>
+			<config I_k="0.5" k_a="1" k_d="1" filter="d" surfFollow="0" p="0" m="0" margin="0.05" noise="0" rotation_vector="a"/>
+			<config I_k="1" k_a="1" k_d="1" filter="d" surfFollow="0" p="0" m="0" margin="0.05" noise="0" rotation_vector="a"/>
+			<config I_k="2" k_a="1" k_d="1" filter="d" surfFollow="0" p="0" m="0" margin="0.05" noise="0" rotation_vector="a"/>
+			<config I_k="4" k_a="1" k_d="1" filter="d" surfFollow="0" p="0" m="0" margin="0.05" noise="0" rotation_vector="a"/>
+			<config I_k="6" k_a="1" k_d="1" filter="d" surfFollow="0" p="0" m="0" margin="0.05" noise="0" rotation_vector="a"/>
+		
+			<config I_k="0.5" k_a="1" k_d="1" filter="a" surfFollow="0" p="0" m="0" margin="0.05" noise="0" rotation_vector="a"/>
+			<config I_k="1" k_a="1" k_d="1" filter="a" surfFollow="0" p="0" m="0" margin="0.05" noise="0" rotation_vector="a"/>
+			<config I_k="2" k_a="1" k_d="1" filter="a" surfFollow="0" p="0" m="0" margin="0.05" noise="0" rotation_vector="a"/>
+			<config I_k="4" k_a="1" k_d="1" filter="a" surfFollow="0" p="0" m="0" margin="0.05" noise="0" rotation_vector="a"/>
+			<config I_k="6" k_a="1" k_d="1" filter="a" surfFollow="0" p="0" m="0" margin="0.05" noise="0" rotation_vector="a"/>	
+
+			<config I_k="0.5" k_a="1" k_d="1.5" filter="d" surfFollow="0" p="0" m="0" margin="0.05" noise="0" rotation_vector="a"/>
+			<config I_k="1" k_a="1" k_d="1.5" filter="d" surfFollow="0" p="0" m="0" margin="0.05" noise="0" rotation_vector="a"/>
+			<config I_k="2" k_a="1" k_d="1.5" filter="d" surfFollow="0" p="0" m="0" margin="0.05" noise="0" rotation_vector="a"/>
+			<config I_k="4" k_a="1" k_d="1.5" filter="d" surfFollow="0" p="0" m="0" margin="0.05" noise="0" rotation_vector="a"/>
+			<config I_k="6" k_a="1" k_d="1.5" filter="d" surfFollow="0" p="0" m="0" margin="0.05" noise="0" rotation_vector="a"/>
+		
+			<config I_k="0.5" k_a="1" k_d="1.5" filter="a" surfFollow="0" p="0" m="0" margin="0.05" noise="0" rotation_vector="a"/>
+			<config I_k="1" k_a="1" k_d="1.5" filter="a" surfFollow="0" p="0" m="0" margin="0.05" noise="0" rotation_vector="a"/>
+			<config I_k="2" k_a="1" k_d="1.5" filter="a" surfFollow="0" p="0" m="0" margin="0.05" noise="0" rotation_vector="a"/>
+			<config I_k="4" k_a="1" k_d="1.5" filter="a" surfFollow="0" p="0" m="0" margin="0.05" noise="0" rotation_vector="a"/>
+			<config I_k="6" k_a="1" k_d="1.5" filter="a" surfFollow="0" p="0" m="0" margin="0.05" noise="0" rotation_vector="a"/>	
+
+			<config I_k="0.5" k_a="1" k_d="2" filter="d" surfFollow="0" p="0" m="0" margin="0.05" noise="0" rotation_vector="a"/>
+			<config I_k="1" k_a="1" k_d="2" filter="d" surfFollow="0" p="0" m="0" margin="0.05" noise="0" rotation_vector="a"/>
+			<config I_k="2" k_a="1" k_d="2" filter="d" surfFollow="0" p="0" m="0" margin="0.05" noise="0" rotation_vector="a"/>
+			<config I_k="4" k_a="1" k_d="2" filter="d" surfFollow="0" p="0" m="0" margin="0.05" noise="0" rotation_vector="a"/>
+			<config I_k="6" k_a="1" k_d="2" filter="d" surfFollow="0" p="0" m="0" margin="0.05" noise="0" rotation_vector="a"/>
+		
+			<config I_k="0.5" k_a="1" k_d="2" filter="a" surfFollow="0" p="0" m="0" margin="0.05" noise="0" rotation_vector="a"/>
+			<config I_k="1" k_a="1" k_d="2" filter="a" surfFollow="0" p="0" m="0" margin="0.05" noise="0" rotation_vector="a"/>
+			<config I_k="2" k_a="1" k_d="2" filter="a" surfFollow="0" p="0" m="0" margin="0.05" noise="0" rotation_vector="a"/>
+			<config I_k="4" k_a="1" k_d="2" filter="a" surfFollow="0" p="0" m="0" margin="0.05" noise="0" rotation_vector="a"/>
+			<config I_k="6" k_a="1" k_d="2" filter="a" surfFollow="0" p="0" m="0" margin="0.05" noise="0" rotation_vector="a"/>
+
+
+			<config I_k="0.5" k_a="1" k_d="1" filter="d" surfFollow="0" p="0" m="0" margin="0.06" noise="0" rotation_vector="a"/>
+			<config I_k="1" k_a="1" k_d="1" filter="d" surfFollow="0" p="0" m="0" margin="0.06" noise="0" rotation_vector="a"/>
+			<config I_k="2" k_a="1" k_d="1" filter="d" surfFollow="0" p="0" m="0" margin="0.06" noise="0" rotation_vector="a"/>
+			<config I_k="4" k_a="1" k_d="1" filter="d" surfFollow="0" p="0" m="0" margin="0.06" noise="0" rotation_vector="a"/>
+			<config I_k="6" k_a="1" k_d="1" filter="d" surfFollow="0" p="0" m="0" margin="0.06" noise="0" rotation_vector="a"/>
+		
+			<config I_k="0.5" k_a="1" k_d="1" filter="a" surfFollow="0" p="0" m="0" margin="0.06" noise="0" rotation_vector="a"/>
+			<config I_k="1" k_a="1" k_d="1" filter="a" surfFollow="0" p="0" m="0" margin="0.06" noise="0" rotation_vector="a"/>
+			<config I_k="2" k_a="1" k_d="1" filter="a" surfFollow="0" p="0" m="0" margin="0.06" noise="0" rotation_vector="a"/>
+			<config I_k="4" k_a="1" k_d="1" filter="a" surfFollow="0" p="0" m="0" margin="0.06" noise="0" rotation_vector="a"/>
+			<config I_k="6" k_a="1" k_d="1" filter="a" surfFollow="0" p="0" m="0" margin="0.06" noise="0" rotation_vector="a"/>	
+
+			<config I_k="0.5" k_a="1" k_d="1.5" filter="d" surfFollow="0" p="0" m="0" margin="0.06" noise="0" rotation_vector="a"/>
+			<config I_k="1" k_a="1" k_d="1.5" filter="d" surfFollow="0" p="0" m="0" margin="0.06" noise="0" rotation_vector="a"/>
+			<config I_k="2" k_a="1" k_d="1.5" filter="d" surfFollow="0" p="0" m="0" margin="0.06" noise="0" rotation_vector="a"/>
+			<config I_k="4" k_a="1" k_d="1.5" filter="d" surfFollow="0" p="0" m="0" margin="0.06" noise="0" rotation_vector="a"/>
+			<config I_k="6" k_a="1" k_d="1.5" filter="d" surfFollow="0" p="0" m="0" margin="0.06" noise="0" rotation_vector="a"/>
+		
+			<config I_k="0.5" k_a="1" k_d="1.5" filter="a" surfFollow="0" p="0" m="0" margin="0.06" noise="0" rotation_vector="a"/>
+			<config I_k="1" k_a="1" k_d="1.5" filter="a" surfFollow="0" p="0" m="0" margin="0.06" noise="0" rotation_vector="a"/>
+			<config I_k="2" k_a="1" k_d="1.5" filter="a" surfFollow="0" p="0" m="0" margin="0.06" noise="0" rotation_vector="a"/>
+			<config I_k="4" k_a="1" k_d="1.5" filter="a" surfFollow="0" p="0" m="0" margin="0.06" noise="0" rotation_vector="a"/>
+			<config I_k="6" k_a="1" k_d="1.5" filter="a" surfFollow="0" p="0" m="0" margin="0.06" noise="0" rotation_vector="a"/>	
+
+			<config I_k="0.5" k_a="1" k_d="2" filter="d" surfFollow="0" p="0" m="0" margin="0.06" noise="0" rotation_vector="a"/>
+			<config I_k="1" k_a="1" k_d="2" filter="d" surfFollow="0" p="0" m="0" margin="0.06" noise="0" rotation_vector="a"/>
+			<config I_k="2" k_a="1" k_d="2" filter="d" surfFollow="0" p="0" m="0" margin="0.06" noise="0" rotation_vector="a"/>
+			<config I_k="4" k_a="1" k_d="2" filter="d" surfFollow="0" p="0" m="0" margin="0.06" noise="0" rotation_vector="a"/>
+			<config I_k="6" k_a="1" k_d="2" filter="d" surfFollow="0" p="0" m="0" margin="0.06" noise="0" rotation_vector="a"/>
+		
+			<config I_k="0.5" k_a="1" k_d="2" filter="a" surfFollow="0" p="0" m="0" margin="0.06" noise="0" rotation_vector="a"/>
+			<config I_k="1" k_a="1" k_d="2" filter="a" surfFollow="0" p="0" m="0" margin="0.06" noise="0" rotation_vector="a"/>
+			<config I_k="2" k_a="1" k_d="2" filter="a" surfFollow="0" p="0" m="0" margin="0.06" noise="0" rotation_vector="a"/>
+			<config I_k="4" k_a="1" k_d="2" filter="a" surfFollow="0" p="0" m="0" margin="0.06" noise="0" rotation_vector="a"/>
+			<config I_k="6" k_a="1" k_d="2" filter="a" surfFollow="0" p="0" m="0" margin="0.06" noise="0" rotation_vector="a"/>
+
+
+			<config I_k="0.5" k_a="1" k_d="1" filter="d" surfFollow="0" p="0" m="0" margin="0.08" noise="0" rotation_vector="a"/>
+			<config I_k="1" k_a="1" k_d="1" filter="d" surfFollow="0" p="0" m="0" margin="0.08" noise="0" rotation_vector="a"/>
+			<config I_k="2" k_a="1" k_d="1" filter="d" surfFollow="0" p="0" m="0" margin="0.08" noise="0" rotation_vector="a"/>
+			<config I_k="4" k_a="1" k_d="1" filter="d" surfFollow="0" p="0" m="0" margin="0.08" noise="0" rotation_vector="a"/>
+			<config I_k="6" k_a="1" k_d="1" filter="d" surfFollow="0" p="0" m="0" margin="0.08" noise="0" rotation_vector="a"/>
+		
+			<config I_k="0.5" k_a="1" k_d="1" filter="a" surfFollow="0" p="0" m="0" margin="0.08" noise="0" rotation_vector="a"/>
+			<config I_k="1" k_a="1" k_d="1" filter="a" surfFollow="0" p="0" m="0" margin="0.08" noise="0" rotation_vector="a"/>
+			<config I_k="2" k_a="1" k_d="1" filter="a" surfFollow="0" p="0" m="0" margin="0.08" noise="0" rotation_vector="a"/>
+			<config I_k="4" k_a="1" k_d="1" filter="a" surfFollow="0" p="0" m="0" margin="0.08" noise="0" rotation_vector="a"/>
+			<config I_k="6" k_a="1" k_d="1" filter="a" surfFollow="0" p="0" m="0" margin="0.08" noise="0" rotation_vector="a"/>	
+
+			<config I_k="0.5" k_a="1" k_d="1.5" filter="d" surfFollow="0" p="0" m="0" margin="0.08" noise="0" rotation_vector="a"/>
+			<config I_k="1" k_a="1" k_d="1.5" filter="d" surfFollow="0" p="0" m="0" margin="0.08" noise="0" rotation_vector="a"/>
+			<config I_k="2" k_a="1" k_d="1.5" filter="d" surfFollow="0" p="0" m="0" margin="0.08" noise="0" rotation_vector="a"/>
+			<config I_k="4" k_a="1" k_d="1.5" filter="d" surfFollow="0" p="0" m="0" margin="0.08" noise="0" rotation_vector="a"/>
+			<config I_k="6" k_a="1" k_d="1.5" filter="d" surfFollow="0" p="0" m="0" margin="0.08" noise="0" rotation_vector="a"/>
+		
+			<config I_k="0.5" k_a="1" k_d="1.5" filter="a" surfFollow="0" p="0" m="0" margin="0.08" noise="0" rotation_vector="a"/>
+			<config I_k="1" k_a="1" k_d="1.5" filter="a" surfFollow="0" p="0" m="0" margin="0.08" noise="0" rotation_vector="a"/>
+			<config I_k="2" k_a="1" k_d="1.5" filter="a" surfFollow="0" p="0" m="0" margin="0.08" noise="0" rotation_vector="a"/>
+			<config I_k="4" k_a="1" k_d="1.5" filter="a" surfFollow="0" p="0" m="0" margin="0.08" noise="0" rotation_vector="a"/>
+			<config I_k="6" k_a="1" k_d="1.5" filter="a" surfFollow="0" p="0" m="0" margin="0.08" noise="0" rotation_vector="a"/>	
+
+			<config I_k="0.5" k_a="1" k_d="2" filter="d" surfFollow="0" p="0" m="0" margin="0.08" noise="0" rotation_vector="a"/>
+			<config I_k="1" k_a="1" k_d="2" filter="d" surfFollow="0" p="0" m="0" margin="0.08" noise="0" rotation_vector="a"/>
+			<config I_k="2" k_a="1" k_d="2" filter="d" surfFollow="0" p="0" m="0" margin="0.08" noise="0" rotation_vector="a"/>
+			<config I_k="4" k_a="1" k_d="2" filter="d" surfFollow="0" p="0" m="0" margin="0.08" noise="0" rotation_vector="a"/>
+			<config I_k="6" k_a="1" k_d="2" filter="d" surfFollow="0" p="0" m="0" margin="0.08" noise="0" rotation_vector="a"/>
+		
+			<config I_k="0.5" k_a="1" k_d="2" filter="a" surfFollow="0" p="0" m="0" margin="0.08" noise="0" rotation_vector="a"/>
+			<config I_k="1" k_a="1" k_d="2" filter="a" surfFollow="0" p="0" m="0" margin="0.08" noise="0" rotation_vector="a"/>
+			<config I_k="2" k_a="1" k_d="2" filter="a" surfFollow="0" p="0" m="0" margin="0.08" noise="0" rotation_vector="a"/>
+			<config I_k="4" k_a="1" k_d="2" filter="a" surfFollow="0" p="0" m="0" margin="0.08" noise="0" rotation_vector="a"/>
+			<config I_k="6" k_a="1" k_d="2" filter="a" surfFollow="0" p="0" m="0" margin="0.08" noise="0" rotation_vector="a"/>
+		</configs>
+	</test>
+</testbench>

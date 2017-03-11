@@ -5,8 +5,8 @@
       <author>Blender User</author>
       <authoring_tool>Blender 2.76.0 commit date:2015-11-03, commit time:10:56, hash:f337fea</authoring_tool>
     </contributor>
-    <created>2016-09-28T14:02:43</created>
-    <modified>2016-09-28T14:02:43</modified>
+    <created>2017-01-19T00:04:22</created>
+    <modified>2017-01-19T00:04:22</modified>
     <unit name="meter" meter="1"/>
     <up_axis>Z_UP</up_axis>
   </asset>
@@ -73,11 +73,12 @@
       </mesh>
     </geometry>
   </library_geometries>
+  <library_controllers/>
   <library_visual_scenes>
     <visual_scene id="Scene" name="Scene">
-      <node id="Plane_009" name="Plane_009" type="NODE">
-        <matrix sid="transform">1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1</matrix>
-        <instance_geometry url="#Goal_Mesh-mesh" name="Plane_009">
+      <node id="goal3_002" name="goal3_002" type="NODE">
+        <matrix sid="transform">0.8191521 -0.5735765 0 -1.19209e-7 0.5735765 0.8191521 0 0 0 0 1 0 0 0 0 1</matrix>
+        <instance_geometry url="#Goal_Mesh-mesh" name="goal3_002">
           <bind_material>
             <technique_common>
               <instance_material symbol="Goal-material" target="#Goal-material"/>

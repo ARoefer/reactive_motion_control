@@ -1,0 +1,169 @@
+#
+# Copyright (C) 2015-2016 Georg Bartels <georg.bartels@cs.uni-bremen.de>
+#
+# This file is part of giskard.
+#
+# giskard is free software; you can redistribute it and/or
+# modify it under the terms of the GNU General Public License
+# as published by the Free Software Foundation; either version 2
+# of the License, or (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, write to the Free Software
+# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+#
+
+scope:
+  # definition of some nice short-cuts
+  - unit_x: {vector3: [1, 0, 0]}
+  - unit_y: {vector3: [0, 1, 0]}
+  - unit_z: {vector3: [0, 0, 1]}
+
+
+  # definition of joint input variables
+  - torso_lift_joint: {input-var: 0}
+  - r_shoulder_pan_joint: {input-var: 1}
+  - r_shoulder_lift_joint: {input-var: 2}
+  - r_upper_arm_roll_joint: {input-var: 3}
+  - r_elbow_flex_joint: {input-var: 4}
+  - r_forearm_roll_joint: {input-var: 5}
+  - r_wrist_flex_joint: {input-var: 6}
+  - r_wrist_roll_joint: {input-var: 7}
+
+  # definition goal input variables
+  - r_goal_x: {input-var: 8}
+  - r_goal_y: {input-var: 9}
+  - r_goal_z: {input-var: 10}
+
+  # definition of joint transforms
+  - torso_lift:
+      frame: [{axis-angle: [unit_x, 0]}, {vector3: [-0.05, 0, {double-add: [0.739675, torso_lift_joint]}]}]
+  - r_shoulder_pan:
+      frame: [{axis-angle: [unit_z, r_shoulder_pan_joint]}, {vector3: [0, -0.188, 0]}]
+  - r_shoulder_lift:
+      frame: [{axis-angle: [unit_y, r_shoulder_lift_joint]}, {vector3: [0.1, 0, 0]}]
+  - r_upper_arm_roll: 
+      frame: [{axis-angle: [unit_x, r_upper_arm_roll_joint]}, {vector3: [0, 0, 0]}]
+  - r_elbow_flex:
+      frame: [{axis-angle: [unit_y, r_elbow_flex_joint]}, {vector3: [0.4, 0, 0]}]
+  - r_forearm_roll:
+      frame: [{axis-angle: [unit_x, r_forearm_roll_joint]}, {vector3: [0, 0, 0]}]
+  - r_wrist_flex:
+      frame: [{axis-angle: [unit_y, r_wrist_flex_joint]}, {vector3: [0.321, 0, 0]}]
+  - r_wrist_roll:
+      frame: [{axis-angle: [unit_x, r_wrist_roll_joint]}, {vector3: [0, 0, 0]}]
+  - r_gripper_offset:
+      frame: [{axis-angle: [unit_x, 0]}, {vector3: [0.18, 0, 0]}]
+
+
+  # definition of elbow FK
+  - right_elbow:
+      frame-mul:
+      - torso_lift
+      - r_shoulder_pan
+      - r_shoulder_lift
+      - r_upper_arm_roll
+      - r_elbow_flex
+
+  # defintion of EE FK
+  - right_ee:
+      frame-mul:
+      - right_elbow
+      - r_forearm_roll
+      - r_wrist_flex
+      - r_wrist_roll
+      - r_gripper_offset
+
+  # control params
+  - pos_p_gain: 1.0
+  - rot_p_gain: 1.0
+  - pos_thresh: 0.05
+  - rot_thresh: 0.1
+  - weight_arm_joints: 0.001
+  - weight_torso_joint: 0.001
+  - weight_vel_goal: 1
+  - weight_align_goal: 0.5
+  - weight_rot_control: 20
+  - weight_elbow_control: 0.4
+  - neg_vel_limit_arm_joints: -0.6
+  - pos_vel_limit_arm_joints: 0.6
+  - neg_vel_limit_torso_joint: -0.02
+  - pos_vel_limit_torso_joint: 0.02
+
+  # definition EE goals and control laws
+  #  # right arm position
+  #- r_trans: 
+  - robot_pos: {origin-of: right_ee}
+  #  - r_rot_align: {vector-sub: [{origin-of: right_elbow}, r_trans]}
+  #  - r_gripper_align: {rot-vector: {orientation-of: right_ee}}
+  # right arm rotation
+  - r_goal_rot: {quaternion: [0, 0, 0, 1]}
+  - r_rot: {orientation-of: right_ee}
+  - r_rot_error: {vector-norm: {rot-vector: {rotation-mul: [{inverse-rotation: r_rot}, r_goal_rot]}}}
+  - r_rot_scaling: 
+      double-if:
+      - {double-sub: [rot_thresh, r_rot_error]}
+      - 1
+      - {double-div: [rot_thresh, r_rot_error]}
+  - r_intermediate_goal_rot:
+      slerp:
+      - r_rot
+      - r_goal_rot
+      - r_rot_scaling
+  - r_rot_control:
+      scale-vector: [rot_p_gain, {rotate-vector: [r_rot, {rot-vector: {rotation-mul: [{inverse-rotation: r_rot}, r_intermediate_goal_rot]}}]}]
+  - r_elbow_diff: {vector-sub: [robot_pos, {origin-of: right_elbow}]}
+
+
+controllable-constraints:
+  # torso joint
+  - controllable-constraint: [neg_vel_limit_torso_joint, pos_vel_limit_torso_joint, weight_torso_joint, 0, torso_lift_joint]
+  # right arm joints
+  - controllable-constraint: [neg_vel_limit_arm_joints, pos_vel_limit_arm_joints, weight_arm_joints, 1, r_shoulder_pan_joint]
+  - controllable-constraint: [neg_vel_limit_arm_joints, pos_vel_limit_arm_joints, weight_arm_joints, 2, r_shoulder_lift_joint]
+  - controllable-constraint: [neg_vel_limit_arm_joints, pos_vel_limit_arm_joints, weight_arm_joints, 3, r_upper_arm_roll_joint]
+  - controllable-constraint: [neg_vel_limit_arm_joints, pos_vel_limit_arm_joints, weight_arm_joints, 4, r_elbow_flex_joint]
+  - controllable-constraint: [neg_vel_limit_arm_joints, pos_vel_limit_arm_joints, weight_arm_joints, 5, r_forearm_roll_joint]
+  - controllable-constraint: [neg_vel_limit_arm_joints, pos_vel_limit_arm_joints, weight_arm_joints, 6, r_wrist_flex_joint]
+  - controllable-constraint: [neg_vel_limit_arm_joints, pos_vel_limit_arm_joints, weight_arm_joints, 7, r_wrist_roll_joint]
+
+soft-constraints:
+  - soft-constraint: [r_goal_x, r_goal_x, weight_vel_goal, {x-coord: robot_pos}, right EE x-vel slack]
+  - soft-constraint: [r_goal_y, r_goal_y, weight_vel_goal, {y-coord: robot_pos}, right EE y-vel slack]
+  - soft-constraint: [r_goal_z, r_goal_z, weight_vel_goal, {z-coord: robot_pos}, right EE z-vel slack]
+  - soft-constraint: [{x-coord: r_rot_control}, {x-coord: r_rot_control}, weight_rot_control, {x-coord: {rot-vector: r_rot}}, right EE x-rot control slack]
+  - soft-constraint: [{y-coord: r_rot_control}, {y-coord: r_rot_control}, weight_rot_control, {y-coord: {rot-vector: r_rot}}, right EE y-rot control slack]
+  - soft-constraint: [{z-coord: r_rot_control}, {z-coord: r_rot_control}, weight_rot_control, {z-coord: {rot-vector: r_rot}}, right EE z-rot control slack]
+
+  #- soft-constraint: [0.01, 0.01, weight_elbow_control, {y-coord: r_elbow_diff}, left elbow up control slack]
+
+hard-constraints:
+  - hard-constraint:
+      - {double-sub: [0.0115, torso_lift_joint]}
+      - {double-sub: [0.325, torso_lift_joint]}
+      - torso_lift_joint
+  - hard-constraint:
+      - {double-sub: [-2.1353, r_shoulder_pan_joint]}
+      - {double-sub: [0.5646, r_shoulder_pan_joint]}
+      - r_shoulder_pan_joint
+  - hard-constraint:
+      - {double-sub: [-0.3536, r_shoulder_lift_joint]}
+      - {double-sub: [1.2963, r_shoulder_lift_joint]}
+      -  r_shoulder_lift_joint
+  - hard-constraint:
+      - {double-sub: [-3.75, r_upper_arm_roll_joint]}
+      - {double-sub: [0.65, r_upper_arm_roll_joint]}
+      - r_upper_arm_roll_joint
+  - hard-constraint:
+      - {double-sub: [-2.1213, r_elbow_flex_joint]}
+      - {double-sub: [-0.15, r_elbow_flex_joint]}
+      - r_elbow_flex_joint
+  - hard-constraint:
+      - {double-sub: [-2.0, r_wrist_flex_joint]}
+      - {double-sub: [-0.1, r_wrist_flex_joint]}
+      - r_wrist_flex_joint

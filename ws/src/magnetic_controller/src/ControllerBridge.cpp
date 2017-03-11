@@ -46,15 +46,18 @@ bool ROSCommander::getCurrentEEFPose(Affine3d &out) {
 
 
 // ------------------------------------------- PR2 COMMANDER
-PR2Commander::PR2Commander(ros::NodeHandle &nh) {
+GiskardCommander::GiskardCommander(ros::NodeHandle &nh, string _refFrame, string _eefFrame) 
+: refFrame(_refFrame)
+, eefFrame(_eefFrame)
+{
 	pub = nh.advertise<geometry_msgs::PointStamped>("/goal", 1);
 }
 
-void PR2Commander::setVelocity(Vector3d vel) {
+void GiskardCommander::setVelocity(Vector3d vel) {
 	try {	
 		tf::StampedTransform temp;
-		tfListener.waitForTransform("base_link", "odom_combined", ros::Time(0), ros::Duration(0.5));
-		tfListener.lookupTransform("base_link", "odom_combined", ros::Time(0), temp);
+		tfListener.waitForTransform(refFrame, "odom_combined", ros::Time(0), ros::Duration(0.5));
+		tfListener.lookupTransform(refFrame, "odom_combined", ros::Time(0), temp);
 
 		Affine3d oIb = Affine3d::Identity();
 		tf::poseTFToEigen(temp, oIb);
@@ -62,32 +65,32 @@ void PR2Commander::setVelocity(Vector3d vel) {
 
 		geometry_msgs::PointStamped msg;
 		msg.header.stamp = ros::Time::now();
-		msg.header.frame_id = "base_link";
+		msg.header.frame_id = refFrame;
 		msg.point.x = velIb[0];
 		msg.point.y = velIb[1];
 		msg.point.z = velIb[2];
 
 		pub.publish(msg);
 	} catch (tf::TransformException ex) {
-		std::cerr << "Lookup of odom_combined in base_link failed!" << std::endl;
+		std::cerr << "Lookup of odom_combined in " << refFrame << " failed!" << std::endl;
 	}
 
 }
 
-void PR2Commander::setPosition(Eigen::Vector3d pos) {
+void GiskardCommander::setPosition(Eigen::Vector3d pos) {
 
 }
 
-bool PR2Commander::getCurrentEEFPose(Affine3d &out) {
+bool GiskardCommander::getCurrentEEFPose(Affine3d &out) {
 	try {	
 		tf::StampedTransform temp;
-		tfListener.waitForTransform("odom_combined", "r_gripper_tool_frame", ros::Time(0), ros::Duration(0.5));
-		tfListener.lookupTransform("odom_combined", "r_gripper_tool_frame", ros::Time(0), temp);
+		tfListener.waitForTransform("odom_combined", eefFrame, ros::Time(0), ros::Duration(0.5));
+		tfListener.lookupTransform("odom_combined", eefFrame, ros::Time(0), temp);
 
 		tf::poseTFToEigen(temp, out);
 		return true;
 	} catch (tf::TransformException ex) {
-		std::cerr << "Lookup of frame 'r_gripper_tool_frame' failed!" << std::endl;
+		std::cerr << "Lookup of frame '" << eefFrame << "' failed!" << std::endl;
 	}
 	return false;
 }

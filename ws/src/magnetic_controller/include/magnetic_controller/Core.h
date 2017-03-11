@@ -19,7 +19,7 @@ using namespace Eigen;
 using namespace ros;
 
 template<class T>
-class MagneticCore
+class CollisionAvoidance
 {
 protected:
 	enum ENameSpaces
@@ -40,7 +40,12 @@ public:
 		, k_a(1)
 		, k_d(1)
 		, filter('n')
+		, m(false)
 		, surfFollowing(false)
+		, p(1)
+		, margin(0.05)
+		, noise(0.0)
+		, rotVector('a')
 		{}
 
 
@@ -54,23 +59,37 @@ public:
 			ros::param::get("filter", fTemp);
 			if (fTemp.size() > 0)
 				filter = fTemp[0];
+			string rTemp = &rotVector;
+			ros::param::get("rotation_vector", rTemp);
+			if (rTemp.size() > 0)
+				rotVector = rTemp[0];
 			ros::param::get("surface_following", surfFollowing);
+			ros::param::get("p", p);
+			ros::param::get("margin", margin);
+			ros::param::get("m", m);
+			ros::param::get("noise", noise);
 		}
 
+		bool m;
+		bool surfFollowing;
 		// 'n', 'd', 'g', 'a'
 		char filter;
-		bool surfFollowing;
+		// 'a', 'x', 'l'
+		char rotVector;
 		double vel;
 		double mass;
 		double I_k;
 		double k_a;
 		double k_d;
+		double p;
+		double margin;
+		double noise;
 	};
 
-	MagneticCore(const NodeHandle &_nh);
+	CollisionAvoidance(const NodeHandle &_nh);
 
 
-	virtual Vector3d calculateAccel(Vector3d pos, Vector3d goal, Vector3d velV) = 0;
+	virtual Vector3d calculateAvoidance(Vector3d pos, Vector3d goal, Vector3d velV, double dT) = 0;
 	virtual void addObject(ObjectBase<T>* pObj) {
 		if (!pObj)
 			return;
@@ -82,6 +101,11 @@ public:
 	{
 		Vector3d F_v;
 		double B;
+		Matrix3d M;
+		vector<Matrix3d> V;
+		vector<Matrix3d> Vi;
+		vector<Matrix3d> E;
+		unsigned long particlesExamined;
 	} debug;
 
 	void refreshParams() { parameters.refresh(); }
@@ -98,19 +122,19 @@ protected:
 
 };
 
-class MagneticCore_ParticleModel : public MagneticCore<ParticleCloud>
+class CircularFields : public CollisionAvoidance<ParticleCloud>
 {
 public:
-	MagneticCore_ParticleModel(const NodeHandle &_nh);
+	CircularFields(const NodeHandle &_nh);
 
-	Vector3d calculateAccel(Vector3d pos, Vector3d goal, Vector3d velV);
+	Vector3d calculateAvoidance(Vector3d pos, Vector3d goal, Vector3d velV, double dT);
 	void addObject(ObjectBase<ParticleCloud>* pObj);
 };
 
-class MagneticCore_SurfaceModel : public MagneticCore<Mesh>
+class DynamicSystemModulation : public CollisionAvoidance<ParticleCloud>
 {
 public:
-	MagneticCore_SurfaceModel(const NodeHandle &_nh);
+	DynamicSystemModulation(const NodeHandle &_nh);
 
-	Vector3d calculateAccel(Vector3d pos, Vector3d goal, Vector3d velV);
+	Vector3d calculateAvoidance(Vector3d pos, Vector3d goal, Vector3d velV, double dT);
 };

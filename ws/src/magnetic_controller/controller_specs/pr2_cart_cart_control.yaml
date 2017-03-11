@@ -134,8 +134,8 @@ scope:
 
   # definition EE goals and control laws
   #  # right arm position
-  - r_trans: {origin-of: right_ee}
-  #  - r_rot_align: {vector-sub: [{origin-of: right_elbow}, r_trans]}
+  - robot_pos: {origin-of: right_ee}
+  #  - r_rot_align: {vector-sub: [{origin-of: right_elbow}, robot_pos]}
   #  - r_gripper_align: {rot-vector: {orientation-of: right_ee}}
   # right arm rotation
   - r_goal_rot: {quaternion: [0, 0, 0, 1]}
@@ -176,9 +176,9 @@ controllable-constraints:
   - controllable-constraint: [neg_vel_limit_arm_joints, pos_vel_limit_arm_joints, weight_arm_joints, 14, r_wrist_roll_joint]
 
 soft-constraints:
-  - soft-constraint: [r_goal_x, r_goal_x, weight_vel_goal, {x-coord: r_trans}, right EE x-vel slack]
-  - soft-constraint: [r_goal_y, r_goal_y, weight_vel_goal, {y-coord: r_trans}, right EE y-vel slack]
-  - soft-constraint: [r_goal_z, r_goal_z, weight_vel_goal, {z-coord: r_trans}, right EE z-vel slack]
+  - soft-constraint: [r_goal_x, r_goal_x, weight_vel_goal, {x-coord: robot_pos}, right EE x-vel slack]
+  - soft-constraint: [r_goal_y, r_goal_y, weight_vel_goal, {y-coord: robot_pos}, right EE y-vel slack]
+  - soft-constraint: [r_goal_z, r_goal_z, weight_vel_goal, {z-coord: robot_pos}, right EE z-vel slack]
   - soft-constraint: [{x-coord: r_rot_control}, {x-coord: r_rot_control}, weight_rot_control, {x-coord: {rot-vector: r_rot}}, right EE x-rot control slack]
   - soft-constraint: [{y-coord: r_rot_control}, {y-coord: r_rot_control}, weight_rot_control, {y-coord: {rot-vector: r_rot}}, right EE y-rot control slack]
   - soft-constraint: [{z-coord: r_rot_control}, {z-coord: r_rot_control}, weight_rot_control, {z-coord: {rot-vector: r_rot}}, right EE z-rot control slack]
@@ -196,7 +196,7 @@ soft-constraints:
 #   - soft-constraint: [-0.01, -0.01, weight_elbow_control, {y-coord: {origin-of: right_elbow}}, right elbow out control slack]
 #   - soft-constraint: [0.01, 0.01, weight_elbow_control, {z-coord: {origin-of: right_elbow}}, right elbow up control slack]
 #  - soft-constraint: [0.01, 0.01, weight_elbow_control, {y-coord: r_elbow_diff}, left elbow out control slack]
-  - soft-constraint: [0.01, 0.01, weight_elbow_control, {y-coord: r_elbow_diff}, left elbow up control slack]
+# - soft-constraint: [0.01, 0.01, weight_elbow_control, {y-coord: r_elbow_diff}, left elbow up control slack]
 
 hard-constraints:
   - hard-constraint:

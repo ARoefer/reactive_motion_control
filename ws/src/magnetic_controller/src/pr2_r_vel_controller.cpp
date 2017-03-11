@@ -100,12 +100,12 @@ void goal_callback(const geometry_msgs::PointStamped::ConstPtr& msg)
 
   //std::cout << "received new goal" << std::endl;
 
-  if(msg->header.frame_id.compare(frame_id_) != 0)
-  {
-    ROS_WARN("frame_id of right EE goal did not match expected '%s'. Ignoring goal", 
-        frame_id_.c_str());
-    return;
-  }
+  // if(msg->header.frame_id.compare(frame_id_) != 0)
+  // {
+  //   ROS_WARN("frame_id of right EE goal did not match expected '%s'. Ignoring goal", 
+  //       frame_id_.c_str());
+  //   return;
+  // }
 
   // copying over left goal
   state_[joint_names_.size() + 0] = msg->point.x;

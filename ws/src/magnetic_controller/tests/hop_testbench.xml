@@ -1,0 +1,181 @@
+<testbench>
+	<test name="hop_magnetic" file="scenes/Hop_test.xml" rate="100" controller="circular">
+		<robots>
+			<robot package="magnetic_controller" urdf="robots/simple_robot.urdf" srdf="robots/simple_robot.srdf" controlled_joints="robots/controlled_joints.yaml" giskard="controller_specs/point_robot_vel_controller.yaml"/>
+		</robots>
+		<paths>
+			<path name="A1" maxTime="30">
+				<initial_states>
+					<state robot="point_robot" package="magnetic_controller" file="robots/start_config_A.yaml"/>
+				</initial_states>
+				<nodes>
+					<node name="G_A"/>
+					<node name="G_1"/>
+				</nodes>
+			</path>
+			<path name="A4" maxTime="30">
+				<initial_states>
+					<state robot="point_robot" package="magnetic_controller" file="robots/start_config_A.yaml"/>
+				</initial_states>
+				<nodes>
+					<node name="G_A"/>
+					<node name="G_4"/>
+				</nodes>
+			</path>
+			<path name="A6" maxTime="30">
+				<initial_states>
+					<state robot="point_robot" package="magnetic_controller" file="robots/start_config_A.yaml"/>
+				</initial_states>
+				<nodes>
+					<node name="G_A"/>
+					<node name="G_6"/>
+				</nodes>
+			</path>
+			<path name="D1" maxTime="30">
+				<initial_states>
+					<state robot="point_robot" package="magnetic_controller" file="robots/start_config_D.yaml"/>
+				</initial_states>
+				<nodes>
+					<node name="G_D"/>
+					<node name="G_1"/>
+				</nodes>
+			</path>
+			<path name="D4" maxTime="30">
+				<initial_states>
+					<state robot="point_robot" package="magnetic_controller" file="robots/start_config_D.yaml"/>
+				</initial_states>
+				<nodes>
+					<node name="G_D"/>
+					<node name="G_4"/>
+				</nodes>
+			</path>
+			<path name="D3" maxTime="30">
+				<initial_states>
+					<state robot="point_robot" package="magnetic_controller" file="robots/start_config_D.yaml"/>
+				</initial_states>
+				<nodes>
+					<node name="G_D"/>
+					<node name="G_3"/>
+				</nodes>
+			</path>
+			<path name="B2" maxTime="30">
+				<initial_states>
+					<state robot="point_robot" package="magnetic_controller" file="robots/start_config_B.yaml"/>
+				</initial_states>
+				<nodes>
+					<node name="G_B"/>
+					<node name="G_2"/>
+				</nodes>
+			</path>
+			<path name="B5" maxTime="30">
+				<initial_states>
+					<state robot="point_robot" package="magnetic_controller" file="robots/start_config_B.yaml"/>
+				</initial_states>
+				<nodes>
+					<node name="G_B"/>
+					<node name="G_5"/>
+				</nodes>
+			</path>
+			<path name="E2" maxTime="30">
+				<initial_states>
+					<state robot="point_robot" package="magnetic_controller" file="robots/start_config_E.yaml"/>
+				</initial_states>
+				<nodes>
+					<node name="G_E"/>
+					<node name="G_1"/>
+				</nodes>
+			</path>
+			<path name="E5" maxTime="30">
+				<initial_states>
+					<state robot="point_robot" package="magnetic_controller" file="robots/start_config_E.yaml"/>
+				</initial_states>
+				<nodes>
+					<node name="G_E"/>
+					<node name="G_5"/>
+				</nodes>
+			</path>
+			<path name="F3" maxTime="30">
+				<initial_states>
+					<state robot="point_robot" package="magnetic_controller" file="robots/start_config_F.yaml"/>
+				</initial_states>
+				<nodes>
+					<node name="G_F"/>
+					<node name="G_3"/>
+				</nodes>
+			</path>
+			<path name="F1" maxTime="30">
+				<initial_states>
+					<state robot="point_robot" package="magnetic_controller" file="robots/start_config_F.yaml"/>
+				</initial_states>
+				<nodes>
+					<node name="G_F"/>
+					<node name="G_1"/>
+				</nodes>
+			</path>
+			<path name="F6" maxTime="30">
+				<initial_states>
+					<state robot="point_robot" package="magnetic_controller" file="robots/start_config_F.yaml"/>
+				</initial_states>
+				<nodes>
+					<node name="G_F"/>
+					<node name="G_6"/>
+				</nodes>
+			</path>
+			<path name="C3" maxTime="30">
+				<initial_states>
+					<state robot="point_robot" package="magnetic_controller" file="robots/start_config_C.yaml"/>
+				</initial_states>
+				<nodes>
+					<node name="G_C"/>
+					<node name="G_3"/>
+				</nodes>
+			</path>
+			<path name="C4" maxTime="30">
+				<initial_states>
+					<state robot="point_robot" package="magnetic_controller" file="robots/start_config_C.yaml"/>
+				</initial_states>
+				<nodes>
+					<node name="G_C"/>
+					<node name="G_4"/>
+				</nodes>
+			</path>
+		</paths>
+		<configs>
+			<config I_k="0.5" k_a="1" k_d="1" filter="d" surfFollow="0" p="0" m="0" margin="0.06" noise="0" rotation_vector="a"/>
+			<config I_k="1" k_a="1" k_d="1" filter="d" surfFollow="0" p="0" m="0" margin="0.06" noise="0" rotation_vector="a"/>
+			<config I_k="2" k_a="1" k_d="1" filter="d" surfFollow="0" p="0" m="0" margin="0.06" noise="0" rotation_vector="a"/>
+			<config I_k="4" k_a="1" k_d="1" filter="d" surfFollow="0" p="0" m="0" margin="0.06" noise="0" rotation_vector="a"/>
+			<config I_k="6" k_a="1" k_d="1" filter="d" surfFollow="0" p="0" m="0" margin="0.06" noise="0" rotation_vector="a"/>
+		
+			<config I_k="0.5" k_a="1" k_d="1" filter="a" surfFollow="0" p="0" m="0" margin="0.06" noise="0" rotation_vector="a"/>
+			<config I_k="1" k_a="1" k_d="1" filter="a" surfFollow="0" p="0" m="0" margin="0.06" noise="0" rotation_vector="a"/>
+			<config I_k="2" k_a="1" k_d="1" filter="a" surfFollow="0" p="0" m="0" margin="0.06" noise="0" rotation_vector="a"/>
+			<config I_k="4" k_a="1" k_d="1" filter="a" surfFollow="0" p="0" m="0" margin="0.06" noise="0" rotation_vector="a"/>
+			<config I_k="6" k_a="1" k_d="1" filter="a" surfFollow="0" p="0" m="0" margin="0.06" noise="0" rotation_vector="a"/>	
+
+			<config I_k="0.5" k_a="1" k_d="1.5" filter="d" surfFollow="0" p="0" m="0" margin="0.06" noise="0" rotation_vector="a"/>
+			<config I_k="1" k_a="1" k_d="1.5" filter="d" surfFollow="0" p="0" m="0" margin="0.06" noise="0" rotation_vector="a"/>
+			<config I_k="2" k_a="1" k_d="1.5" filter="d" surfFollow="0" p="0" m="0" margin="0.06" noise="0" rotation_vector="a"/>
+			<config I_k="4" k_a="1" k_d="1.5" filter="d" surfFollow="0" p="0" m="0" margin="0.06" noise="0" rotation_vector="a"/>
+			<config I_k="6" k_a="1" k_d="1.5" filter="d" surfFollow="0" p="0" m="0" margin="0.06" noise="0" rotation_vector="a"/>
+		
+			<config I_k="0.5" k_a="1" k_d="1.5" filter="a" surfFollow="0" p="0" m="0" margin="0.06" noise="0" rotation_vector="a"/>
+			<config I_k="1" k_a="1" k_d="1.5" filter="a" surfFollow="0" p="0" m="0" margin="0.06" noise="0" rotation_vector="a"/>
+			<config I_k="2" k_a="1" k_d="1.5" filter="a" surfFollow="0" p="0" m="0" margin="0.06" noise="0" rotation_vector="a"/>
+			<config I_k="4" k_a="1" k_d="1.5" filter="a" surfFollow="0" p="0" m="0" margin="0.06" noise="0" rotation_vector="a"/>
+			<config I_k="6" k_a="1" k_d="1.5" filter="a" surfFollow="0" p="0" m="0" margin="0.06" noise="0" rotation_vector="a"/>	
+
+			<config I_k="0.5" k_a="1" k_d="2" filter="d" surfFollow="0" p="0" m="0" margin="0.06" noise="0" rotation_vector="a"/>
+			<config I_k="1" k_a="1" k_d="2" filter="d" surfFollow="0" p="0" m="0" margin="0.06" noise="0" rotation_vector="a"/>
+			<config I_k="2" k_a="1" k_d="2" filter="d" surfFollow="0" p="0" m="0" margin="0.06" noise="0" rotation_vector="a"/>
+			<config I_k="4" k_a="1" k_d="2" filter="d" surfFollow="0" p="0" m="0" margin="0.06" noise="0" rotation_vector="a"/>
+			<config I_k="6" k_a="1" k_d="2" filter="d" surfFollow="0" p="0" m="0" margin="0.06" noise="0" rotation_vector="a"/>
+		
+			<config I_k="0.5" k_a="1" k_d="2" filter="a" surfFollow="0" p="0" m="0" margin="0.06" noise="0" rotation_vector="a"/>
+			<config I_k="1" k_a="1" k_d="2" filter="a" surfFollow="0" p="0" m="0" margin="0.06" noise="0" rotation_vector="a"/>
+			<config I_k="2" k_a="1" k_d="2" filter="a" surfFollow="0" p="0" m="0" margin="0.06" noise="0" rotation_vector="a"/>
+			<config I_k="4" k_a="1" k_d="2" filter="a" surfFollow="0" p="0" m="0" margin="0.06" noise="0" rotation_vector="a"/>
+			<config I_k="6" k_a="1" k_d="2" filter="a" surfFollow="0" p="0" m="0" margin="0.06" noise="0" rotation_vector="a"/>	
+		</configs>
+	</test>
+</testbench>

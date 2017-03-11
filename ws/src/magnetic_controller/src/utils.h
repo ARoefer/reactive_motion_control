@@ -6,6 +6,8 @@
 
 #include <std_msgs/Float64.h>
 #include <std_msgs/ColorRGBA.h>
+#include <shape_msgs/Mesh.h>
+#include <shape_msgs/MeshTriangle.h>
 #include <visualization_msgs/Marker.h>
 #include <visualization_msgs/MarkerArray.h>
 
@@ -323,10 +325,40 @@ void loadFromFile(ParticleCloud* cloud, string path) {
     }
 }
 
+void loadFromFile(shape_msgs::Mesh* mesh, string path) {
+    ifstream file(path);
+
+    if (file.is_open()) {
+        while (!file.eof()) {
+            string cmd;
+            file >> cmd;
+
+            if (cmd.compare("v") == 0) {
+                double px, py, pz;
+                file >> px;
+                file >> py;
+                file >> pz;
+
+                mesh->vertices.push_back(VectorToPoint(Vector3d(px, py, pz)));
+            } else if (cmd.compare("f") == 0) {
+                shape_msgs::MeshTriangle tri;
+                
+                file >> tri.vertex_indices[0];
+                file >> tri.vertex_indices[1];
+                file >> tri.vertex_indices[2];
+
+                mesh->triangles.push_back(tri);
+            }
+        }
+    } else {
+        cerr << "Opening of file '" << path << "' failed!" << endl;
+    }   
+}
+
 
 void visualizeObjects(vector<ObjectBase<ParticleCloud>*> &objects, vector<visualization_msgs::Marker> &markers, int ns, VisualizationManager &vis) {
     for (ObjectBase<ParticleCloud>* pObj: objects) {
-        cout << "visualizing " << pObj->name << " with " << pObj->pMesh->particles.size() << " particles" << endl;
+        //cout << "visualizing " << pObj->name << " with " << pObj->pMesh->particles.size() << " particles" << endl;
         visualization_msgs::Marker marker;
 
         Affine3d pose = Affine3d::Identity();
@@ -343,7 +375,7 @@ void visualizeObjects(vector<ObjectBase<ParticleCloud>*> &objects, vector<visual
         marker.header.stamp = ros::Time::now();
         marker.id = vis.consumeId(ns);
         marker.type = visualization_msgs::Marker::POINTS;
-        marker.scale.x = marker.scale.y = 0.04;
+        marker.scale.x = marker.scale.y = 0.01;
 
         Matrix3d mat = pose.rotation();
 

@@ -1,0 +1,40 @@
+scope:
+  - unit_x: {vector3: [1, 0, 0]}
+  - unit_y: {vector3: [0, 1, 0]}
+  - unit_z: {vector3: [0, 0, 1]}
+
+  - jointX_var: {input-var: 0}
+  - jointY_var: {input-var: 1}
+  - jointZ_var: {input-var: 2}  
+  - goal_x: {input-var: 3}
+  - goal_y: {input-var: 4}
+  - goal_z: {input-var: 5}
+
+  - neg_vel_limit: -1.0
+  - pos_vel_limit: 1
+
+  - robot_pos: {vector3: [jointX_var, jointY_var, jointZ_var,]}
+
+controllable-constraints:
+  - controllable-constraint: [neg_vel_limit, pos_vel_limit, 1, 0, jointX]
+  - controllable-constraint: [neg_vel_limit, pos_vel_limit, 1, 1, jointY]
+  - controllable-constraint: [neg_vel_limit, pos_vel_limit, 1, 2, jointZ]
+
+soft-constraints:
+  - soft-constraint: [goal_x, goal_x, 1, jointX_var, x vel slack]
+  - soft-constraint: [goal_y, goal_y, 1, jointY_var, y vel slack]
+  - soft-constraint: [goal_z, goal_z, 1, jointZ_var, z vel slack]
+
+hard-constraints:
+  - hard-constraint:
+      - {double-sub: [-100, jointX_var]}
+      - {double-sub: [100, jointX_var]}
+      - jointX_var
+  - hard-constraint:
+      - {double-sub: [-100, jointY_var]}
+      - {double-sub: [100, jointY_var]}
+      - jointY_var
+  - hard-constraint:
+      - {double-sub: [-100, jointZ_var]}
+      - {double-sub: [100, jointZ_var]}
+      - jointZ_var

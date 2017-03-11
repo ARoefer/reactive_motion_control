@@ -10,12 +10,18 @@ find_package(catkin REQUIRED COMPONENTS
   message_runtime
   roscpp
   rospy
+  roslib 
   sensor_msgs
   std_msgs
+  shape_msgs
   tf_conversions
   r_libs
   interactive_markers
   giskard
+  knowrob_moveit
+  iai_naive_kinematics_sim
+  moveit_core
+  moveit_msgs
 )
 
 add_definitions(-std=c++11 -g)
@@ -112,7 +118,7 @@ add_definitions(-std=c++11 -g)
 catkin_package(
 #  INCLUDE_DIRS include
 #  LIBRARIES magnetic_controller
-#  CATKIN_DEPENDS geometry_msgs message_generation message_runtime roscpp rospy sensor_msgs std_msgs tf_conversions
+  # CATKIN_DEPENDS geometry_msgs message_generation message_runtime roscpp rospy sensor_msgs std_msgs tf_conversions knowrob_moveit
 #  DEPENDS system_lib
 )
 
@@ -127,6 +133,9 @@ include_directories(
   include
   ${catkin_INCLUDE_DIRS}
   ${r_libs_INCLUDE_DIRS}
+  ${knowrob_moveit_INCLUDE_DIRS}
+  ${giskard_INCLUDE_DIRS}
+  ${iai_naive_kinematics_sim_INCLUDE_DIRS}
   ${YAML_CPP_INCLUDE_DIRS}
 )
 
@@ -170,6 +179,7 @@ target_link_libraries(magnetic_tester
    r_libs_visualization
    r_libs_conversions
    magnetic_controller_lib
+   yaml-cpp
 )
 
 add_executable(pr2_r_vel_controller src/pr2_r_vel_controller.cpp)

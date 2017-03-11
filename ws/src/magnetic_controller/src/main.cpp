@@ -1,10 +1,13 @@
 
 //#define SIM
+#define PR2
+#define MODULATION
 #include "utils.h"
 #include "MeshManager.h"
 #include "Mesh.h"
 #include "ControllerBridge.h"
 #include "Scenery.h"
+
 
 class ControllerNode
 {
@@ -28,14 +31,19 @@ public:
 		, core(_nh)
 		, recalcVelocity(false)
 		, goalIndex(0)
+		, scene(&meshManager, &physMeshManager, &tfListener)
 #ifdef SIM
 		, commander(0.005)
 #else
-		, commander(nh)
+#ifdef PR2
+		, commander(nh, "base_link", "r_gripper_tool_frame")
+#else
+		, commander(nh, "link0", "eef_link")
+#endif
 #endif
 	{ }
 
-	void init(string scene) {
+	void init(string scenePath) {
 		pubVis = nh.advertise<visualization_msgs::MarkerArray>("/magnetic_controller/visualization", 10);
 		cmdSub = nh.subscribe("mg_goal", 1, &ControllerNode::refreshGoal, this);
 
@@ -44,7 +52,16 @@ public:
 		}
 		visObjManager.addNamespace(0, "point_cloud_objects");
 
-		loadScene(scene);
+		scene.loadScene(scenePath);
+
+		core.objects = scene.getObjects();
+
+		SNamedPoint start;
+		if (scene.getStart(0, start)) {
+			commander.setPosition(start.pos);
+		} else {
+			cerr << "Could not set starting position" << endl;
+		}
 	}
 	
 	void refreshGoal(geometry_msgs::Point point) {
@@ -62,7 +79,7 @@ public:
 		Vector3d vel;
 
 		visualization_msgs::MarkerArray visFieldMsg;
-		drawField(visFieldMsg, Vector3d::Zero());
+		//drawField(visFieldMsg, Vector3d::Zero());
 
 		visObjManager.beginNewDrawCycle();
 		visualizeObjects(core.objects, visFieldMsg.markers, eObjects, visObjManager);
@@ -76,14 +93,54 @@ public:
 		ros::spinOnce();
 #endif
 
+		cout << "Debug mode: " << core.bDrawDebug << endl;
+
 		core.refreshParams();
+
+		vector<string>	 pointNames;
+		scene.getPointNames(pointNames);
 		
 		bool quit = false;
 		while(!quit) {
 
 			double distanceTraveled = 0;
 			double timeTaken = 0;
-			while (!quit && goalIndex < goals.size()) {
+			bool outputError = false;
+
+			cout << "Waypoints: ";
+			for (string name: pointNames) 
+				cout << "'" << name << "'" << endl;
+
+			cout << "Enter a sequence of waypoints to reach" << endl;
+			string pathSeq;
+			getline(std::cin, pathSeq);
+			
+			string::iterator beginIt, endIt;
+			beginIt = pathSeq.begin();
+			endIt = beginIt;
+
+			vector<string> path;
+
+			while (beginIt != pathSeq.end()) {
+				while(beginIt != pathSeq.end() && *beginIt == ' ')
+					beginIt++;
+
+				endIt = beginIt;
+
+				while(endIt != pathSeq.end() && *endIt != ' ')
+					endIt++;
+
+				if (beginIt != pathSeq.end()) {
+					path.push_back(string(beginIt, endIt));
+				}
+
+				beginIt = endIt;
+			}
+
+			SNamedPoint goalPoint;
+			bool goalsLeft = goalIndex < path.size();
+			while (!quit && goalsLeft) {
+				scene.getPoint(path[goalIndex], goalPoint);
 				quit = !ros::ok();
 				
 				Affine3d eef;
@@ -95,36 +152,56 @@ public:
 					if (visitedPoints.size() == 0 || (visitedPoints[visitedPoints.size() - 1] - pos).norm() >= 0.05)
 						visitedPoints.push_back(pos);
 
-					Vector3d goal = goals[goalIndex].pos;
+					Vector3d goal = goalPoint.pos;
 					if ((pos - goal).norm() > 0.02) {
-						//if (recalcVelocity) {
-							//vel = (goal - pos).normalized() * 0.2;
-							//recalcVelocity = false;
-						//}
+						
 #ifndef SIM
 						core.refreshParams();
 #endif
-						Vector3d newVel = core.calculateAccel(pos, goal, vel);// * step;
+#ifdef MODULATION
+						Vector3d vel = goal - pos;
+						if (vel.norm() > 0.2)
+							vel = vel.normalized() * 0.2;				
+#endif
+						ros::Time now = ros::Time::now();
+						Vector3d newVel = core.calculateAvoidance(pos, goal, vel, step);// * step;
+						ros::Duration passed = ros::Time::now() - now;
+
+						// cout << "Calculation took " << passed.toSec() << " seconds" << endl;
+						// cout << "   Particles: " << core.debug.particlesExamined << endl;
 
 						if (newVel[0] == newVel[0] && newVel[1] == newVel[1] && newVel[2] == newVel[2]) {
-						// if (vel.norm() > 0.2)
-						// 	vel = vel.normalized() * 0.2;
 							timeTaken += step;
+							
+#ifndef MODULATION
 							vel = newVel;
+							if (vel.norm() > 0.2)
+								vel = vel.normalized() * 0.2;
+							
 							Vector3d direction = vel.normalized();
-							double magnitude = min(vel.norm(), 1.0);
+							double magnitude = min(vel.norm(), 0.2);
 							Vector3d velLimited = magnitude*direction;
 							commander.setVelocity(velLimited);
 							vel = velLimited;
-						}
-
-#ifndef SIM
-						cout << vel << endl;
+#else
+							commander.setVelocity(newVel);
+							printf("%f = |%f, %f, %f|\n", newVel.norm(), newVel[0], newVel[1], newVel[2]);
+							outputError = false;
 #endif
+						} 
+#ifndef SIM
+						else if(!outputError) {
+							outputError = true;
+							cout << "vel contains NaN" << endl;
+							printMatrices();
+						}
+#endif
+
 					} else {
 						goalIndex++;
 						commander.setVelocity(Vector3d::Zero());
-						if (goalIndex == goals.size()) {
+						goalsLeft = goalIndex < path.size();
+						if (!goalsLeft) {
 							cout << "All goals reached!" << endl 
 								 << "          Time taken: " << timeTaken << endl
 								 << "   Distance traveled: " << distanceTraveled << endl
@@ -148,28 +225,30 @@ public:
 							ros::spinOnce();
 #endif
 						} else {
+							scene.getPoint(path[goalIndex], goalPoint);
 							vel = Vector3d::Zero();
 							cout << "Goal reached in " << timeTaken << " s. Distance: " << distanceTraveled << endl;
-							cout << "Next goal is " << goals[goalIndex].name << endl;
+							cout << "Next goal is " << goalPoint.name << endl;
 						}
 					}
 #ifndef SIM
 					visManager.beginNewDrawCycle();
 					visualization_msgs::MarkerArray visMsg;
 					visMsg.markers.push_back(visManager.trailMarker(eTrail, visitedPoints, 0.02f));
-					for (size_t i = 0; i < goals.size(); i++) {
-						SNamedPoint& g = goals[i];
+					SNamedPoint tempGoal;
+					for (size_t i = 0; i < pointNames.size(); i++) {
+						scene.getPoint(pointNames[i], tempGoal);
 						Affine3d gPose = Affine3d::Identity();
-						gPose.translate(g.pos);
+						gPose.translate(tempGoal.pos);
 						Vector3d scale = Vector3d(1,1,1);
 						Vector4f color = Vector4f::Zero();
 						if (i == goalIndex) {
 							scale *= 1.2;
-							visMsg.markers.push_back(visManager.sphereMarker(eGoal, g.pos, 0.02f, 1,0,1,0.5f));
+							visMsg.markers.push_back(visManager.sphereMarker(eGoal, tempGoal.pos, 0.02f, 1,0,1,0.5f));
 							color[1] = color[3] = 1.f;
 						}
 						visMsg.markers.push_back(visManager.meshMarker(eGoal, gPose, scale, "package://magnetic_controller/meshes/marker_goal.dae", "odom_combined", color));
-						visMsg.markers.push_back(visManager.textMarker(eGoal, g.pos + Vector3d(0,0,0.2), g.name, 1,1,1,1,.1));
+						visMsg.markers.push_back(visManager.textMarker(eGoal, tempGoal.pos + Vector3d(0,0,0.2), tempGoal.name, 1,1,1,1,.1));
 					}
 					visualizeObjects(core.objects, visMsg.markers, eObjects, visManager);
 					visManager.endDrawCycle(visMsg.markers);
@@ -186,7 +265,7 @@ public:
 			}//*/
 #else
 			ros::spinOnce();
-			ctrlRate.sleep();
+			//ctrlRate.sleep();
 #endif
 
 			if (!quit) {
@@ -195,11 +274,17 @@ public:
 				cin >> cmd;
 				if (cmd.compare("r") == 0) {
 					commander.setVelocity(Vector3d::Zero());
-					commander.setPosition(starts[0].pos);
-					pos = starts[0].pos;
+					SNamedPoint start;
+					if (scene.getStart(0, start)) {
+						commander.setPosition(start.pos);
+						pos = start.pos;
+					} else {
+						cerr << "Could not set starting position" << endl;
+					}
 					goalIndex = 0;
 					visitedPoints.clear();
 					core.refreshParams();
+					cin.ignore();
 				} else if (cmd.compare("q") == 0) {
 					quit = true;
 				}
@@ -220,7 +305,7 @@ public:
 		marker.header.stamp = ros::Time::now();
 		marker.id = 0;
 		marker.type = visualization_msgs::Marker::POINTS;
-		marker.scale.x = marker.scale.y = 0.04;
+		marker.scale.x = marker.scale.y = 0.01;
 
 		core.bDrawDebug = false;
 
@@ -236,7 +321,7 @@ public:
 				for (int z = 0; z <= gridHeight * gridRes; ++z)
 				{
 					Vector3d pos = zero + Vector3d(x * spaceStep, y * spaceStep, z * spaceStep);
-					core.calculateAccel(pos, goal, vel);
+					core.calculateAvoidance(pos, goal, vel, 0.01);
 
                     double auxB = core.debug.B;
 					//if (auxB > 0.1) 
@@ -259,64 +344,14 @@ public:
 		visMsg.markers.push_back(marker);
 	}
 
-
-	void loadScene(string filename) {
-		//vel = Vector3d::Zero();
-		goals.clear();
-		goalIndex = 0;
-		core.objects.clear();
-		objects.clear();
-
-		ptree pt;
-
-		read_xml(filename, pt);
-
-		ptree &sceneNode = pt.get_child("scene");
-
-		for (const pair<string, ptree> &p: sceneNode) {
-			ptree node = p.second;
-			if (p.first.compare("obstacle") == 0) {
-				loadObject(node);
-			} else if (p.first.compare("goal") == 0) {
-				SNamedPoint goal;
-				goal.name = node.get<string>("<xmlattr>.name");
-				goal.pos = parsePosition(node);
-				goals.push_back(goal);
-			} else if (p.first.compare("start") == 0) {
-				SNamedPoint start;
-				start.name = node.get<string>("<xmlattr>.name");
-				start.pos = parsePosition(node);
-				starts.push_back(start);
-			}
+	void printMatrices() {
+		for (size_t n = 0; n < core.debug.V.size(); n++) {
+			cout << "Matrix E_" << n << " : " << endl << core.debug.E[n] << endl;
+			cout << "Matrix V_" << n << " : " << endl << core.debug.V[n] << endl;
+			cout << "Matrix Vi_" << n << ": " << endl << core.debug.Vi[n] << endl;
 		}
-
-		commander.setPosition(starts[0].pos);
+		cout << "Matrix M: " << endl << core.debug.M << endl;
 	}
-
-protected:
-	void loadObject(ptree &node) {
-		string mesh = node.get<string>("<xmlattr>.mesh");
-		string name = node.get<string>("<xmlattr>.name");
-		bool stat = node.get<bool>("<xmlattr>.static");
-		
-		ParticleCloud *pMesh = meshManager.getMeshByName(mesh);
-		if (!pMesh) {
-			pMesh = meshManager.getNewMesh(mesh);
-			loadFromFile(pMesh, mesh);
-		}
-
-		boost::shared_ptr<ObjectBase<ParticleCloud>> objectPtr;
-		if (stat) {
-			Affine3d transform = parseTransform(node.get_child("transform"));
-			objectPtr = boost::shared_ptr<ObjectBase<ParticleCloud>>(new StaticObject<ParticleCloud>(pMesh, name, transform));
-		} else {
-			objectPtr = boost::shared_ptr<ObjectBase<ParticleCloud>>(new TFObject<ParticleCloud>(pMesh, name, &tfListener));
-		}
-
-		objects.push_back(objectPtr);
-		core.addObject(objectPtr.get());
-	}
-
 private:
 	NodeHandle nh;
 	Publisher pubVis;
@@ -326,16 +361,20 @@ private:
 #ifdef SIM
 	SimCommander commander;
 #else
-	ROSCommander commander;
+	GiskardCommander commander;
 #endif
 
-	MagneticCore_ParticleModel core;
+#ifdef MODULATION
+	DynamicSystemModulation core;
+#else
+	CircularFields core;
+#endif
+	Scenery<ParticleCloud> scene;
 	MeshManager<ParticleCloud> meshManager;
+	MeshManager<shape_msgs::Mesh> physMeshManager;
 	vector<boost::shared_ptr<ObjectBase<ParticleCloud>>> objects;
 
 	int goalIndex;
-	vector<SNamedPoint> goals;
-	vector<SNamedPoint> starts;
 
 	VisualizationManager visManager;
 	VisualizationManager visObjManager;

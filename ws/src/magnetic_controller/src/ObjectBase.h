@@ -5,6 +5,8 @@
 #include <eigen3/Eigen/Eigen>
 #include <string>
 
+#include <shape_msgs/Mesh.h>
+
 using namespace std;
 using namespace Eigen;
 
@@ -14,8 +16,9 @@ template<class T>
 class ObjectBase
 {
 public:
-	ObjectBase(T* _pMesh, string _name, bool _statc)
+	ObjectBase(T* _pMesh, shape_msgs::Mesh* _pPhys, string _name, bool _statc)
 	: pMesh(_pMesh)
+	, pPhys(_pPhys)
 	, name(_name)
 	, statc(_statc)
 	{}
@@ -23,6 +26,7 @@ public:
 	virtual Affine3d getTransform() const = 0;
 
 	T* pMesh;
+	shape_msgs::Mesh* pPhys;
 	const string name;
 	const bool statc;
 };
@@ -31,8 +35,8 @@ template<class T>
 class TFObject : public ObjectBase<T>
 {
 public:
-	TFObject(T* _pMesh, string _name, tf::TransformListener* _pTfListener)
-	: ObjectBase<T>(_pMesh, _name, false)
+	TFObject(T* _pMesh, shape_msgs::Mesh* _pPhys, string _name, tf::TransformListener* _pTfListener)
+	: ObjectBase<T>(_pMesh, _pPhys, _name, false)
 	{
 		pTfListener = _pTfListener;
 	}
@@ -60,8 +64,8 @@ template<class T>
 class StaticObject : public ObjectBase<T>
 {
 public:
-	StaticObject(T* _pMesh, string _name, Affine3d _transform)
-	: ObjectBase<T>(_pMesh, _name, true)
+	StaticObject(T* _pMesh, shape_msgs::Mesh* _pPhys, string _name, Affine3d _transform)
+	: ObjectBase<T>(_pMesh, _pPhys, _name, true)
 	{
 		transform = _transform;
 	}

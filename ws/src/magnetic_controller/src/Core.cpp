@@ -10,13 +10,17 @@
 #include <iostream>
 #include <cmath>
 
+#include <stdlib.h>  
+
 using namespace std;
+
+#define VISUALIZE
 
 typedef ObjectBase<Mesh> TMeshObject;
 typedef ObjectBase<ParticleCloud> TParticleObject;
 
 template<class T>
-MagneticCore<T>::MagneticCore(const NodeHandle& _nh)
+CollisionAvoidance<T>::CollisionAvoidance(const NodeHandle& _nh)
 : nh(_nh)
 , bDrawDebug(true)
  {
@@ -30,20 +34,20 @@ MagneticCore<T>::MagneticCore(const NodeHandle& _nh)
 	}
 }
 
-MagneticCore_ParticleModel::MagneticCore_ParticleModel(const NodeHandle& _nh) 
-: MagneticCore<ParticleCloud>(_nh)
+CircularFields::CircularFields(const NodeHandle& _nh) 
+: CollisionAvoidance<ParticleCloud>(_nh)
 {}
 
-MagneticCore_SurfaceModel::MagneticCore_SurfaceModel(const NodeHandle& _nh)
-: MagneticCore<Mesh>(_nh)
+DynamicSystemModulation::DynamicSystemModulation(const NodeHandle& _nh)
+: CollisionAvoidance<ParticleCloud>(_nh)
 {}
 
-void MagneticCore_ParticleModel::addObject(ObjectBase<ParticleCloud>* pObj) {
-	MagneticCore<ParticleCloud>::addObject(pObj);
+void CircularFields::addObject(ObjectBase<ParticleCloud>* pObj) {
+	CollisionAvoidance<ParticleCloud>::addObject(pObj);
 	pointCount += pObj->pMesh->particles.size();
 }
 
-Vector3d MagneticCore_ParticleModel::calculateAccel(Vector3d pos, Vector3d goalPos, Vector3d velV) {
+Vector3d CircularFields::calculateAvoidance(Vector3d pos, Vector3d goalPos, Vector3d velV, double dT) {
 
 	Vector3d F_v = Vector3d::Zero(); // Total force
 	double I_k = parameters.I_k; // Field strength
@@ -59,6 +63,8 @@ Vector3d MagneticCore_ParticleModel::calculateAccel(Vector3d pos, Vector3d goalP
 
 	Vector3d B = Vector3d::Zero(); // Magnetic field vector
 
+	debug.particlesExamined = 0;
+
 #ifndef SIM
 	visualization_msgs::MarkerArray vis;
 	if (bDrawDebug)
@@ -70,7 +76,7 @@ Vector3d MagneticCore_ParticleModel::calculateAccel(Vector3d pos, Vector3d goalP
 	markerA.header.stamp = ros::Time::now();
 	markerA.id = 0;
 	markerA.type = visualization_msgs::Marker::POINTS;
-	markerA.scale.x = markerA.scale.y = 0.04;
+	markerA.scale.x = markerA.scale.y = 0.01;
 	markerA.color.a = 1.0;
 #endif
 
@@ -98,13 +104,32 @@ Vector3d MagneticCore_ParticleModel::calculateAccel(Vector3d pos, Vector3d goalP
 
 		// Dynamic vector based on closest distance
 		Vector3d r_j_O = Vector3d::UnitZ(); // Rotation vector default is Z-Axis of object rotation. Always normalized
-		if (d_j_O.squaredNorm() > 0)
-			r_j_O = d_j_O.cross(b_O).normalized();
+		switch (parameters.rotVector) {
+			case 'a': {
+				if (d_j_O.squaredNorm() > 0)
+					r_j_O = d_j_O.cross(b_O).normalized();
+				}
+				break;
+			case 'x': {
+				if (goalPos[1] > pos[1])
+					r_j_O = rotM * (-Vector3d::UnitX()).cross(b.normalized());
+				}
+				break;
+			case 'l': {
+				r_j_O = rotM * -Vector3d::UnitZ();
+				if (goalPos[1] > pos[1])
+					r_j_O = -r_j_O;
+				}
+				break;
+			default: 
+				break;
+		}
 
-		// if (goalPos[1] > pos[1])
-		// 	r_j_O = -r_j_O;
 
 		Vector3d c_j = Vector3d::Zero();
+
+		// DEBUG
+		debug.particlesExamined += pObj->pMesh->particles.size();
 
 		for (size_t i = 0; i < pObj->pMesh->particles.size(); i++) {
 			SParticle* 	p 		 = &(pObj->pMesh->particles[i]);
@@ -112,10 +137,10 @@ Vector3d MagneticCore_ParticleModel::calculateAccel(Vector3d pos, Vector3d goalP
 			Vector3d 	paN 	 = p->normal; // Particle normal in OS
 			Vector3d	pGoal_dir= (goal_O - paP).normalized();
 			double 		scale 	 = 1;//copysign(1.0, -paN.dot(vel_dir_O)); // Scale the particles influence accoring to its angle to vel_dir
-			double 		l_j_i 	 = max((pos_O - paP).norm(), 0.01); // Capped distance between point and particle
+			double 		l_j_i 	 = max((pos_O - paP).norm() - parameters.margin, 0.001); // Capped distance between point and particle
 			double		l_j_i_sq = l_j_i * l_j_i; // Squared distance between position and particle i 
 			Vector3d 	c_j_i 	 = r_j_O.cross(paN); // Current direction at this particle
-			Vector3d 	inc_dir  = (paP - pos_O).normalized();
+			Vector3d 	inc_dir  = (paP - pos_O);
 			double 		inc_ang	 = vel_dir_O.dot(inc_dir);
 			double 		vel_face_ang= vel_dir_O.dot(paN);
 			double 		face_ang = inc_dir.dot(paN);
@@ -132,11 +157,13 @@ Vector3d MagneticCore_ParticleModel::calculateAccel(Vector3d pos, Vector3d goalP
 				break;
 				case 'a':
 				filterOK = face_ang < 0 && ((goal_ang < 0) || (inc_ang > 0 && vel_face_ang < 0));
+				default:
+					break;
 			}
 
 			if (filterOK) 
 			{
-				if(parameters.surfFollowing && l_j_i < 0.06 && goal_ang < 0.7) {
+				if(parameters.surfFollowing && l_j_i <= 0.001 && goal_ang < 0.7) {
 					c_j += c_j_i * 0.1 / l_j_i;
 					overrideDirection = true;
 				}
@@ -145,6 +172,7 @@ Vector3d MagneticCore_ParticleModel::calculateAccel(Vector3d pos, Vector3d goalP
 				B_j_O += B_j_i_O;
 
 #ifndef	SIM
+#ifdef VISUALIZE
 				if (bDrawDebug) {
 					markerA.points.push_back(VectorToPoint(objPose * paP));
 
@@ -156,9 +184,10 @@ Vector3d MagneticCore_ParticleModel::calculateAccel(Vector3d pos, Vector3d goalP
 		            color.a = 1.0;//0.5 * scale + 0.5;
 		            markerA.colors.push_back(color);
 					//vis.markers.push_back(visManager.vectorMarker(eCurrent, paP, paN * 0.1, 1,1,0));
-					vis.markers.push_back(visManager.vectorMarker(eCurrent, objPose * paP, (rotM * c_j_i) * 0.1, 1,0,0));
+					//vis.markers.push_back(visManager.vectorMarker(eCurrent, objPose * paP, (rotM * c_j_i) * 0.1, 1,0,0));
 					//vis.markers.push_back(visManager.vectorMarker(eCurrent, paP, B_j_i, 0,1,0));
 				}
+#endif
 #endif
 			}
 		}
@@ -169,15 +198,18 @@ Vector3d MagneticCore_ParticleModel::calculateAccel(Vector3d pos, Vector3d goalP
 		B += B_j;
 
 #ifndef SIM
+#ifdef VISUALIZE
 		if (bDrawDebug) {
-			visManager.annotatedVector(vis.markers, eMath, pos, (rotM * r_j_O), "r_j");
+			visManager.annotatedVector(vis.markers, eMath, m_j_com, (rotM * r_j_O), "r_j");
 			visManager.annotatedVector(vis.markers, eMath, m_j_com, (rotM * d_j_O), "d_j");
 		}
+#endif
 #endif
 
 	}
 
 #ifndef SIM
+#ifdef VISUALIZE
 	if (bDrawDebug) {
 		visManager.annotatedVector(vis.markers, eMath, pos, F_v, "F_v");
 		visManager.annotatedVector(vis.markers, eMath, pos, b, "b");
@@ -185,7 +217,9 @@ Vector3d MagneticCore_ParticleModel::calculateAccel(Vector3d pos, Vector3d goalP
 		vis.markers.push_back(visManager.vectorMarker(eCurrent, pos, B, 1,0,0));
 		vis.markers.push_back(markerA);
 		visPub.publish(vis);
+		cout << "Published vis" << endl;
 	}
+#endif
 #endif
 
 	debug.F_v = F_v; 
@@ -196,143 +230,193 @@ Vector3d MagneticCore_ParticleModel::calculateAccel(Vector3d pos, Vector3d goalP
 		cout << "overriding direction" << endl;
 		return overrideVector.normalized() * 0.2;
 	} else {
-		return velV + acceleration * 0.005;
+		return velV + acceleration * dT;
 	}
 }
 
-Vector3d MagneticCore_SurfaceModel::calculateAccel(Vector3d pos, Vector3d goalPos, Vector3d velV) {
+
+Vector3d DynamicSystemModulation::calculateAvoidance(Vector3d pos, Vector3d goalPos, Vector3d velV, double dT) {
+
+	Vector3d b = goalPos - pos; // Vector from position to goal
+
+	velV = b.normalized() * .1;
+
+	debug.V.clear();
+	debug.Vi.clear();
+	debug.E.clear();
+
+#ifndef SIM
 	visualization_msgs::MarkerArray vis;
 	if (bDrawDebug)
 		visManager.beginNewDrawCycle();
-	//visManager.clearAllMarkers(&visPub);
 
-	double vel = parameters.vel;
-	Vector3d b = goalPos - pos;
-	double b_mag = b.norm();
-	Vector3d velDir = velV.normalized();//b.normalized();
-	//Vector3d velV = velDir * vel;
+	visualization_msgs::Marker markerA;
+	markerA.ns = "used_points";
+	markerA.header.frame_id = "odom_combined";
+	markerA.header.stamp = ros::Time::now();
+	markerA.id = 0;
+	markerA.type = visualization_msgs::Marker::POINTS;
+	markerA.scale.x = markerA.scale.y = 0.04;
+	markerA.color.a = 1.0;
+#endif
 
-	//visManager.annotatedVector(vis.markers, eMath, pos, b, "b");
+	double dists[objects.size()];
+	Vector3d closestParticle[objects.size()];
+	Vector3d normals[objects.size()]; 
 
-	Vector3d F_v = Vector3d::Zero();// Virtual obstacle force
-	double mass = parameters.mass;
-	double I_k = parameters.I_k; // Virtual current factor
+	double minDist = 10000;
+	int zeroDists = 0;
 
-	double k_d = parameters.k_d;// Dampening constant
-	double k_a = (k_d * k_d) / (4 * mass);// Attractive constant
+	for (size_t i = 0; i < objects.size(); i++) {
+		Affine3d objPose = objects[i]->getTransform(); // Pose of the object
+		Affine3d objPoseI = objPose.inverse(); // Transform w -> object
 
-	Vector3d goalDiff = -b;
+		Matrix3d rotM = objPose.rotation(); // Rotation matrix
 
-	// cout << "pos(" << pos[0] << ", " << pos[1] << ", " << pos[2] << ")" << endl
-	// 	 << "goalPos(" << goalPos[0] << ", " << goalPos[1] << ", " << goalPos[2] << ")" << endl
-	// 	 << "b(" << b[0] << ", " << b[1] << ", " << b[2] << ")" << endl
-	// 	 << "b_mag = " << b_mag << endl
-	// 	 << "velDir(" << velDir[0] << ", " << velDir[1] << ", " << velDir[2] << ")" << endl
-	// 	 << "velV(" << velV[0] << ", " << velV[1] << ", " << velV[2] << ")" << endl;
-
-	Vector3d B_superSum = Vector3d::Zero();
-	for (TMeshObject* pObj: objects) {
-		// PER OBJECT
-		Affine3d objPose = pObj->getTransform();
-		Vector3d obj_com = objPose.translation();
-		Matrix3d rotM = objPose.rotation();
-
-		// cout << "objPose(" << objPose.matrix() << ")" << endl
-		// 	 << "obj_com(" << obj_com[0] << ", " << obj_com[1] << ", " << obj_com[2] << ")" << endl
-		// 	 << "rotM(" << rotM << ")" << endl;
-
-		Vector3d d_j = pos + b * ((obj_com - pos).dot(b) / (b_mag * b_mag)) - obj_com;
-
-		Vector3d incidentDirection = (obj_com - pos).normalized();
-		Vector3d incidentVelocity = velV.dot(incidentDirection)*incidentDirection;
+		// ALL THINGS IN OBJECT SPACE FROM HERE ON OUT
+		Vector3d pos_O = objPoseI * pos;
 		
-		Vector3d rotV = d_j.cross(b).normalized();
+		double sqDist = 100000;
+
+		for (size_t n = 0; n < objects[i]->pMesh->particles.size(); n++) {
+			SParticle* 	p 		 = &(objects[i]->pMesh->particles[n]);
+			Vector3d p2r = pos_O - p->position;
+			double pSqDist = p2r.squaredNorm();
+			if (pSqDist < sqDist && p->normal.dot(p2r) > 0) {
+				closestParticle[i] = objPose * p->position;
+				normals[i] = rotM * p->normal;
+				sqDist = pSqDist;
+			} 
+		}
+
+		dists[i] = max(sqrt(sqDist) - parameters.margin, 0.0);
+		if (dists[i] < minDist)
+			minDist = dists[i];
+
+		Vector3d p_ = pos - closestParticle[i];
+		if (dists[i] == 0.0 && (velV.dot(p_) < 0 || parameters.m))
+			zeroDists++;
+	}
+
+	Matrix3d M = Matrix3d::Identity();
+	Vector3d escVel = Vector3d::Zero();
+
+	//zeroDists = 0;
+
+	double minContDist = 100000;
+
+	double baseWeight = zeroDists? 1.0 / zeroDists : 1.0;
+	
+	for (int i = 0; i < objects.size(); i++) {
+		Vector3d p_ = pos - closestParticle[i];
 		
-		//visManager.annotatedVector(vis.markers, eMath, obj_com, d_j, "d_j");
-		if (bDrawDebug)
-			visManager.annotatedVector(vis.markers, eMath, pos, rotV, "rotV");
+		if ((dists[i] == 0.0 || zeroDists == 0) && (velV.dot(p_) < 0 || parameters.m)) {
+			double w = baseWeight;
 
-		// Prevent Batman
-		//if (d_j == Vector3d::Zero())
-		//	rotV = Vector3d(0,0,1);
-			
-		Vector3d obj2Pos = (pos - obj_com);
-		double objDist = max(obj2Pos.norm() - pObj->pMesh->dimensions.norm() * 0.5, 0.0);
-		Vector3d B_sum = Vector3d(0,0, parameters.I_k /(1 + (objDist * objDist / 0.02)));
+			for (int k = 0; k < objects.size() - 1 && zeroDists == 0; k++) {
+				size_t idx = (i + k + 1) % objects.size();
 
-		//cout << "d_j(" << d_j[0] << ", " << d_j[1] << ", " << d_j[2] << ")" << endl
-		// 	 << "rotV(" << rotV[0] << ", " << rotV[1] << ", " << rotV[2] << ")" << endl;
-		double fieldScale = parameters.I_k / pObj->pMesh->surfaces.size();
-		
-		for (size_t i = 0; i < pObj->pMesh->surfaces.size(); i++) {
-			Surface* s = &(pObj->pMesh->surfaces[i]);
-			// PER SURFACE
-			Vector3d surfMid = objPose * s->mid;
-			Vector3d surfNormal = rotM * s->normal;
-			Vector3d distSP = (surfMid - pos);
-
-			Vector3d incidentDirection = (obj_com - pos).normalized();
-
-			//if ( surfNormal.dot(-distSP) >= 0) 
-			{
-				Vector3d surfCurrent = rotV.cross(surfNormal);
-				//cout << "surfMid(" << surfMid[0] << ", " << surfMid[1] << ", " << surfMid[2] << ")" << endl
-					 // << "surfNormal(" << surfNormal[0] << ", " << surfNormal[1] << ", " << surfNormal[2] << ")" << endl
-					 // << "surfCurrent(" << surfCurrent[0] << ", " << surfCurrent[1] << ", " << surfCurrent[2] << ")" << endl;
-				double l_i_j = distSP.squaredNorm();
-				//B_sum += parameters.I_k / l_i_j * Vector3d(0,0,1);
-				//B_sum += (surfCurrent.cross(incidentDirection)) * (parameters.I_k / (l_i_j / 0.2)) * surfArea; 
-				
-
-				Vector3d incidentVelocity = velV.dot(incidentDirection)*incidentDirection;
-
-				if (s->area < 0)
-					cerr << "NEGATIVE SURFACE AREA! WTF?! " << s->area << endl;	 
-				Vector3d B = fieldScale / l_i_j * s->area * rotV;
-				F_v += velV.cross(B);
-				B_sum += B;
-
-				if (bDrawDebug) {
-					vis.markers.push_back(visManager.vectorMarker(eCurrent, surfMid, surfCurrent, 1,1,0));
-					vis.markers.push_back(visManager.vectorMarker(eCurrent, pos, incidentVelocity, 1,0,1));				
-				}
+				Vector3d temp = pos - closestParticle[idx];	
+				if (velV.dot(temp) < 0 || parameters.m)
+					w *= dists[idx] / (dists[i] + dists[idx]);
 			}
-		}//*/
 
-		// cout << "B_sum(" << B_sum[0] << ", " << B_sum[1] << ", " << B_sum[2] << ")" << endl;
+			if (w != w) { // Iffy
+				w = 0.0;
+				cerr << "Weight is NaN" << endl;
+			}
 
-		B_superSum += B_sum;
+			Vector3d normal = normals[i];
+			normal[0] += (rand() % 200 - 100) / 100.0 * parameters.noise;
+			normal[1] += (rand() % 200 - 100) / 100.0 * parameters.noise;
+			normal[2] += (rand() % 200 - 100) / 100.0 * parameters.noise;
+			normal.normalized();
+
+
+			double distExpP = pow(minDist + 1, 1.0 / parameters.p); 
+			double l_1 = 1 - w / distExpP;
+			double l_2 = 1 + w / distExpP;
+			if (zeroDists > 0) {
+				l_1 = 0;
+				//l_2 = 1;
+			}
+
+			double l_3 = l_2;
+
+
+			Vector3d objPos = objects[i]->getTransform().translation();
+			Vector3d d_j = pos + b * ((objPos - pos).dot(b) / b.squaredNorm()) - objPos;
+			Matrix3d V, Vi;
+
+			Vector3d r_j = d_j.cross(b).normalized();
+			if (d_j.squaredNorm() < 0.0000001 || abs(r_j.dot(normal)) > 0.99) {
+				double pitch = -asin(normal[2]);
+				double yaw = atan2(normal[1], normal[0]); 
+
+				V = AngleAxisd(yaw, Vector3d::UnitZ()) * AngleAxisd(pitch, Vector3d::UnitY());
+			 	Vi = V.inverse();
+			 	cout << "Using rotation base" << endl;
+			} else {
+				Vector3d yAxis = normal.cross(-r_j);
+				Vector3d zAxis = normal.cross(yAxis);
+
+				V << normal[0], yAxis[0], zAxis[0],
+				     normal[1], yAxis[1], zAxis[1],
+				     normal[2], yAxis[2], zAxis[2];
+			
+			  	Vi = V.inverse();
+				//cout << "Using current base" << endl;
+			}
+
+			
+			escVel += V * Vector3d::UnitY() * w * 0.2;
+		 	if (dists[i] < minContDist)
+	 			minContDist = dists[i]; 
+
+			Matrix3d E;
+			E << l_1,   0, 0,
+			       0, l_2, 0,
+			       0,   0, l_3;
+
+			debug.V.push_back(V);
+			debug.Vi.push_back(Vi);
+			debug.E.push_back(E);
+
+			Matrix3d M_ = V * E;
+
+#ifndef SIM
+			if (bDrawDebug) {
+				vis.markers.push_back(visManager.vectorMarker(eCurrent, closestParticle[i], M_ * Vector3d::UnitX() * 0.1, 1,0,0));
+				vis.markers.push_back(visManager.vectorMarker(eCurrent, closestParticle[i], M_ * Vector3d::UnitY() * 0.1, 0,1,0));
+				vis.markers.push_back(visManager.vectorMarker(eCurrent, closestParticle[i], M_ * Vector3d::UnitZ() * 0.1, 0,0,1));
+				vis.markers.push_back(visManager.sphereMarker(eMath, closestParticle[i], 0.05, 1,0,1, 0.5f));
+				//vis.markers.push_back(visManager.vectorMarker(eCurrent, pos, p_, 0,0,0));
+			}
+#endif
+			M *= M_ * Vi;
+		}
 	}
 
-	// Allow some introspection for debugging
-	debug.F_v = F_v;
-	debug.B = B_superSum.norm() / I_k;
+	debug.M = M;
 
-	// point mass dynamic system
-	Vector3d accel = (-k_a * goalDiff + F_v - k_d * velV) / mass; 
-	double U_a = 0.5 * k_a * (goalDiff.dot(goalDiff));
+	double frac = max(1.0 - (minContDist) / parameters.margin, 0.0);
 
+//	Vector3d modVel = M * velV;
+	Vector3d modVel = M * (velV * (1.0 - frac) + (escVel * frac));
+	if (modVel.norm() > 0.2)
+		modVel.normalized() * 0.2;
+	//cout << "Min contributing distance: " << minContDist << endl;
+	// if (minContDist <= 0) {
+	// //   	modVel = M * (escVel);
+	// }
 	if (bDrawDebug) {
-		visManager.annotatedVector(vis.markers, eMath, pos, F_v, "F_v");
-		vis.markers.push_back(visManager.vectorMarker(eCurrent, pos, B_superSum, 1,0,0));
-	}
-	/*Vector3d newVel = velV + accel * U_a * dT; //(velV + accel).normalized() * 0.2; // RETURN THIS
-	// ROTATION MISSING
-
-
-	cout << "F_v(" << F_v[0] << ", " << F_v[1] << ", " << F_v[2] << ")" << endl
-		 << "accel(" << accel[0] << ", " << accel[1] << ", " << accel[2] << ")" << endl
-		 << "newVel(" << newVel[0] << ", " << newVel[1] << ", " << newVel[2] << ")" << endl;
-	//*/
-
-	if (bDrawDebug) {
+		vis.markers.push_back(visManager.vectorMarker(eMath, pos, escVel * 10, 1,1,0));
 		visManager.endDrawCycle(vis.markers);
 		visPub.publish(vis);
 	}
 
-	return accel;// * U_a;
+	return modVel;
 }
-
 
 /*
 	visualization_msgs::MarkerArray vis;

@@ -4,7 +4,9 @@
 #include <eigen3/Eigen/Eigen>
 #include <tf/transform_listener.h>
 #include <tf_conversions/tf_eigen.h>
+#include <string>
 
+using namespace std;
 
 struct ICommander {
 	virtual void setVelocity(Eigen::Vector3d vel) = 0;
@@ -25,9 +27,9 @@ private:
 	ros::Publisher pubX, pubY, pubZ;
 };
 
-class PR2Commander : public ICommander {
+class GiskardCommander : public ICommander {
 public:
-	PR2Commander(ros::NodeHandle &nh);
+	GiskardCommander(ros::NodeHandle &nh, string _refFrame, string _eefFrame);
 
 	void setVelocity(Eigen::Vector3d vel);
 	bool getCurrentEEFPose(Eigen::Affine3d &out);
@@ -36,6 +38,8 @@ public:
 private:
 	tf::TransformListener tfListener;
 	ros::Publisher pub;
+
+	string refFrame, eefFrame;
 };
 
 
