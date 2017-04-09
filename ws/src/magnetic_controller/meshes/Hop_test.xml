@@ -1,0 +1,32 @@
+<scene name="Hop_test">
+	<goal name="G" posX="0.059999994933605194" posY="0.10999999195337296" posZ="0.09999998658895493"/>
+	<goal name="G" posX="0.059999994933605194" posY="0.0" posZ="0.0"/>
+	<goal name="G" posX="0.059999994933605194" posY="-0.0899999812245369" posZ="-0.09999998658895493"/>
+	<goal name="G" posX="0.22999998927116394" posY="0.10999999195337296" posZ="0.09999998658895493"/>
+	<goal name="G" posX="0.22999998927116394" posY="0.0" posZ="0.0"/>
+	<goal name="G" posX="0.22999998927116394" posY="-0.0899999812245369" posZ="-0.09999998658895493"/>
+	<start name="G" posX="-0.22999997437000275" posY="0.10999999195337296" posZ="0.09999998658895493"/>
+	<start name="G" posX="-0.22999997437000275" posY="0.0" posZ="0.0"/>
+	<start name="G" posX="-0.22999997437000275" posY="-0.0899999812245369" posZ="-0.09999998658895493"/>
+	<start name="G" posX="-0.0599999874830246" posY="0.10999999195337296" posZ="0.09999998658895493"/>
+	<start name="G" posX="-0.0599999874830246" posY="0.0" posZ="0.0"/>
+	<start name="G" posX="-0.0599999874830246" posY="-0.0899999812245369" posZ="-0.09999998658895493"/>
+	<obstacle name="Shelf2_Backwall" mesh="meshes/Shelf2_Backwall.vc" static="1">
+		<transform posX="0.0" posY="0.18000002205371857" posZ="-4.470348535789981e-09" rotX="0.0" rotY="0.0" rotZ="0.0"/>
+	</obstacle>
+	<obstacle name="Shelf2_Ceiling" mesh="meshes/Shelf2_Ceiling.vc" static="1">
+		<transform posX="0.0" posY="0.18000000715255737" posZ="0.18000000715255737" rotX="0.0" rotY="0.0" rotZ="0.0"/>
+	</obstacle>
+	<obstacle name="Shelf2_Ceiling.001" mesh="meshes/Shelf2_Ceiling.vc" static="1">
+		<transform posX="0.0" posY="0.18000000715255737" posZ="-0.17999997735023499" rotX="-2.6871768454839184e-07" rotY="-3.141592502593994" rotZ="2.028762154473486e-14"/>
+	</obstacle>
+	<obstacle name="Shelf2_Innerwall" mesh="meshes/Shelf2_Innerwall.vc" static="1">
+		<transform posX="0.0" posY="0.15000000596046448" posZ="0.0" rotX="0.0" rotY="0.0" rotZ="0.0"/>
+	</obstacle>
+	<obstacle name="Shelf2_Wall" mesh="meshes/Shelf2_Wall.vc" static="1">
+		<transform posX="0.3449999988079071" posY="0.18000002205371857" posZ="-3.725290298461914e-09" rotX="0.0" rotY="0.0" rotZ="0.0"/>
+	</obstacle>
+	<obstacle name="Shelf2_Wall.001" mesh="meshes/Shelf2_Wall.vc" static="1">
+		<transform posX="-0.3449999988079071" posY="0.18000002205371857" posZ="-3.725290298461914e-09" rotX="-2.6871768454839184e-07" rotY="3.141592502593994" rotZ="-2.028762154473486e-14"/>
+	</obstacle>
+</scene>

@@ -1,0 +1,153 @@
+<testbench>
+	<test name="walls_field_strength_filter" file="meshes/2D_Walls_Test.xml" rate="100" controller="circular">
+		<robots>
+			<robot package="magnetic_controller" urdf="robots/simple_robot.urdf" srdf="robots/simple_robot.srdf" controlled_joints="robots/controlled_joints.yaml" giskard="controller_specs/point_robot_vel_controller.yaml"/>
+		</robots>
+		<paths>
+			<path name="Path1" maxTime="20">
+				<initial_states>
+					<state robot="point_robot" package="magnetic_controller" file="robots/start_config.yaml"/>
+				</initial_states>
+				<nodes>
+					<node name="Start"/>
+					<node name="Goal"/>
+				</nodes>
+			</path>
+		</paths>
+		<configs>
+			<config I_k="2" k_a="1" k_d="1" filter="n" surfFollow="0" p="0" m="0" margin="0.025" noise="0" rotation_vector="a"/>
+			<config I_k="4" k_a="1" k_d="1" filter="n" surfFollow="0" p="0" m="0" margin="0.025" noise="0" rotation_vector="a"/>
+			<config I_k="8" k_a="1" k_d="1" filter="n" surfFollow="0" p="0" m="0" margin="0.025" noise="0" rotation_vector="a"/>
+			<config I_k="16" k_a="1" k_d="1" filter="n" surfFollow="0" p="0" m="0" margin="0.025" noise="0" rotation_vector="a"/>
+			<config I_k="32" k_a="1" k_d="1" filter="n" surfFollow="0" p="0" m="0" margin="0.025" noise="0" rotation_vector="a"/>
+			<config I_k="64" k_a="1" k_d="1" filter="n" surfFollow="0" p="0" m="0" margin="0.025" noise="0" rotation_vector="a"/>
+
+			<config I_k="2" k_a="1" k_d="1" filter="d" surfFollow="0" p="0" m="0" margin="0.025" noise="0" rotation_vector="a"/>
+			<config I_k="4" k_a="1" k_d="1" filter="d" surfFollow="0" p="0" m="0" margin="0.025" noise="0" rotation_vector="a"/>
+			<config I_k="8" k_a="1" k_d="1" filter="d" surfFollow="0" p="0" m="0" margin="0.025" noise="0" rotation_vector="a"/>
+			<config I_k="16" k_a="1" k_d="1" filter="d" surfFollow="0" p="0" m="0" margin="0.025" noise="0" rotation_vector="a"/>
+			<config I_k="32" k_a="1" k_d="1" filter="d" surfFollow="0" p="0" m="0" margin="0.025" noise="0" rotation_vector="a"/>
+			<config I_k="64" k_a="1" k_d="1" filter="d" surfFollow="0" p="0" m="0" margin="0.025" noise="0" rotation_vector="a"/>
+
+			<config I_k="2" k_a="1" k_d="1" filter="g" surfFollow="0" p="0" m="0" margin="0.025" noise="0" rotation_vector="a"/>
+			<config I_k="4" k_a="1" k_d="1" filter="g" surfFollow="0" p="0" m="0" margin="0.025" noise="0" rotation_vector="a"/>
+			<config I_k="8" k_a="1" k_d="1" filter="g" surfFollow="0" p="0" m="0" margin="0.025" noise="0" rotation_vector="a"/>
+			<config I_k="16" k_a="1" k_d="1" filter="g" surfFollow="0" p="0" m="0" margin="0.025" noise="0" rotation_vector="a"/>
+			<config I_k="32" k_a="1" k_d="1" filter="g" surfFollow="0" p="0" m="0" margin="0.025" noise="0" rotation_vector="a"/>
+			<config I_k="64" k_a="1" k_d="1" filter="g" surfFollow="0" p="0" m="0" margin="0.025" noise="0" rotation_vector="a"/>
+
+			<config I_k="2" k_a="1" k_d="1" filter="a" surfFollow="0" p="0" m="0" margin="0.025" noise="0" rotation_vector="a"/>
+			<config I_k="4" k_a="1" k_d="1" filter="a" surfFollow="0" p="0" m="0" margin="0.025" noise="0" rotation_vector="a"/>
+			<config I_k="8" k_a="1" k_d="1" filter="a" surfFollow="0" p="0" m="0" margin="0.025" noise="0" rotation_vector="a"/>
+			<config I_k="16" k_a="1" k_d="1" filter="a" surfFollow="0" p="0" m="0" margin="0.025" noise="0" rotation_vector="a"/>
+			<config I_k="32" k_a="1" k_d="1" filter="a" surfFollow="0" p="0" m="0" margin="0.025" noise="0" rotation_vector="a"/>
+			<config I_k="64" k_a="1" k_d="1" filter="a" surfFollow="0" p="0" m="0" margin="0.025" noise="0" rotation_vector="a"/> 
+
+			<config I_k="2" k_a="1" k_d="1.5" filter="n" surfFollow="0" p="0" m="0" margin="0.025" noise="0" rotation_vector="a"/>
+			<config I_k="4" k_a="1" k_d="1.5" filter="n" surfFollow="0" p="0" m="0" margin="0.025" noise="0" rotation_vector="a"/>
+			<config I_k="8" k_a="1" k_d="1.5" filter="n" surfFollow="0" p="0" m="0" margin="0.025" noise="0" rotation_vector="a"/>
+			<config I_k="16" k_a="1" k_d="1.5" filter="n" surfFollow="0" p="0" m="0" margin="0.025" noise="0" rotation_vector="a"/>
+			<config I_k="32" k_a="1" k_d="1.5" filter="n" surfFollow="0" p="0" m="0" margin="0.025" noise="0" rotation_vector="a"/>
+			<config I_k="64" k_a="1" k_d="1.5" filter="n" surfFollow="0" p="0" m="0" margin="0.025" noise="0" rotation_vector="a"/>
+
+			<config I_k="2" k_a="1" k_d="1.5" filter="d" surfFollow="0" p="0" m="0" margin="0.025" noise="0" rotation_vector="a"/>
+			<config I_k="4" k_a="1" k_d="1.5" filter="d" surfFollow="0" p="0" m="0" margin="0.025" noise="0" rotation_vector="a"/>
+			<config I_k="8" k_a="1" k_d="1.5" filter="d" surfFollow="0" p="0" m="0" margin="0.025" noise="0" rotation_vector="a"/>
+			<config I_k="16" k_a="1" k_d="1.5" filter="d" surfFollow="0" p="0" m="0" margin="0.025" noise="0" rotation_vector="a"/>
+			<config I_k="32" k_a="1" k_d="1.5" filter="d" surfFollow="0" p="0" m="0" margin="0.025" noise="0" rotation_vector="a"/>
+			<config I_k="64" k_a="1" k_d="1.5" filter="d" surfFollow="0" p="0" m="0" margin="0.025" noise="0" rotation_vector="a"/>
+
+			<config I_k="2" k_a="1" k_d="1.5" filter="g" surfFollow="0" p="0" m="0" margin="0.025" noise="0" rotation_vector="a"/>
+			<config I_k="4" k_a="1" k_d="1.5" filter="g" surfFollow="0" p="0" m="0" margin="0.025" noise="0" rotation_vector="a"/>
+			<config I_k="8" k_a="1" k_d="1.5" filter="g" surfFollow="0" p="0" m="0" margin="0.025" noise="0" rotation_vector="a"/>
+			<config I_k="16" k_a="1" k_d="1.5" filter="g" surfFollow="0" p="0" m="0" margin="0.025" noise="0" rotation_vector="a"/>
+			<config I_k="32" k_a="1" k_d="1.5" filter="g" surfFollow="0" p="0" m="0" margin="0.025" noise="0" rotation_vector="a"/>
+			<config I_k="64" k_a="1" k_d="1.5" filter="g" surfFollow="0" p="0" m="0" margin="0.025" noise="0" rotation_vector="a"/>
+
+			<config I_k="2" k_a="1" k_d="1.5" filter="a" surfFollow="0" p="0" m="0" margin="0.025" noise="0" rotation_vector="a"/>
+			<config I_k="4" k_a="1" k_d="1.5" filter="a" surfFollow="0" p="0" m="0" margin="0.025" noise="0" rotation_vector="a"/>
+			<config I_k="8" k_a="1" k_d="1.5" filter="a" surfFollow="0" p="0" m="0" margin="0.025" noise="0" rotation_vector="a"/>
+			<config I_k="16" k_a="1" k_d="1.5" filter="a" surfFollow="0" p="0" m="0" margin="0.025" noise="0" rotation_vector="a"/>
+			<config I_k="32" k_a="1" k_d="1.5" filter="a" surfFollow="0" p="0" m="0" margin="0.025" noise="0" rotation_vector="a"/>
+			<config I_k="64" k_a="1" k_d="1.5" filter="a" surfFollow="0" p="0" m="0" margin="0.025" noise="0" rotation_vector="a"/> 
+		
+			<config I_k="2" k_a="1" k_d="2" filter="n" surfFollow="0" p="0" m="0" margin="0.025" noise="0" rotation_vector="a"/>
+			<config I_k="4" k_a="1" k_d="2" filter="n" surfFollow="0" p="0" m="0" margin="0.025" noise="0" rotation_vector="a"/>
+			<config I_k="8" k_a="1" k_d="2" filter="n" surfFollow="0" p="0" m="0" margin="0.025" noise="0" rotation_vector="a"/>
+			<config I_k="16" k_a="1" k_d="2" filter="n" surfFollow="0" p="0" m="0" margin="0.025" noise="0" rotation_vector="a"/>
+			<config I_k="32" k_a="1" k_d="2" filter="n" surfFollow="0" p="0" m="0" margin="0.025" noise="0" rotation_vector="a"/>
+			<config I_k="64" k_a="1" k_d="2" filter="n" surfFollow="0" p="0" m="0" margin="0.025" noise="0" rotation_vector="a"/>
+
+			<config I_k="2" k_a="1" k_d="2" filter="d" surfFollow="0" p="0" m="0" margin="0.025" noise="0" rotation_vector="a"/>
+			<config I_k="4" k_a="1" k_d="2" filter="d" surfFollow="0" p="0" m="0" margin="0.025" noise="0" rotation_vector="a"/>
+			<config I_k="8" k_a="1" k_d="2" filter="d" surfFollow="0" p="0" m="0" margin="0.025" noise="0" rotation_vector="a"/>
+			<config I_k="16" k_a="1" k_d="2" filter="d" surfFollow="0" p="0" m="0" margin="0.025" noise="0" rotation_vector="a"/>
+			<config I_k="32" k_a="1" k_d="2" filter="d" surfFollow="0" p="0" m="0" margin="0.025" noise="0" rotation_vector="a"/>
+			<config I_k="64" k_a="1" k_d="2" filter="d" surfFollow="0" p="0" m="0" margin="0.025" noise="0" rotation_vector="a"/>
+
+			<config I_k="2" k_a="1" k_d="2" filter="g" surfFollow="0" p="0" m="0" margin="0.025" noise="0" rotation_vector="a"/>
+			<config I_k="4" k_a="1" k_d="2" filter="g" surfFollow="0" p="0" m="0" margin="0.025" noise="0" rotation_vector="a"/>
+			<config I_k="8" k_a="1" k_d="2" filter="g" surfFollow="0" p="0" m="0" margin="0.025" noise="0" rotation_vector="a"/>
+			<config I_k="16" k_a="1" k_d="2" filter="g" surfFollow="0" p="0" m="0" margin="0.025" noise="0" rotation_vector="a"/>
+			<config I_k="32" k_a="1" k_d="2" filter="g" surfFollow="0" p="0" m="0" margin="0.025" noise="0" rotation_vector="a"/>
+			<config I_k="64" k_a="1" k_d="2" filter="g" surfFollow="0" p="0" m="0" margin="0.025" noise="0" rotation_vector="a"/>
+
+			<config I_k="2" k_a="1" k_d="2" filter="a" surfFollow="0" p="0" m="0" margin="0.025" noise="0" rotation_vector="a"/>
+			<config I_k="4" k_a="1" k_d="2" filter="a" surfFollow="0" p="0" m="0" margin="0.025" noise="0" rotation_vector="a"/>
+			<config I_k="8" k_a="1" k_d="2" filter="a" surfFollow="0" p="0" m="0" margin="0.025" noise="0" rotation_vector="a"/>
+			<config I_k="16" k_a="1" k_d="2" filter="a" surfFollow="0" p="0" m="0" margin="0.025" noise="0" rotation_vector="a"/>
+			<config I_k="32" k_a="1" k_d="2" filter="a" surfFollow="0" p="0" m="0" margin="0.025" noise="0" rotation_vector="a"/>
+			<config I_k="64" k_a="1" k_d="2" filter="a" surfFollow="0" p="0" m="0" margin="0.025" noise="0" rotation_vector="a"/> 
+		</configs>
+	</test>
+	<test name="walls_modulation" file="meshes/2D_Walls_Test.xml" rate="100" controller="modulation">
+		<robots>
+			<robot package="magnetic_controller" urdf="robots/simple_robot.urdf" srdf="robots/simple_robot.srdf" controlled_joints="robots/controlled_joints.yaml" giskard="controller_specs/point_robot_vel_controller.yaml"/>
+		</robots>
+		<paths>
+			<path name="Path1" maxTime="20">
+				<initial_states>
+					<state robot="point_robot" package="magnetic_controller" file="robots/start_config.yaml"/>
+				</initial_states>
+				<nodes>
+					<node name="Start"/>
+					<node name="Goal"/>
+				</nodes>
+			</path>
+		</paths>
+		<configs>
+			<config I_k="2" k_a="1" k_d="1" filter="n" surfFollow="0" p="1" m="0" margin="0.05" noise="0" rotation_vector="a"/>
+			<config I_k="2" k_a="1" k_d="1" filter="n" surfFollow="0" p="2" m="0" margin="0.05" noise="0" rotation_vector="a"/>
+			<config I_k="2" k_a="1" k_d="1" filter="n" surfFollow="0" p="3" m="0" margin="0.05" noise="0" rotation_vector="a"/>
+			<config I_k="2" k_a="1" k_d="1" filter="n" surfFollow="0" p="4" m="0" margin="0.05" noise="0" rotation_vector="a"/>
+			<config I_k="2" k_a="1" k_d="1" filter="n" surfFollow="0" p="5" m="0" margin="0.05" noise="0" rotation_vector="a"/>
+			<config I_k="2" k_a="1" k_d="1" filter="n" surfFollow="0" p="6" m="0" margin="0.05" noise="0" rotation_vector="a"/>
+			<config I_k="2" k_a="1" k_d="1" filter="n" surfFollow="0" p="7" m="0" margin="0.05" noise="0" rotation_vector="a"/>
+			<config I_k="2" k_a="1" k_d="1" filter="n" surfFollow="0" p="8" m="0" margin="0.05" noise="0" rotation_vector="a"/>
+			<config I_k="2" k_a="1" k_d="1" filter="n" surfFollow="0" p="9" m="0" margin="0.05" noise="0" rotation_vector="a"/>
+			<config I_k="2" k_a="1" k_d="1" filter="n" surfFollow="0" p="10" m="0" margin="0.05" noise="0" rotation_vector="a"/>
+
+			<config I_k="2" k_a="1" k_d="1" filter="n" surfFollow="0" p="1" m="1" margin="0.05" noise="0" rotation_vector="a"/>
+			<config I_k="2" k_a="1" k_d="1" filter="n" surfFollow="0" p="2" m="1" margin="0.05" noise="0" rotation_vector="a"/>
+			<config I_k="2" k_a="1" k_d="1" filter="n" surfFollow="0" p="3" m="1" margin="0.05" noise="0" rotation_vector="a"/>
+			<config I_k="2" k_a="1" k_d="1" filter="n" surfFollow="0" p="4" m="1" margin="0.05" noise="0" rotation_vector="a"/>
+			<config I_k="2" k_a="1" k_d="1" filter="n" surfFollow="0" p="5" m="1" margin="0.05" noise="0" rotation_vector="a"/>
+			<config I_k="2" k_a="1" k_d="1" filter="n" surfFollow="0" p="6" m="1" margin="0.05" noise="0" rotation_vector="a"/>
+			<config I_k="2" k_a="1" k_d="1" filter="n" surfFollow="0" p="7" m="1" margin="0.05" noise="0" rotation_vector="a"/>
+			<config I_k="2" k_a="1" k_d="1" filter="n" surfFollow="0" p="8" m="1" margin="0.05" noise="0" rotation_vector="a"/>
+			<config I_k="2" k_a="1" k_d="1" filter="n" surfFollow="0" p="9" m="1" margin="0.05" noise="0" rotation_vector="a"/>
+			<config I_k="2" k_a="1" k_d="1" filter="n" surfFollow="0" p="10" m="1" margin="0.05" noise="0" rotation_vector="a"/>
+
+			<config I_k="2" k_a="1" k_d="1" filter="n" surfFollow="0" p="0.1" m="1" margin="0.05" noise="0.2" rotation_vector="a"/>
+			<config I_k="2" k_a="1" k_d="1" filter="n" surfFollow="0" p="0.2" m="1" margin="0.05" noise="0.2" rotation_vector="a"/>
+			<config I_k="2" k_a="1" k_d="1" filter="n" surfFollow="0" p="0.3" m="1" margin="0.05" noise="0.2" rotation_vector="a"/>
+			<config I_k="2" k_a="1" k_d="1" filter="n" surfFollow="0" p="0.4" m="1" margin="0.05" noise="0.2" rotation_vector="a"/>
+			<config I_k="2" k_a="1" k_d="1" filter="n" surfFollow="0" p="0.5" m="1" margin="0.05" noise="0.2" rotation_vector="a"/>
+			<config I_k="2" k_a="1" k_d="1" filter="n" surfFollow="0" p="0.6" m="1" margin="0.05" noise="0.2" rotation_vector="a"/>
+			<config I_k="2" k_a="1" k_d="1" filter="n" surfFollow="0" p="0.7" m="1" margin="0.05" noise="0.2" rotation_vector="a"/>
+			<config I_k="2" k_a="1" k_d="1" filter="n" surfFollow="0" p="0.8" m="1" margin="0.05" noise="0.2" rotation_vector="a"/>
+			<config I_k="2" k_a="1" k_d="1" filter="n" surfFollow="0" p="0.9" m="1" margin="0.05" noise="0.2" rotation_vector="a"/>
+			<config I_k="2" k_a="1" k_d="1" filter="n" surfFollow="0" p="1.0" m="1" margin="0.05" noise="0.2" rotation_vector="a"/>
+		</configs>
+	</test>
+</testbench>

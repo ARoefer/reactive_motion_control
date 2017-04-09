@@ -14,7 +14,7 @@
 
 using namespace std;
 
-#define VISUALIZE
+//#define VISUALIZE
 
 typedef ObjectBase<Mesh> TMeshObject;
 typedef ObjectBase<ParticleCloud> TParticleObject;
@@ -83,6 +83,8 @@ Vector3d CircularFields::calculateAvoidance(Vector3d pos, Vector3d goalPos, Vect
 	bool overrideDirection = false;
 	Vector3d overrideVector = Vector3d::Zero();
 
+	debug.objectsExamined = objects.size();
+	
 	for (ObjectBase<ParticleCloud>* pObj: objects) {
 		Affine3d objPose = pObj->getTransform(); // Pose of the object
 		Affine3d objPoseI = objPose.inverse(); // Transform w -> object
@@ -267,7 +269,12 @@ Vector3d DynamicSystemModulation::calculateAvoidance(Vector3d pos, Vector3d goal
 	double minDist = 10000;
 	int zeroDists = 0;
 
+	debug.objectsExamined = objects.size();
+	debug.particlesExamined = 0;
+
 	for (size_t i = 0; i < objects.size(); i++) {
+		debug.particlesExamined += objects[i]->pMesh->particles.size();
+
 		Affine3d objPose = objects[i]->getTransform(); // Pose of the object
 		Affine3d objPoseI = objPose.inverse(); // Transform w -> object
 

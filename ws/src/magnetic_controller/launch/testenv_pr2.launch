@@ -1,11 +1,37 @@
 <launch>
-  <include file="$(find iai_naive_kinematics_sim)/launch/pr2.launch"/>
+  <arg name="sim_frequency" default="100" />
 
+  <arg name="start_config_file" 
+       default="$(find magnetic_controller)/robots/start_config_pr2_complex_n.yaml" />
+
+  <param name="robot_description"
+    textfile="$(find magnetic_controller)/robots/pr2.urdf" />
+
+  <node pkg="iai_naive_kinematics_sim" type="velocity_resolved_sim" 
+        name="velocity_resolved_sim" output="screen">
+    <rosparam param="controlled_joints"
+      file="$(find magnetic_controller)robots/pr2_controlled_joints_r_arm.yaml" />
+    <rosparam param="start_config" file="$(arg start_config_file)" />
+    <param name="sim_frequency" value="$(arg sim_frequency)" />
+    <param name="watchdog_period" value="0.1" />
+  </node>
+
+  <node pkg="robot_state_publisher" type="robot_state_publisher"
+        name="robot_state_publisher" />
+
+  <node pkg="tf2_ros" type="buffer_server" name="tf2_buffer_server" />
+
+  <node pkg="tf" type="static_transform_publisher" name="fake_localization"
+        output="screen" args="0 0 0 0 0 0 map odom_combined 100" />
+
+  <node pkg="tf" type="static_transform_publisher" name="fake_odometry"
+        output="screen" args="0 0 0 0 0 0 odom_combined base_footprint 100" />
+        
   <node pkg="magnetic_controller" type="pr2_r_vel_controller" name="pr2_controller" output="screen">
     <rosparam param="joint_names"
-      file="$(find magnetic_controller)/config/pr2_left_upper_body.yaml" />
+      file="$(find magnetic_controller)robots/pr2_controlled_joints_r_arm.yaml" />
     <param name="controller_description" 
-      textfile="$(find magnetic_controller)/controller_specs/pr2_cart_cart_control.yaml" />
+      textfile="$(find magnetic_controller)/controller_specs/pr2_r_arm_vel_control.yaml" />
     <param name="frame_id" value="base_link" />
     <remap from="~joint_states" to="/joint_states" />
     <param name="nWSR" value="1000"/>

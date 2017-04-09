@@ -1,0 +1,71 @@
+<scene name="Pocket_test">
+	<obstacle name="Box1" mesh="meshes/Box1.vc" static="1">
+		<transform posX="0.2646084427833557" posY="0.0446084663271904" posZ="-0.019999999552965164" rotX="0.0" rotY="-0.0" rotZ="-0.03238055109977722"/>
+	</obstacle>
+	<obstacle name="Box2" mesh="meshes/Box2.vc" static="1">
+		<transform posX="0.1166645959019661" posY="0.048624515533447266" posZ="-0.11054747551679611" rotX="0.0" rotY="-0.0" rotZ="-0.15024730563163757"/>
+	</obstacle>
+	<obstacle name="Box2.001" mesh="meshes/Box2.vc" static="1">
+		<transform posX="0.13040031492710114" posY="0.061989232897758484" posZ="-0.030750863254070282" rotX="0.0" rotY="-0.0" rotZ="-0.2995312511920929"/>
+	</obstacle>
+	<obstacle name="Crisps" mesh="meshes/Crisps.vc" static="1">
+		<transform posX="0.051416244357824326" posY="0.10860959440469742" posZ="-0.026407239958643913" rotX="0.0" rotY="0.0" rotZ="0.0"/>
+	</obstacle>
+	<obstacle name="Cup1" mesh="meshes/Cup1.vc" static="1">
+		<transform posX="-0.2186804711818695" posY="7.475803975864892e-09" posZ="-0.055640581995248795" rotX="0.0" rotY="-0.0" rotZ="2.3300974369049072"/>
+	</obstacle>
+	<obstacle name="Cup1.001" mesh="meshes/Cup1.vc" static="1">
+		<transform posX="-0.14411011338233948" posY="-0.01840857043862343" posZ="-0.055640581995248795" rotX="0.0" rotY="-0.0" rotZ="0.4836881458759308"/>
+	</obstacle>
+	<obstacle name="Cup1.002" mesh="meshes/Cup1.vc" static="1">
+		<transform posX="-0.19777581095695496" posY="0.06770612299442291" posZ="-0.055640581995248795" rotX="0.0" rotY="-0.0" rotZ="0.4836881458759308"/>
+	</obstacle>
+	<obstacle name="Cup1.003" mesh="meshes/Cup1.vc" static="1">
+		<transform posX="-0.12265654653310776" posY="0.0557977519929409" posZ="-0.055640581995248795" rotX="0.0" rotY="-0.0" rotZ="0.4836881458759308"/>
+	</obstacle>
+	<obstacle name="Cup1.004" mesh="meshes/Cup1.vc" static="1">
+		<transform posX="-0.1443995088338852" posY="-0.018024904653429985" posZ="0.009135959669947624" rotX="0.022190188989043236" rotY="-0.06649931520223618" rotZ="0.4963642358779907"/>
+	</obstacle>
+	<obstacle name="Flask1" mesh="meshes/Flask1.vc" static="1">
+		<transform posX="0.0009027430787682533" posY="0.030673954635858536" posZ="-0.08999999612569809" rotX="0.0" rotY="-0.0" rotZ="-0.3290446400642395"/>
+	</obstacle>
+	<obstacle name="Flask2" mesh="meshes/Flask2.vc" static="1">
+		<transform posX="-0.02048780769109726" posY="0.11082243919372559" posZ="-0.0738639235496521" rotX="0.0" rotY="0.0" rotZ="0.0"/>
+	</obstacle>
+	<goal name="Goal1" posX="-0.05745980888605118" posY="-0.09173764288425446" posZ="0.35964614152908325"/>
+	<goal name="Goal2" posX="0.29032814502716064" posY="-0.3225395679473877" posZ="0.33324483036994934"/>
+	<obstacle name="Plate_Large" mesh="meshes/Plate_large.vc" static="1">
+		<transform posX="-0.17000000178813934" posY="0.022409692406654358" posZ="-0.14999999105930328" rotX="0.0" rotY="0.0" rotZ="0.0"/>
+	</obstacle>
+	<obstacle name="Plate_Large.001" mesh="meshes/Plate_large.vc" static="1">
+		<transform posX="-0.17000000178813934" posY="0.02239779755473137" posZ="-0.13999998569488525" rotX="0.0" rotY="0.0" rotZ="0.0"/>
+	</obstacle>
+	<obstacle name="Plate_Large.002" mesh="meshes/Plate_large.vc" static="1">
+		<transform posX="-0.17000000178813934" posY="0.02239779755473137" posZ="-0.12999998033046722" rotX="0.0" rotY="0.0" rotZ="0.0"/>
+	</obstacle>
+	<obstacle name="Plate_Large.003" mesh="meshes/Plate_large.vc" static="1">
+		<transform posX="-0.17000000178813934" posY="0.02239779755473137" posZ="-0.11999998241662979" rotX="0.0" rotY="0.0" rotZ="0.0"/>
+	</obstacle>
+	<obstacle name="Plate_Large.004" mesh="meshes/Plate_large.vc" static="1">
+		<transform posX="-0.17000000178813934" posY="0.02239779755473137" posZ="-0.10999998450279236" rotX="0.0" rotY="0.0" rotZ="0.0"/>
+	</obstacle>
+	<obstacle name="Plate_Large.005" mesh="meshes/Plate_large.vc" static="1">
+		<transform posX="-0.17000000178813934" posY="0.02239779755473137" posZ="-0.09999998658895493" rotX="0.0" rotY="0.0" rotZ="0.0"/>
+	</obstacle>
+	<obstacle name="Shel1_Wall" mesh="meshes/Shelf1_Wall.vc" static="1">
+		<transform posX="0.29999998211860657" posY="0.14999999105930328" posZ="0.0" rotX="0.0" rotY="0.0" rotZ="0.0"/>
+	</obstacle>
+	<obstacle name="Shel1_Wall.001" mesh="meshes/Shelf1_Wall.vc" static="1">
+		<transform posX="-0.30000001192092896" posY="0.15000003576278687" posZ="1.6391277313232422e-07" rotX="-2.6871768454839184e-07" rotY="-3.141592502593994" rotZ="2.028762154473486e-14"/>
+	</obstacle>
+	<obstacle name="Shelf1_Backwall" mesh="meshes/Shelf1_Backwall.vc" static="1">
+		<transform posX="0.0" posY="0.17999999225139618" posZ="0.0" rotX="0.0" rotY="0.0" rotZ="0.0"/>
+	</obstacle>
+	<obstacle name="Shelf1_Ceiling" mesh="meshes/Shelf1_Ceiling.vc" static="1">
+		<transform posX="0.0" posY="0.15000002086162567" posZ="0.14999999105930328" rotX="0.0" rotY="0.0" rotZ="0.0"/>
+	</obstacle>
+	<obstacle name="Shelf1_Ceiling.001" mesh="meshes/Shelf1_Ceiling.vc" static="1">
+		<transform posX="-9.941883199939688e-15" posY="0.15000000596046448" posZ="-0.14999985694885254" rotX="-2.6871768454839184e-07" rotY="3.141592502593994" rotZ="-2.028762154473486e-14"/>
+	</obstacle>
+	<start name="Start1" posX="0.0" posY="-0.3100467324256897" posZ="0.0"/>
+</scene>

@@ -1,7 +1,7 @@
 
 //#define SIM
 #define PR2
-#define MODULATION
+//#define MODULATION
 #include "utils.h"
 #include "MeshManager.h"
 #include "Mesh.h"
@@ -167,8 +167,9 @@ public:
 						Vector3d newVel = core.calculateAvoidance(pos, goal, vel, step);// * step;
 						ros::Duration passed = ros::Time::now() - now;
 
-						// cout << "Calculation took " << passed.toSec() << " seconds" << endl;
-						// cout << "   Particles: " << core.debug.particlesExamined << endl;
+						cout << "Calculation took " << passed.toSec() << " seconds" << endl;
+						cout << "     Objects: " << core.debug.objectsExamined << endl;
+						cout << "   Particles: " << core.debug.particlesExamined << endl;
 
 						if (newVel[0] == newVel[0] && newVel[1] == newVel[1] && newVel[2] == newVel[2]) {
 							timeTaken += step;

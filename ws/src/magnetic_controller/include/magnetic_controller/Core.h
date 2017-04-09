@@ -106,6 +106,7 @@ public:
 		vector<Matrix3d> Vi;
 		vector<Matrix3d> E;
 		unsigned long particlesExamined;
+		unsigned int objectsExamined;
 	} debug;
 
 	void refreshParams() { parameters.refresh(); }

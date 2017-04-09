@@ -1,5 +1,6 @@
 # exports each selected object into its own file
 
+import re
 import bpy
 import os
 from collections import namedtuple
@@ -39,6 +40,32 @@ class CVExporter():
 
 		print("written:", filename)
 
+	def exportPhysMesh(self, name):
+		if not name in bpy.data.meshes:
+			return
+		
+		filename = os.path.join(self.basedir, name)
+		f = open(filename+'.obj', 'w')
+		
+		mesh = bpy.data.meshes[name]
+		
+		for v in mesh.vertices:
+			f.write('v ')
+			for x in range(0,3):
+				f.write(str(v.co[x]))
+				f.write(' ')
+
+			f.write('\n')
+
+		for p in mesh.polygons:
+			f.write('f ')
+			for x in range(0,3):
+				f.write(str(p.vertices[x]))
+				f.write(' ')     
+
+			f.write('\n')       
+			
+
 	def openTag(self, f, name):
 		depth = 0
 		if self.currentNode != None:
@@ -72,13 +99,15 @@ class CVExporter():
 
 	def writeGoal(self, f, goal):
 		self.openTag(f, 'goal')
-		self.writeAttribute(f, 'name', goal.name)
+		match = re.search('([A-Za-z0-9]*)(\.[0-9]*)?', goal.name)
+		self.writeAttribute(f, 'name', match.group(1))
 		self.writeVector(f, 'pos', goal.location)
 		self.closeTag(f)
 
 	def writeStart(self, f, start):
 		self.openTag(f, 'start')
-		self.writeAttribute(f, 'name', start.name)
+		match = re.search('([A-Za-z0-9]*)(\.[0-9]*)?', start.name)
+		self.writeAttribute(f, 'name', match.group(1))
 		self.writeVector(f, 'pos', start.location)
 		self.closeTag(f)	
 
@@ -88,6 +117,7 @@ class CVExporter():
 
 		if not obj.data.name in self.meshes:
 			self.exportVertexCloud(obj)
+			self.exportPhysMesh(obj.data.name + '_phys')
 			self.meshes.append(obj.data.name)
 
 		self.openTag(f, 'obstacle')

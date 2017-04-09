@@ -1,0 +1,2288 @@
+{
+    "name": "hop_magnetic",
+    "file": "scenes\/Hop_test.xml",
+    "rate": "100",
+    "configs":
+    [
+        {
+            "robot": "point_robot",
+            "I_k": "0.5",
+            "k_a": "1",
+            "k_d": "1",
+            "filter": "d",
+            "rotation_vector": "a",
+            "follow": "false",
+            "p": "0",
+            "margin": "0.06",
+            "m": "false",
+            "noise": "0",
+            "paths":
+            [
+                {
+                    "name": "A1",
+                    "points": "paths\/hop_magnetic_(point_robot,0.5,1,1,d,0,a,0,0,0.06,0)_A1.path"
+                },
+                {
+                    "name": "A4",
+                    "points": "paths\/hop_magnetic_(point_robot,0.5,1,1,d,0,a,0,0,0.06,0)_A4.path"
+                },
+                {
+                    "name": "A6",
+                    "points": "paths\/hop_magnetic_(point_robot,0.5,1,1,d,0,a,0,0,0.06,0)_A6.path"
+                },
+                {
+                    "name": "D1",
+                    "points": "paths\/hop_magnetic_(point_robot,0.5,1,1,d,0,a,0,0,0.06,0)_D1.path"
+                },
+                {
+                    "name": "D4",
+                    "points": "paths\/hop_magnetic_(point_robot,0.5,1,1,d,0,a,0,0,0.06,0)_D4.path"
+                },
+                {
+                    "name": "D3",
+                    "points": "paths\/hop_magnetic_(point_robot,0.5,1,1,d,0,a,0,0,0.06,0)_D3.path"
+                },
+                {
+                    "name": "B2",
+                    "points": "paths\/hop_magnetic_(point_robot,0.5,1,1,d,0,a,0,0,0.06,0)_B2.path"
+                },
+                {
+                    "name": "B5",
+                    "points": "paths\/hop_magnetic_(point_robot,0.5,1,1,d,0,a,0,0,0.06,0)_B5.path"
+                },
+                {
+                    "name": "E2",
+                    "points": "paths\/hop_magnetic_(point_robot,0.5,1,1,d,0,a,0,0,0.06,0)_E2.path"
+                },
+                {
+                    "name": "E5",
+                    "points": "paths\/hop_magnetic_(point_robot,0.5,1,1,d,0,a,0,0,0.06,0)_E5.path"
+                },
+                {
+                    "name": "F3",
+                    "points": "paths\/hop_magnetic_(point_robot,0.5,1,1,d,0,a,0,0,0.06,0)_F3.path"
+                },
+                {
+                    "name": "F1",
+                    "points": "paths\/hop_magnetic_(point_robot,0.5,1,1,d,0,a,0,0,0.06,0)_F1.path"
+                },
+                {
+                    "name": "F6",
+                    "points": "paths\/hop_magnetic_(point_robot,0.5,1,1,d,0,a,0,0,0.06,0)_F6.path"
+                },
+                {
+                    "name": "C3",
+                    "points": "paths\/hop_magnetic_(point_robot,0.5,1,1,d,0,a,0,0,0.06,0)_C3.path"
+                },
+                {
+                    "name": "C4",
+                    "points": "paths\/hop_magnetic_(point_robot,0.5,1,1,d,0,a,0,0,0.06,0)_C4.path"
+                }
+            ]
+        },
+        {
+            "robot": "point_robot",
+            "I_k": "1",
+            "k_a": "1",
+            "k_d": "1",
+            "filter": "d",
+            "rotation_vector": "a",
+            "follow": "false",
+            "p": "0",
+            "margin": "0.06",
+            "m": "false",
+            "noise": "0",
+            "paths":
+            [
+                {
+                    "name": "A1",
+                    "points": "paths\/hop_magnetic_(point_robot,1,1,1,d,0,a,0,0,0.06,0)_A1.path"
+                },
+                {
+                    "name": "A4",
+                    "points": "paths\/hop_magnetic_(point_robot,1,1,1,d,0,a,0,0,0.06,0)_A4.path"
+                },
+                {
+                    "name": "A6",
+                    "points": "paths\/hop_magnetic_(point_robot,1,1,1,d,0,a,0,0,0.06,0)_A6.path"
+                },
+                {
+                    "name": "D1",
+                    "points": "paths\/hop_magnetic_(point_robot,1,1,1,d,0,a,0,0,0.06,0)_D1.path"
+                },
+                {
+                    "name": "D4",
+                    "points": "paths\/hop_magnetic_(point_robot,1,1,1,d,0,a,0,0,0.06,0)_D4.path"
+                },
+                {
+                    "name": "D3",
+                    "points": "paths\/hop_magnetic_(point_robot,1,1,1,d,0,a,0,0,0.06,0)_D3.path"
+                },
+                {
+                    "name": "B2",
+                    "points": "paths\/hop_magnetic_(point_robot,1,1,1,d,0,a,0,0,0.06,0)_B2.path"
+                },
+                {
+                    "name": "B5",
+                    "points": "paths\/hop_magnetic_(point_robot,1,1,1,d,0,a,0,0,0.06,0)_B5.path"
+                },
+                {
+                    "name": "E2",
+                    "points": "paths\/hop_magnetic_(point_robot,1,1,1,d,0,a,0,0,0.06,0)_E2.path"
+                },
+                {
+                    "name": "E5",
+                    "points": "paths\/hop_magnetic_(point_robot,1,1,1,d,0,a,0,0,0.06,0)_E5.path"
+                },
+                {
+                    "name": "F3",
+                    "points": "paths\/hop_magnetic_(point_robot,1,1,1,d,0,a,0,0,0.06,0)_F3.path"
+                },
+                {
+                    "name": "F1",
+                    "points": "paths\/hop_magnetic_(point_robot,1,1,1,d,0,a,0,0,0.06,0)_F1.path"
+                },
+                {
+                    "name": "F6",
+                    "points": "paths\/hop_magnetic_(point_robot,1,1,1,d,0,a,0,0,0.06,0)_F6.path"
+                },
+                {
+                    "name": "C3",
+                    "points": "paths\/hop_magnetic_(point_robot,1,1,1,d,0,a,0,0,0.06,0)_C3.path"
+                },
+                {
+                    "name": "C4",
+                    "points": "paths\/hop_magnetic_(point_robot,1,1,1,d,0,a,0,0,0.06,0)_C4.path"
+                }
+            ]
+        },
+        {
+            "robot": "point_robot",
+            "I_k": "2",
+            "k_a": "1",
+            "k_d": "1",
+            "filter": "d",
+            "rotation_vector": "a",
+            "follow": "false",
+            "p": "0",
+            "margin": "0.06",
+            "m": "false",
+            "noise": "0",
+            "paths":
+            [
+                {
+                    "name": "A1",
+                    "points": "paths\/hop_magnetic_(point_robot,2,1,1,d,0,a,0,0,0.06,0)_A1.path"
+                },
+                {
+                    "name": "A4",
+                    "points": "paths\/hop_magnetic_(point_robot,2,1,1,d,0,a,0,0,0.06,0)_A4.path"
+                },
+                {
+                    "name": "A6",
+                    "points": "paths\/hop_magnetic_(point_robot,2,1,1,d,0,a,0,0,0.06,0)_A6.path"
+                },
+                {
+                    "name": "D1",
+                    "points": "paths\/hop_magnetic_(point_robot,2,1,1,d,0,a,0,0,0.06,0)_D1.path"
+                },
+                {
+                    "name": "D4",
+                    "points": "paths\/hop_magnetic_(point_robot,2,1,1,d,0,a,0,0,0.06,0)_D4.path"
+                },
+                {
+                    "name": "D3",
+                    "points": "paths\/hop_magnetic_(point_robot,2,1,1,d,0,a,0,0,0.06,0)_D3.path"
+                },
+                {
+                    "name": "B2",
+                    "points": "paths\/hop_magnetic_(point_robot,2,1,1,d,0,a,0,0,0.06,0)_B2.path"
+                },
+                {
+                    "name": "B5",
+                    "points": "paths\/hop_magnetic_(point_robot,2,1,1,d,0,a,0,0,0.06,0)_B5.path"
+                },
+                {
+                    "name": "E2",
+                    "points": "paths\/hop_magnetic_(point_robot,2,1,1,d,0,a,0,0,0.06,0)_E2.path"
+                },
+                {
+                    "name": "E5",
+                    "points": "paths\/hop_magnetic_(point_robot,2,1,1,d,0,a,0,0,0.06,0)_E5.path"
+                },
+                {
+                    "name": "F3",
+                    "points": "paths\/hop_magnetic_(point_robot,2,1,1,d,0,a,0,0,0.06,0)_F3.path"
+                },
+                {
+                    "name": "F1",
+                    "points": "paths\/hop_magnetic_(point_robot,2,1,1,d,0,a,0,0,0.06,0)_F1.path"
+                },
+                {
+                    "name": "F6",
+                    "points": "paths\/hop_magnetic_(point_robot,2,1,1,d,0,a,0,0,0.06,0)_F6.path"
+                },
+                {
+                    "name": "C3",
+                    "points": "paths\/hop_magnetic_(point_robot,2,1,1,d,0,a,0,0,0.06,0)_C3.path"
+                },
+                {
+                    "name": "C4",
+                    "points": "paths\/hop_magnetic_(point_robot,2,1,1,d,0,a,0,0,0.06,0)_C4.path"
+                }
+            ]
+        },
+        {
+            "robot": "point_robot",
+            "I_k": "4",
+            "k_a": "1",
+            "k_d": "1",
+            "filter": "d",
+            "rotation_vector": "a",
+            "follow": "false",
+            "p": "0",
+            "margin": "0.06",
+            "m": "false",
+            "noise": "0",
+            "paths":
+            [
+                {
+                    "name": "A1",
+                    "points": "paths\/hop_magnetic_(point_robot,4,1,1,d,0,a,0,0,0.06,0)_A1.path"
+                },
+                {
+                    "name": "A4",
+                    "points": "paths\/hop_magnetic_(point_robot,4,1,1,d,0,a,0,0,0.06,0)_A4.path"
+                },
+                {
+                    "name": "A6",
+                    "points": "paths\/hop_magnetic_(point_robot,4,1,1,d,0,a,0,0,0.06,0)_A6.path"
+                },
+                {
+                    "name": "D1",
+                    "points": "paths\/hop_magnetic_(point_robot,4,1,1,d,0,a,0,0,0.06,0)_D1.path"
+                },
+                {
+                    "name": "D4",
+                    "points": "paths\/hop_magnetic_(point_robot,4,1,1,d,0,a,0,0,0.06,0)_D4.path"
+                },
+                {
+                    "name": "D3",
+                    "points": "paths\/hop_magnetic_(point_robot,4,1,1,d,0,a,0,0,0.06,0)_D3.path"
+                },
+                {
+                    "name": "B2",
+                    "points": "paths\/hop_magnetic_(point_robot,4,1,1,d,0,a,0,0,0.06,0)_B2.path"
+                },
+                {
+                    "name": "B5",
+                    "points": "paths\/hop_magnetic_(point_robot,4,1,1,d,0,a,0,0,0.06,0)_B5.path"
+                },
+                {
+                    "name": "E2",
+                    "points": "paths\/hop_magnetic_(point_robot,4,1,1,d,0,a,0,0,0.06,0)_E2.path"
+                },
+                {
+                    "name": "E5",
+                    "points": "paths\/hop_magnetic_(point_robot,4,1,1,d,0,a,0,0,0.06,0)_E5.path"
+                },
+                {
+                    "name": "F3",
+                    "points": "paths\/hop_magnetic_(point_robot,4,1,1,d,0,a,0,0,0.06,0)_F3.path"
+                },
+                {
+                    "name": "F1",
+                    "points": "paths\/hop_magnetic_(point_robot,4,1,1,d,0,a,0,0,0.06,0)_F1.path"
+                },
+                {
+                    "name": "F6",
+                    "points": "paths\/hop_magnetic_(point_robot,4,1,1,d,0,a,0,0,0.06,0)_F6.path"
+                },
+                {
+                    "name": "C3",
+                    "points": "paths\/hop_magnetic_(point_robot,4,1,1,d,0,a,0,0,0.06,0)_C3.path"
+                },
+                {
+                    "name": "C4",
+                    "points": "paths\/hop_magnetic_(point_robot,4,1,1,d,0,a,0,0,0.06,0)_C4.path"
+                }
+            ]
+        },
+        {
+            "robot": "point_robot",
+            "I_k": "6",
+            "k_a": "1",
+            "k_d": "1",
+            "filter": "d",
+            "rotation_vector": "a",
+            "follow": "false",
+            "p": "0",
+            "margin": "0.06",
+            "m": "false",
+            "noise": "0",
+            "paths":
+            [
+                {
+                    "name": "A1",
+                    "points": "paths\/hop_magnetic_(point_robot,6,1,1,d,0,a,0,0,0.06,0)_A1.path"
+                },
+                {
+                    "name": "A4",
+                    "points": "paths\/hop_magnetic_(point_robot,6,1,1,d,0,a,0,0,0.06,0)_A4.path"
+                },
+                {
+                    "name": "A6",
+                    "points": "paths\/hop_magnetic_(point_robot,6,1,1,d,0,a,0,0,0.06,0)_A6.path"
+                },
+                {
+                    "name": "D1",
+                    "points": "paths\/hop_magnetic_(point_robot,6,1,1,d,0,a,0,0,0.06,0)_D1.path"
+                },
+                {
+                    "name": "D4",
+                    "points": "paths\/hop_magnetic_(point_robot,6,1,1,d,0,a,0,0,0.06,0)_D4.path"
+                },
+                {
+                    "name": "D3",
+                    "points": "paths\/hop_magnetic_(point_robot,6,1,1,d,0,a,0,0,0.06,0)_D3.path"
+                },
+                {
+                    "name": "B2",
+                    "points": "paths\/hop_magnetic_(point_robot,6,1,1,d,0,a,0,0,0.06,0)_B2.path"
+                },
+                {
+                    "name": "B5",
+                    "points": "paths\/hop_magnetic_(point_robot,6,1,1,d,0,a,0,0,0.06,0)_B5.path"
+                },
+                {
+                    "name": "E2",
+                    "points": "paths\/hop_magnetic_(point_robot,6,1,1,d,0,a,0,0,0.06,0)_E2.path"
+                },
+                {
+                    "name": "E5",
+                    "points": "paths\/hop_magnetic_(point_robot,6,1,1,d,0,a,0,0,0.06,0)_E5.path"
+                },
+                {
+                    "name": "F3",
+                    "points": "paths\/hop_magnetic_(point_robot,6,1,1,d,0,a,0,0,0.06,0)_F3.path"
+                },
+                {
+                    "name": "F1",
+                    "points": "paths\/hop_magnetic_(point_robot,6,1,1,d,0,a,0,0,0.06,0)_F1.path"
+                },
+                {
+                    "name": "F6",
+                    "points": "paths\/hop_magnetic_(point_robot,6,1,1,d,0,a,0,0,0.06,0)_F6.path"
+                },
+                {
+                    "name": "C3",
+                    "points": "paths\/hop_magnetic_(point_robot,6,1,1,d,0,a,0,0,0.06,0)_C3.path"
+                },
+                {
+                    "name": "C4",
+                    "points": "paths\/hop_magnetic_(point_robot,6,1,1,d,0,a,0,0,0.06,0)_C4.path"
+                }
+            ]
+        },
+        {
+            "robot": "point_robot",
+            "I_k": "0.5",
+            "k_a": "1",
+            "k_d": "1",
+            "filter": "a",
+            "rotation_vector": "a",
+            "follow": "false",
+            "p": "0",
+            "margin": "0.06",
+            "m": "false",
+            "noise": "0",
+            "paths":
+            [
+                {
+                    "name": "A1",
+                    "points": "paths\/hop_magnetic_(point_robot,0.5,1,1,a,0,a,0,0,0.06,0)_A1.path"
+                },
+                {
+                    "name": "A4",
+                    "points": "paths\/hop_magnetic_(point_robot,0.5,1,1,a,0,a,0,0,0.06,0)_A4.path"
+                },
+                {
+                    "name": "A6",
+                    "points": "paths\/hop_magnetic_(point_robot,0.5,1,1,a,0,a,0,0,0.06,0)_A6.path"
+                },
+                {
+                    "name": "D1",
+                    "points": "paths\/hop_magnetic_(point_robot,0.5,1,1,a,0,a,0,0,0.06,0)_D1.path"
+                },
+                {
+                    "name": "D4",
+                    "points": "paths\/hop_magnetic_(point_robot,0.5,1,1,a,0,a,0,0,0.06,0)_D4.path"
+                },
+                {
+                    "name": "D3",
+                    "points": "paths\/hop_magnetic_(point_robot,0.5,1,1,a,0,a,0,0,0.06,0)_D3.path"
+                },
+                {
+                    "name": "B2",
+                    "points": "paths\/hop_magnetic_(point_robot,0.5,1,1,a,0,a,0,0,0.06,0)_B2.path"
+                },
+                {
+                    "name": "B5",
+                    "points": "paths\/hop_magnetic_(point_robot,0.5,1,1,a,0,a,0,0,0.06,0)_B5.path"
+                },
+                {
+                    "name": "E2",
+                    "points": "paths\/hop_magnetic_(point_robot,0.5,1,1,a,0,a,0,0,0.06,0)_E2.path"
+                },
+                {
+                    "name": "E5",
+                    "points": "paths\/hop_magnetic_(point_robot,0.5,1,1,a,0,a,0,0,0.06,0)_E5.path"
+                },
+                {
+                    "name": "F3",
+                    "points": "paths\/hop_magnetic_(point_robot,0.5,1,1,a,0,a,0,0,0.06,0)_F3.path"
+                },
+                {
+                    "name": "F1",
+                    "points": "paths\/hop_magnetic_(point_robot,0.5,1,1,a,0,a,0,0,0.06,0)_F1.path"
+                },
+                {
+                    "name": "F6",
+                    "points": "paths\/hop_magnetic_(point_robot,0.5,1,1,a,0,a,0,0,0.06,0)_F6.path"
+                },
+                {
+                    "name": "C3",
+                    "points": "paths\/hop_magnetic_(point_robot,0.5,1,1,a,0,a,0,0,0.06,0)_C3.path"
+                },
+                {
+                    "name": "C4",
+                    "points": "paths\/hop_magnetic_(point_robot,0.5,1,1,a,0,a,0,0,0.06,0)_C4.path"
+                }
+            ]
+        },
+        {
+            "robot": "point_robot",
+            "I_k": "1",
+            "k_a": "1",
+            "k_d": "1",
+            "filter": "a",
+            "rotation_vector": "a",
+            "follow": "false",
+            "p": "0",
+            "margin": "0.06",
+            "m": "false",
+            "noise": "0",
+            "paths":
+            [
+                {
+                    "name": "A1",
+                    "points": "paths\/hop_magnetic_(point_robot,1,1,1,a,0,a,0,0,0.06,0)_A1.path"
+                },
+                {
+                    "name": "A4",
+                    "points": "paths\/hop_magnetic_(point_robot,1,1,1,a,0,a,0,0,0.06,0)_A4.path"
+                },
+                {
+                    "name": "A6",
+                    "points": "paths\/hop_magnetic_(point_robot,1,1,1,a,0,a,0,0,0.06,0)_A6.path"
+                },
+                {
+                    "name": "D1",
+                    "points": "paths\/hop_magnetic_(point_robot,1,1,1,a,0,a,0,0,0.06,0)_D1.path"
+                },
+                {
+                    "name": "D4",
+                    "points": "paths\/hop_magnetic_(point_robot,1,1,1,a,0,a,0,0,0.06,0)_D4.path"
+                },
+                {
+                    "name": "D3",
+                    "points": "paths\/hop_magnetic_(point_robot,1,1,1,a,0,a,0,0,0.06,0)_D3.path"
+                },
+                {
+                    "name": "B2",
+                    "points": "paths\/hop_magnetic_(point_robot,1,1,1,a,0,a,0,0,0.06,0)_B2.path"
+                },
+                {
+                    "name": "B5",
+                    "points": "paths\/hop_magnetic_(point_robot,1,1,1,a,0,a,0,0,0.06,0)_B5.path"
+                },
+                {
+                    "name": "E2",
+                    "points": "paths\/hop_magnetic_(point_robot,1,1,1,a,0,a,0,0,0.06,0)_E2.path"
+                },
+                {
+                    "name": "E5",
+                    "points": "paths\/hop_magnetic_(point_robot,1,1,1,a,0,a,0,0,0.06,0)_E5.path"
+                },
+                {
+                    "name": "F3",
+                    "points": "paths\/hop_magnetic_(point_robot,1,1,1,a,0,a,0,0,0.06,0)_F3.path"
+                },
+                {
+                    "name": "F1",
+                    "points": "paths\/hop_magnetic_(point_robot,1,1,1,a,0,a,0,0,0.06,0)_F1.path"
+                },
+                {
+                    "name": "F6",
+                    "points": "paths\/hop_magnetic_(point_robot,1,1,1,a,0,a,0,0,0.06,0)_F6.path"
+                },
+                {
+                    "name": "C3",
+                    "points": "paths\/hop_magnetic_(point_robot,1,1,1,a,0,a,0,0,0.06,0)_C3.path"
+                },
+                {
+                    "name": "C4",
+                    "points": "paths\/hop_magnetic_(point_robot,1,1,1,a,0,a,0,0,0.06,0)_C4.path"
+                }
+            ]
+        },
+        {
+            "robot": "point_robot",
+            "I_k": "2",
+            "k_a": "1",
+            "k_d": "1",
+            "filter": "a",
+            "rotation_vector": "a",
+            "follow": "false",
+            "p": "0",
+            "margin": "0.06",
+            "m": "false",
+            "noise": "0",
+            "paths":
+            [
+                {
+                    "name": "A1",
+                    "points": "paths\/hop_magnetic_(point_robot,2,1,1,a,0,a,0,0,0.06,0)_A1.path"
+                },
+                {
+                    "name": "A4",
+                    "points": "paths\/hop_magnetic_(point_robot,2,1,1,a,0,a,0,0,0.06,0)_A4.path"
+                },
+                {
+                    "name": "A6",
+                    "points": "paths\/hop_magnetic_(point_robot,2,1,1,a,0,a,0,0,0.06,0)_A6.path"
+                },
+                {
+                    "name": "D1",
+                    "points": "paths\/hop_magnetic_(point_robot,2,1,1,a,0,a,0,0,0.06,0)_D1.path"
+                },
+                {
+                    "name": "D4",
+                    "points": "paths\/hop_magnetic_(point_robot,2,1,1,a,0,a,0,0,0.06,0)_D4.path"
+                },
+                {
+                    "name": "D3",
+                    "points": "paths\/hop_magnetic_(point_robot,2,1,1,a,0,a,0,0,0.06,0)_D3.path"
+                },
+                {
+                    "name": "B2",
+                    "points": "paths\/hop_magnetic_(point_robot,2,1,1,a,0,a,0,0,0.06,0)_B2.path"
+                },
+                {
+                    "name": "B5",
+                    "points": "paths\/hop_magnetic_(point_robot,2,1,1,a,0,a,0,0,0.06,0)_B5.path"
+                },
+                {
+                    "name": "E2",
+                    "points": "paths\/hop_magnetic_(point_robot,2,1,1,a,0,a,0,0,0.06,0)_E2.path"
+                },
+                {
+                    "name": "E5",
+                    "points": "paths\/hop_magnetic_(point_robot,2,1,1,a,0,a,0,0,0.06,0)_E5.path"
+                },
+                {
+                    "name": "F3",
+                    "points": "paths\/hop_magnetic_(point_robot,2,1,1,a,0,a,0,0,0.06,0)_F3.path"
+                },
+                {
+                    "name": "F1",
+                    "points": "paths\/hop_magnetic_(point_robot,2,1,1,a,0,a,0,0,0.06,0)_F1.path"
+                },
+                {
+                    "name": "F6",
+                    "points": "paths\/hop_magnetic_(point_robot,2,1,1,a,0,a,0,0,0.06,0)_F6.path"
+                },
+                {
+                    "name": "C3",
+                    "points": "paths\/hop_magnetic_(point_robot,2,1,1,a,0,a,0,0,0.06,0)_C3.path"
+                },
+                {
+                    "name": "C4",
+                    "points": "paths\/hop_magnetic_(point_robot,2,1,1,a,0,a,0,0,0.06,0)_C4.path"
+                }
+            ]
+        },
+        {
+            "robot": "point_robot",
+            "I_k": "4",
+            "k_a": "1",
+            "k_d": "1",
+            "filter": "a",
+            "rotation_vector": "a",
+            "follow": "false",
+            "p": "0",
+            "margin": "0.06",
+            "m": "false",
+            "noise": "0",
+            "paths":
+            [
+                {
+                    "name": "A1",
+                    "points": "paths\/hop_magnetic_(point_robot,4,1,1,a,0,a,0,0,0.06,0)_A1.path"
+                },
+                {
+                    "name": "A4",
+                    "points": "paths\/hop_magnetic_(point_robot,4,1,1,a,0,a,0,0,0.06,0)_A4.path"
+                },
+                {
+                    "name": "A6",
+                    "points": "paths\/hop_magnetic_(point_robot,4,1,1,a,0,a,0,0,0.06,0)_A6.path"
+                },
+                {
+                    "name": "D1",
+                    "points": "paths\/hop_magnetic_(point_robot,4,1,1,a,0,a,0,0,0.06,0)_D1.path"
+                },
+                {
+                    "name": "D4",
+                    "points": "paths\/hop_magnetic_(point_robot,4,1,1,a,0,a,0,0,0.06,0)_D4.path"
+                },
+                {
+                    "name": "D3",
+                    "points": "paths\/hop_magnetic_(point_robot,4,1,1,a,0,a,0,0,0.06,0)_D3.path"
+                },
+                {
+                    "name": "B2",
+                    "points": "paths\/hop_magnetic_(point_robot,4,1,1,a,0,a,0,0,0.06,0)_B2.path"
+                },
+                {
+                    "name": "B5",
+                    "points": "paths\/hop_magnetic_(point_robot,4,1,1,a,0,a,0,0,0.06,0)_B5.path"
+                },
+                {
+                    "name": "E2",
+                    "points": "paths\/hop_magnetic_(point_robot,4,1,1,a,0,a,0,0,0.06,0)_E2.path"
+                },
+                {
+                    "name": "E5",
+                    "points": "paths\/hop_magnetic_(point_robot,4,1,1,a,0,a,0,0,0.06,0)_E5.path"
+                },
+                {
+                    "name": "F3",
+                    "points": "paths\/hop_magnetic_(point_robot,4,1,1,a,0,a,0,0,0.06,0)_F3.path"
+                },
+                {
+                    "name": "F1",
+                    "points": "paths\/hop_magnetic_(point_robot,4,1,1,a,0,a,0,0,0.06,0)_F1.path"
+                },
+                {
+                    "name": "F6",
+                    "points": "paths\/hop_magnetic_(point_robot,4,1,1,a,0,a,0,0,0.06,0)_F6.path"
+                },
+                {
+                    "name": "C3",
+                    "points": "paths\/hop_magnetic_(point_robot,4,1,1,a,0,a,0,0,0.06,0)_C3.path"
+                },
+                {
+                    "name": "C4",
+                    "points": "paths\/hop_magnetic_(point_robot,4,1,1,a,0,a,0,0,0.06,0)_C4.path"
+                }
+            ]
+        },
+        {
+            "robot": "point_robot",
+            "I_k": "6",
+            "k_a": "1",
+            "k_d": "1",
+            "filter": "a",
+            "rotation_vector": "a",
+            "follow": "false",
+            "p": "0",
+            "margin": "0.06",
+            "m": "false",
+            "noise": "0",
+            "paths":
+            [
+                {
+                    "name": "A1",
+                    "points": "paths\/hop_magnetic_(point_robot,6,1,1,a,0,a,0,0,0.06,0)_A1.path"
+                },
+                {
+                    "name": "A4",
+                    "points": "paths\/hop_magnetic_(point_robot,6,1,1,a,0,a,0,0,0.06,0)_A4.path"
+                },
+                {
+                    "name": "A6",
+                    "points": "paths\/hop_magnetic_(point_robot,6,1,1,a,0,a,0,0,0.06,0)_A6.path"
+                },
+                {
+                    "name": "D1",
+                    "points": "paths\/hop_magnetic_(point_robot,6,1,1,a,0,a,0,0,0.06,0)_D1.path"
+                },
+                {
+                    "name": "D4",
+                    "points": "paths\/hop_magnetic_(point_robot,6,1,1,a,0,a,0,0,0.06,0)_D4.path"
+                },
+                {
+                    "name": "D3",
+                    "points": "paths\/hop_magnetic_(point_robot,6,1,1,a,0,a,0,0,0.06,0)_D3.path"
+                },
+                {
+                    "name": "B2",
+                    "points": "paths\/hop_magnetic_(point_robot,6,1,1,a,0,a,0,0,0.06,0)_B2.path"
+                },
+                {
+                    "name": "B5",
+                    "points": "paths\/hop_magnetic_(point_robot,6,1,1,a,0,a,0,0,0.06,0)_B5.path"
+                },
+                {
+                    "name": "E2",
+                    "points": "paths\/hop_magnetic_(point_robot,6,1,1,a,0,a,0,0,0.06,0)_E2.path"
+                },
+                {
+                    "name": "E5",
+                    "points": "paths\/hop_magnetic_(point_robot,6,1,1,a,0,a,0,0,0.06,0)_E5.path"
+                },
+                {
+                    "name": "F3",
+                    "points": "paths\/hop_magnetic_(point_robot,6,1,1,a,0,a,0,0,0.06,0)_F3.path"
+                },
+                {
+                    "name": "F1",
+                    "points": "paths\/hop_magnetic_(point_robot,6,1,1,a,0,a,0,0,0.06,0)_F1.path"
+                },
+                {
+                    "name": "F6",
+                    "points": "paths\/hop_magnetic_(point_robot,6,1,1,a,0,a,0,0,0.06,0)_F6.path"
+                },
+                {
+                    "name": "C3",
+                    "points": "paths\/hop_magnetic_(point_robot,6,1,1,a,0,a,0,0,0.06,0)_C3.path"
+                },
+                {
+                    "name": "C4",
+                    "points": "paths\/hop_magnetic_(point_robot,6,1,1,a,0,a,0,0,0.06,0)_C4.path"
+                }
+            ]
+        },
+        {
+            "robot": "point_robot",
+            "I_k": "0.5",
+            "k_a": "1",
+            "k_d": "1.5",
+            "filter": "d",
+            "rotation_vector": "a",
+            "follow": "false",
+            "p": "0",
+            "margin": "0.06",
+            "m": "false",
+            "noise": "0",
+            "paths":
+            [
+                {
+                    "name": "A1",
+                    "points": "paths\/hop_magnetic_(point_robot,0.5,1,1.5,d,0,a,0,0,0.06,0)_A1.path"
+                },
+                {
+                    "name": "A4",
+                    "points": "paths\/hop_magnetic_(point_robot,0.5,1,1.5,d,0,a,0,0,0.06,0)_A4.path"
+                },
+                {
+                    "name": "A6",
+                    "points": "paths\/hop_magnetic_(point_robot,0.5,1,1.5,d,0,a,0,0,0.06,0)_A6.path"
+                },
+                {
+                    "name": "D1",
+                    "points": "paths\/hop_magnetic_(point_robot,0.5,1,1.5,d,0,a,0,0,0.06,0)_D1.path"
+                },
+                {
+                    "name": "D4",
+                    "points": "paths\/hop_magnetic_(point_robot,0.5,1,1.5,d,0,a,0,0,0.06,0)_D4.path"
+                },
+                {
+                    "name": "D3",
+                    "points": "paths\/hop_magnetic_(point_robot,0.5,1,1.5,d,0,a,0,0,0.06,0)_D3.path"
+                },
+                {
+                    "name": "B2",
+                    "points": "paths\/hop_magnetic_(point_robot,0.5,1,1.5,d,0,a,0,0,0.06,0)_B2.path"
+                },
+                {
+                    "name": "B5",
+                    "points": "paths\/hop_magnetic_(point_robot,0.5,1,1.5,d,0,a,0,0,0.06,0)_B5.path"
+                },
+                {
+                    "name": "E2",
+                    "points": "paths\/hop_magnetic_(point_robot,0.5,1,1.5,d,0,a,0,0,0.06,0)_E2.path"
+                },
+                {
+                    "name": "E5",
+                    "points": "paths\/hop_magnetic_(point_robot,0.5,1,1.5,d,0,a,0,0,0.06,0)_E5.path"
+                },
+                {
+                    "name": "F3",
+                    "points": "paths\/hop_magnetic_(point_robot,0.5,1,1.5,d,0,a,0,0,0.06,0)_F3.path"
+                },
+                {
+                    "name": "F1",
+                    "points": "paths\/hop_magnetic_(point_robot,0.5,1,1.5,d,0,a,0,0,0.06,0)_F1.path"
+                },
+                {
+                    "name": "F6",
+                    "points": "paths\/hop_magnetic_(point_robot,0.5,1,1.5,d,0,a,0,0,0.06,0)_F6.path"
+                },
+                {
+                    "name": "C3",
+                    "points": "paths\/hop_magnetic_(point_robot,0.5,1,1.5,d,0,a,0,0,0.06,0)_C3.path"
+                },
+                {
+                    "name": "C4",
+                    "points": "paths\/hop_magnetic_(point_robot,0.5,1,1.5,d,0,a,0,0,0.06,0)_C4.path"
+                }
+            ]
+        },
+        {
+            "robot": "point_robot",
+            "I_k": "1",
+            "k_a": "1",
+            "k_d": "1.5",
+            "filter": "d",
+            "rotation_vector": "a",
+            "follow": "false",
+            "p": "0",
+            "margin": "0.06",
+            "m": "false",
+            "noise": "0",
+            "paths":
+            [
+                {
+                    "name": "A1",
+                    "points": "paths\/hop_magnetic_(point_robot,1,1,1.5,d,0,a,0,0,0.06,0)_A1.path"
+                },
+                {
+                    "name": "A4",
+                    "points": "paths\/hop_magnetic_(point_robot,1,1,1.5,d,0,a,0,0,0.06,0)_A4.path"
+                },
+                {
+                    "name": "A6",
+                    "points": "paths\/hop_magnetic_(point_robot,1,1,1.5,d,0,a,0,0,0.06,0)_A6.path"
+                },
+                {
+                    "name": "D1",
+                    "points": "paths\/hop_magnetic_(point_robot,1,1,1.5,d,0,a,0,0,0.06,0)_D1.path"
+                },
+                {
+                    "name": "D4",
+                    "points": "paths\/hop_magnetic_(point_robot,1,1,1.5,d,0,a,0,0,0.06,0)_D4.path"
+                },
+                {
+                    "name": "D3",
+                    "points": "paths\/hop_magnetic_(point_robot,1,1,1.5,d,0,a,0,0,0.06,0)_D3.path"
+                },
+                {
+                    "name": "B2",
+                    "points": "paths\/hop_magnetic_(point_robot,1,1,1.5,d,0,a,0,0,0.06,0)_B2.path"
+                },
+                {
+                    "name": "B5",
+                    "points": "paths\/hop_magnetic_(point_robot,1,1,1.5,d,0,a,0,0,0.06,0)_B5.path"
+                },
+                {
+                    "name": "E2",
+                    "points": "paths\/hop_magnetic_(point_robot,1,1,1.5,d,0,a,0,0,0.06,0)_E2.path"
+                },
+                {
+                    "name": "E5",
+                    "points": "paths\/hop_magnetic_(point_robot,1,1,1.5,d,0,a,0,0,0.06,0)_E5.path"
+                },
+                {
+                    "name": "F3",
+                    "points": "paths\/hop_magnetic_(point_robot,1,1,1.5,d,0,a,0,0,0.06,0)_F3.path"
+                },
+                {
+                    "name": "F1",
+                    "points": "paths\/hop_magnetic_(point_robot,1,1,1.5,d,0,a,0,0,0.06,0)_F1.path"
+                },
+                {
+                    "name": "F6",
+                    "points": "paths\/hop_magnetic_(point_robot,1,1,1.5,d,0,a,0,0,0.06,0)_F6.path"
+                },
+                {
+                    "name": "C3",
+                    "points": "paths\/hop_magnetic_(point_robot,1,1,1.5,d,0,a,0,0,0.06,0)_C3.path"
+                },
+                {
+                    "name": "C4",
+                    "points": "paths\/hop_magnetic_(point_robot,1,1,1.5,d,0,a,0,0,0.06,0)_C4.path"
+                }
+            ]
+        },
+        {
+            "robot": "point_robot",
+            "I_k": "2",
+            "k_a": "1",
+            "k_d": "1.5",
+            "filter": "d",
+            "rotation_vector": "a",
+            "follow": "false",
+            "p": "0",
+            "margin": "0.06",
+            "m": "false",
+            "noise": "0",
+            "paths":
+            [
+                {
+                    "name": "A1",
+                    "points": "paths\/hop_magnetic_(point_robot,2,1,1.5,d,0,a,0,0,0.06,0)_A1.path"
+                },
+                {
+                    "name": "A4",
+                    "points": "paths\/hop_magnetic_(point_robot,2,1,1.5,d,0,a,0,0,0.06,0)_A4.path"
+                },
+                {
+                    "name": "A6",
+                    "points": "paths\/hop_magnetic_(point_robot,2,1,1.5,d,0,a,0,0,0.06,0)_A6.path"
+                },
+                {
+                    "name": "D1",
+                    "points": "paths\/hop_magnetic_(point_robot,2,1,1.5,d,0,a,0,0,0.06,0)_D1.path"
+                },
+                {
+                    "name": "D4",
+                    "points": "paths\/hop_magnetic_(point_robot,2,1,1.5,d,0,a,0,0,0.06,0)_D4.path"
+                },
+                {
+                    "name": "D3",
+                    "points": "paths\/hop_magnetic_(point_robot,2,1,1.5,d,0,a,0,0,0.06,0)_D3.path"
+                },
+                {
+                    "name": "B2",
+                    "points": "paths\/hop_magnetic_(point_robot,2,1,1.5,d,0,a,0,0,0.06,0)_B2.path"
+                },
+                {
+                    "name": "B5",
+                    "points": "paths\/hop_magnetic_(point_robot,2,1,1.5,d,0,a,0,0,0.06,0)_B5.path"
+                },
+                {
+                    "name": "E2",
+                    "points": "paths\/hop_magnetic_(point_robot,2,1,1.5,d,0,a,0,0,0.06,0)_E2.path"
+                },
+                {
+                    "name": "E5",
+                    "points": "paths\/hop_magnetic_(point_robot,2,1,1.5,d,0,a,0,0,0.06,0)_E5.path"
+                },
+                {
+                    "name": "F3",
+                    "points": "paths\/hop_magnetic_(point_robot,2,1,1.5,d,0,a,0,0,0.06,0)_F3.path"
+                },
+                {
+                    "name": "F1",
+                    "points": "paths\/hop_magnetic_(point_robot,2,1,1.5,d,0,a,0,0,0.06,0)_F1.path"
+                },
+                {
+                    "name": "F6",
+                    "points": "paths\/hop_magnetic_(point_robot,2,1,1.5,d,0,a,0,0,0.06,0)_F6.path"
+                },
+                {
+                    "name": "C3",
+                    "points": "paths\/hop_magnetic_(point_robot,2,1,1.5,d,0,a,0,0,0.06,0)_C3.path"
+                },
+                {
+                    "name": "C4",
+                    "points": "paths\/hop_magnetic_(point_robot,2,1,1.5,d,0,a,0,0,0.06,0)_C4.path"
+                }
+            ]
+        },
+        {
+            "robot": "point_robot",
+            "I_k": "4",
+            "k_a": "1",
+            "k_d": "1.5",
+            "filter": "d",
+            "rotation_vector": "a",
+            "follow": "false",
+            "p": "0",
+            "margin": "0.06",
+            "m": "false",
+            "noise": "0",
+            "paths":
+            [
+                {
+                    "name": "A1",
+                    "points": "paths\/hop_magnetic_(point_robot,4,1,1.5,d,0,a,0,0,0.06,0)_A1.path"
+                },
+                {
+                    "name": "A4",
+                    "points": "paths\/hop_magnetic_(point_robot,4,1,1.5,d,0,a,0,0,0.06,0)_A4.path"
+                },
+                {
+                    "name": "A6",
+                    "points": "paths\/hop_magnetic_(point_robot,4,1,1.5,d,0,a,0,0,0.06,0)_A6.path"
+                },
+                {
+                    "name": "D1",
+                    "points": "paths\/hop_magnetic_(point_robot,4,1,1.5,d,0,a,0,0,0.06,0)_D1.path"
+                },
+                {
+                    "name": "D4",
+                    "points": "paths\/hop_magnetic_(point_robot,4,1,1.5,d,0,a,0,0,0.06,0)_D4.path"
+                },
+                {
+                    "name": "D3",
+                    "points": "paths\/hop_magnetic_(point_robot,4,1,1.5,d,0,a,0,0,0.06,0)_D3.path"
+                },
+                {
+                    "name": "B2",
+                    "points": "paths\/hop_magnetic_(point_robot,4,1,1.5,d,0,a,0,0,0.06,0)_B2.path"
+                },
+                {
+                    "name": "B5",
+                    "points": "paths\/hop_magnetic_(point_robot,4,1,1.5,d,0,a,0,0,0.06,0)_B5.path"
+                },
+                {
+                    "name": "E2",
+                    "points": "paths\/hop_magnetic_(point_robot,4,1,1.5,d,0,a,0,0,0.06,0)_E2.path"
+                },
+                {
+                    "name": "E5",
+                    "points": "paths\/hop_magnetic_(point_robot,4,1,1.5,d,0,a,0,0,0.06,0)_E5.path"
+                },
+                {
+                    "name": "F3",
+                    "points": "paths\/hop_magnetic_(point_robot,4,1,1.5,d,0,a,0,0,0.06,0)_F3.path"
+                },
+                {
+                    "name": "F1",
+                    "points": "paths\/hop_magnetic_(point_robot,4,1,1.5,d,0,a,0,0,0.06,0)_F1.path"
+                },
+                {
+                    "name": "F6",
+                    "points": "paths\/hop_magnetic_(point_robot,4,1,1.5,d,0,a,0,0,0.06,0)_F6.path"
+                },
+                {
+                    "name": "C3",
+                    "points": "paths\/hop_magnetic_(point_robot,4,1,1.5,d,0,a,0,0,0.06,0)_C3.path"
+                },
+                {
+                    "name": "C4",
+                    "points": "paths\/hop_magnetic_(point_robot,4,1,1.5,d,0,a,0,0,0.06,0)_C4.path"
+                }
+            ]
+        },
+        {
+            "robot": "point_robot",
+            "I_k": "6",
+            "k_a": "1",
+            "k_d": "1.5",
+            "filter": "d",
+            "rotation_vector": "a",
+            "follow": "false",
+            "p": "0",
+            "margin": "0.06",
+            "m": "false",
+            "noise": "0",
+            "paths":
+            [
+                {
+                    "name": "A1",
+                    "points": "paths\/hop_magnetic_(point_robot,6,1,1.5,d,0,a,0,0,0.06,0)_A1.path"
+                },
+                {
+                    "name": "A4",
+                    "points": "paths\/hop_magnetic_(point_robot,6,1,1.5,d,0,a,0,0,0.06,0)_A4.path"
+                },
+                {
+                    "name": "A6",
+                    "points": "paths\/hop_magnetic_(point_robot,6,1,1.5,d,0,a,0,0,0.06,0)_A6.path"
+                },
+                {
+                    "name": "D1",
+                    "points": "paths\/hop_magnetic_(point_robot,6,1,1.5,d,0,a,0,0,0.06,0)_D1.path"
+                },
+                {
+                    "name": "D4",
+                    "points": "paths\/hop_magnetic_(point_robot,6,1,1.5,d,0,a,0,0,0.06,0)_D4.path"
+                },
+                {
+                    "name": "D3",
+                    "points": "paths\/hop_magnetic_(point_robot,6,1,1.5,d,0,a,0,0,0.06,0)_D3.path"
+                },
+                {
+                    "name": "B2",
+                    "points": "paths\/hop_magnetic_(point_robot,6,1,1.5,d,0,a,0,0,0.06,0)_B2.path"
+                },
+                {
+                    "name": "B5",
+                    "points": "paths\/hop_magnetic_(point_robot,6,1,1.5,d,0,a,0,0,0.06,0)_B5.path"
+                },
+                {
+                    "name": "E2",
+                    "points": "paths\/hop_magnetic_(point_robot,6,1,1.5,d,0,a,0,0,0.06,0)_E2.path"
+                },
+                {
+                    "name": "E5",
+                    "points": "paths\/hop_magnetic_(point_robot,6,1,1.5,d,0,a,0,0,0.06,0)_E5.path"
+                },
+                {
+                    "name": "F3",
+                    "points": "paths\/hop_magnetic_(point_robot,6,1,1.5,d,0,a,0,0,0.06,0)_F3.path"
+                },
+                {
+                    "name": "F1",
+                    "points": "paths\/hop_magnetic_(point_robot,6,1,1.5,d,0,a,0,0,0.06,0)_F1.path"
+                },
+                {
+                    "name": "F6",
+                    "points": "paths\/hop_magnetic_(point_robot,6,1,1.5,d,0,a,0,0,0.06,0)_F6.path"
+                },
+                {
+                    "name": "C3",
+                    "points": "paths\/hop_magnetic_(point_robot,6,1,1.5,d,0,a,0,0,0.06,0)_C3.path"
+                },
+                {
+                    "name": "C4",
+                    "points": "paths\/hop_magnetic_(point_robot,6,1,1.5,d,0,a,0,0,0.06,0)_C4.path"
+                }
+            ]
+        },
+        {
+            "robot": "point_robot",
+            "I_k": "0.5",
+            "k_a": "1",
+            "k_d": "1.5",
+            "filter": "a",
+            "rotation_vector": "a",
+            "follow": "false",
+            "p": "0",
+            "margin": "0.06",
+            "m": "false",
+            "noise": "0",
+            "paths":
+            [
+                {
+                    "name": "A1",
+                    "points": "paths\/hop_magnetic_(point_robot,0.5,1,1.5,a,0,a,0,0,0.06,0)_A1.path"
+                },
+                {
+                    "name": "A4",
+                    "points": "paths\/hop_magnetic_(point_robot,0.5,1,1.5,a,0,a,0,0,0.06,0)_A4.path"
+                },
+                {
+                    "name": "A6",
+                    "points": "paths\/hop_magnetic_(point_robot,0.5,1,1.5,a,0,a,0,0,0.06,0)_A6.path"
+                },
+                {
+                    "name": "D1",
+                    "points": "paths\/hop_magnetic_(point_robot,0.5,1,1.5,a,0,a,0,0,0.06,0)_D1.path"
+                },
+                {
+                    "name": "D4",
+                    "points": "paths\/hop_magnetic_(point_robot,0.5,1,1.5,a,0,a,0,0,0.06,0)_D4.path"
+                },
+                {
+                    "name": "D3",
+                    "points": "paths\/hop_magnetic_(point_robot,0.5,1,1.5,a,0,a,0,0,0.06,0)_D3.path"
+                },
+                {
+                    "name": "B2",
+                    "points": "paths\/hop_magnetic_(point_robot,0.5,1,1.5,a,0,a,0,0,0.06,0)_B2.path"
+                },
+                {
+                    "name": "B5",
+                    "points": "paths\/hop_magnetic_(point_robot,0.5,1,1.5,a,0,a,0,0,0.06,0)_B5.path"
+                },
+                {
+                    "name": "E2",
+                    "points": "paths\/hop_magnetic_(point_robot,0.5,1,1.5,a,0,a,0,0,0.06,0)_E2.path"
+                },
+                {
+                    "name": "E5",
+                    "points": "paths\/hop_magnetic_(point_robot,0.5,1,1.5,a,0,a,0,0,0.06,0)_E5.path"
+                },
+                {
+                    "name": "F3",
+                    "points": "paths\/hop_magnetic_(point_robot,0.5,1,1.5,a,0,a,0,0,0.06,0)_F3.path"
+                },
+                {
+                    "name": "F1",
+                    "points": "paths\/hop_magnetic_(point_robot,0.5,1,1.5,a,0,a,0,0,0.06,0)_F1.path"
+                },
+                {
+                    "name": "F6",
+                    "points": "paths\/hop_magnetic_(point_robot,0.5,1,1.5,a,0,a,0,0,0.06,0)_F6.path"
+                },
+                {
+                    "name": "C3",
+                    "points": "paths\/hop_magnetic_(point_robot,0.5,1,1.5,a,0,a,0,0,0.06,0)_C3.path"
+                },
+                {
+                    "name": "C4",
+                    "points": "paths\/hop_magnetic_(point_robot,0.5,1,1.5,a,0,a,0,0,0.06,0)_C4.path"
+                }
+            ]
+        },
+        {
+            "robot": "point_robot",
+            "I_k": "1",
+            "k_a": "1",
+            "k_d": "1.5",
+            "filter": "a",
+            "rotation_vector": "a",
+            "follow": "false",
+            "p": "0",
+            "margin": "0.06",
+            "m": "false",
+            "noise": "0",
+            "paths":
+            [
+                {
+                    "name": "A1",
+                    "points": "paths\/hop_magnetic_(point_robot,1,1,1.5,a,0,a,0,0,0.06,0)_A1.path"
+                },
+                {
+                    "name": "A4",
+                    "points": "paths\/hop_magnetic_(point_robot,1,1,1.5,a,0,a,0,0,0.06,0)_A4.path"
+                },
+                {
+                    "name": "A6",
+                    "points": "paths\/hop_magnetic_(point_robot,1,1,1.5,a,0,a,0,0,0.06,0)_A6.path"
+                },
+                {
+                    "name": "D1",
+                    "points": "paths\/hop_magnetic_(point_robot,1,1,1.5,a,0,a,0,0,0.06,0)_D1.path"
+                },
+                {
+                    "name": "D4",
+                    "points": "paths\/hop_magnetic_(point_robot,1,1,1.5,a,0,a,0,0,0.06,0)_D4.path"
+                },
+                {
+                    "name": "D3",
+                    "points": "paths\/hop_magnetic_(point_robot,1,1,1.5,a,0,a,0,0,0.06,0)_D3.path"
+                },
+                {
+                    "name": "B2",
+                    "points": "paths\/hop_magnetic_(point_robot,1,1,1.5,a,0,a,0,0,0.06,0)_B2.path"
+                },
+                {
+                    "name": "B5",
+                    "points": "paths\/hop_magnetic_(point_robot,1,1,1.5,a,0,a,0,0,0.06,0)_B5.path"
+                },
+                {
+                    "name": "E2",
+                    "points": "paths\/hop_magnetic_(point_robot,1,1,1.5,a,0,a,0,0,0.06,0)_E2.path"
+                },
+                {
+                    "name": "E5",
+                    "points": "paths\/hop_magnetic_(point_robot,1,1,1.5,a,0,a,0,0,0.06,0)_E5.path"
+                },
+                {
+                    "name": "F3",
+                    "points": "paths\/hop_magnetic_(point_robot,1,1,1.5,a,0,a,0,0,0.06,0)_F3.path"
+                },
+                {
+                    "name": "F1",
+                    "points": "paths\/hop_magnetic_(point_robot,1,1,1.5,a,0,a,0,0,0.06,0)_F1.path"
+                },
+                {
+                    "name": "F6",
+                    "points": "paths\/hop_magnetic_(point_robot,1,1,1.5,a,0,a,0,0,0.06,0)_F6.path"
+                },
+                {
+                    "name": "C3",
+                    "points": "paths\/hop_magnetic_(point_robot,1,1,1.5,a,0,a,0,0,0.06,0)_C3.path"
+                },
+                {
+                    "name": "C4",
+                    "points": "paths\/hop_magnetic_(point_robot,1,1,1.5,a,0,a,0,0,0.06,0)_C4.path"
+                }
+            ]
+        },
+        {
+            "robot": "point_robot",
+            "I_k": "2",
+            "k_a": "1",
+            "k_d": "1.5",
+            "filter": "a",
+            "rotation_vector": "a",
+            "follow": "false",
+            "p": "0",
+            "margin": "0.06",
+            "m": "false",
+            "noise": "0",
+            "paths":
+            [
+                {
+                    "name": "A1",
+                    "points": "paths\/hop_magnetic_(point_robot,2,1,1.5,a,0,a,0,0,0.06,0)_A1.path"
+                },
+                {
+                    "name": "A4",
+                    "points": "paths\/hop_magnetic_(point_robot,2,1,1.5,a,0,a,0,0,0.06,0)_A4.path"
+                },
+                {
+                    "name": "A6",
+                    "points": "paths\/hop_magnetic_(point_robot,2,1,1.5,a,0,a,0,0,0.06,0)_A6.path"
+                },
+                {
+                    "name": "D1",
+                    "points": "paths\/hop_magnetic_(point_robot,2,1,1.5,a,0,a,0,0,0.06,0)_D1.path"
+                },
+                {
+                    "name": "D4",
+                    "points": "paths\/hop_magnetic_(point_robot,2,1,1.5,a,0,a,0,0,0.06,0)_D4.path"
+                },
+                {
+                    "name": "D3",
+                    "points": "paths\/hop_magnetic_(point_robot,2,1,1.5,a,0,a,0,0,0.06,0)_D3.path"
+                },
+                {
+                    "name": "B2",
+                    "points": "paths\/hop_magnetic_(point_robot,2,1,1.5,a,0,a,0,0,0.06,0)_B2.path"
+                },
+                {
+                    "name": "B5",
+                    "points": "paths\/hop_magnetic_(point_robot,2,1,1.5,a,0,a,0,0,0.06,0)_B5.path"
+                },
+                {
+                    "name": "E2",
+                    "points": "paths\/hop_magnetic_(point_robot,2,1,1.5,a,0,a,0,0,0.06,0)_E2.path"
+                },
+                {
+                    "name": "E5",
+                    "points": "paths\/hop_magnetic_(point_robot,2,1,1.5,a,0,a,0,0,0.06,0)_E5.path"
+                },
+                {
+                    "name": "F3",
+                    "points": "paths\/hop_magnetic_(point_robot,2,1,1.5,a,0,a,0,0,0.06,0)_F3.path"
+                },
+                {
+                    "name": "F1",
+                    "points": "paths\/hop_magnetic_(point_robot,2,1,1.5,a,0,a,0,0,0.06,0)_F1.path"
+                },
+                {
+                    "name": "F6",
+                    "points": "paths\/hop_magnetic_(point_robot,2,1,1.5,a,0,a,0,0,0.06,0)_F6.path"
+                },
+                {
+                    "name": "C3",
+                    "points": "paths\/hop_magnetic_(point_robot,2,1,1.5,a,0,a,0,0,0.06,0)_C3.path"
+                },
+                {
+                    "name": "C4",
+                    "points": "paths\/hop_magnetic_(point_robot,2,1,1.5,a,0,a,0,0,0.06,0)_C4.path"
+                }
+            ]
+        },
+        {
+            "robot": "point_robot",
+            "I_k": "4",
+            "k_a": "1",
+            "k_d": "1.5",
+            "filter": "a",
+            "rotation_vector": "a",
+            "follow": "false",
+            "p": "0",
+            "margin": "0.06",
+            "m": "false",
+            "noise": "0",
+            "paths":
+            [
+                {
+                    "name": "A1",
+                    "points": "paths\/hop_magnetic_(point_robot,4,1,1.5,a,0,a,0,0,0.06,0)_A1.path"
+                },
+                {
+                    "name": "A4",
+                    "points": "paths\/hop_magnetic_(point_robot,4,1,1.5,a,0,a,0,0,0.06,0)_A4.path"
+                },
+                {
+                    "name": "A6",
+                    "points": "paths\/hop_magnetic_(point_robot,4,1,1.5,a,0,a,0,0,0.06,0)_A6.path"
+                },
+                {
+                    "name": "D1",
+                    "points": "paths\/hop_magnetic_(point_robot,4,1,1.5,a,0,a,0,0,0.06,0)_D1.path"
+                },
+                {
+                    "name": "D4",
+                    "points": "paths\/hop_magnetic_(point_robot,4,1,1.5,a,0,a,0,0,0.06,0)_D4.path"
+                },
+                {
+                    "name": "D3",
+                    "points": "paths\/hop_magnetic_(point_robot,4,1,1.5,a,0,a,0,0,0.06,0)_D3.path"
+                },
+                {
+                    "name": "B2",
+                    "points": "paths\/hop_magnetic_(point_robot,4,1,1.5,a,0,a,0,0,0.06,0)_B2.path"
+                },
+                {
+                    "name": "B5",
+                    "points": "paths\/hop_magnetic_(point_robot,4,1,1.5,a,0,a,0,0,0.06,0)_B5.path"
+                },
+                {
+                    "name": "E2",
+                    "points": "paths\/hop_magnetic_(point_robot,4,1,1.5,a,0,a,0,0,0.06,0)_E2.path"
+                },
+                {
+                    "name": "E5",
+                    "points": "paths\/hop_magnetic_(point_robot,4,1,1.5,a,0,a,0,0,0.06,0)_E5.path"
+                },
+                {
+                    "name": "F3",
+                    "points": "paths\/hop_magnetic_(point_robot,4,1,1.5,a,0,a,0,0,0.06,0)_F3.path"
+                },
+                {
+                    "name": "F1",
+                    "points": "paths\/hop_magnetic_(point_robot,4,1,1.5,a,0,a,0,0,0.06,0)_F1.path"
+                },
+                {
+                    "name": "F6",
+                    "points": "paths\/hop_magnetic_(point_robot,4,1,1.5,a,0,a,0,0,0.06,0)_F6.path"
+                },
+                {
+                    "name": "C3",
+                    "points": "paths\/hop_magnetic_(point_robot,4,1,1.5,a,0,a,0,0,0.06,0)_C3.path"
+                },
+                {
+                    "name": "C4",
+                    "points": "paths\/hop_magnetic_(point_robot,4,1,1.5,a,0,a,0,0,0.06,0)_C4.path"
+                }
+            ]
+        },
+        {
+            "robot": "point_robot",
+            "I_k": "6",
+            "k_a": "1",
+            "k_d": "1.5",
+            "filter": "a",
+            "rotation_vector": "a",
+            "follow": "false",
+            "p": "0",
+            "margin": "0.06",
+            "m": "false",
+            "noise": "0",
+            "paths":
+            [
+                {
+                    "name": "A1",
+                    "points": "paths\/hop_magnetic_(point_robot,6,1,1.5,a,0,a,0,0,0.06,0)_A1.path"
+                },
+                {
+                    "name": "A4",
+                    "points": "paths\/hop_magnetic_(point_robot,6,1,1.5,a,0,a,0,0,0.06,0)_A4.path"
+                },
+                {
+                    "name": "A6",
+                    "points": "paths\/hop_magnetic_(point_robot,6,1,1.5,a,0,a,0,0,0.06,0)_A6.path"
+                },
+                {
+                    "name": "D1",
+                    "points": "paths\/hop_magnetic_(point_robot,6,1,1.5,a,0,a,0,0,0.06,0)_D1.path"
+                },
+                {
+                    "name": "D4",
+                    "points": "paths\/hop_magnetic_(point_robot,6,1,1.5,a,0,a,0,0,0.06,0)_D4.path"
+                },
+                {
+                    "name": "D3",
+                    "points": "paths\/hop_magnetic_(point_robot,6,1,1.5,a,0,a,0,0,0.06,0)_D3.path"
+                },
+                {
+                    "name": "B2",
+                    "points": "paths\/hop_magnetic_(point_robot,6,1,1.5,a,0,a,0,0,0.06,0)_B2.path"
+                },
+                {
+                    "name": "B5",
+                    "points": "paths\/hop_magnetic_(point_robot,6,1,1.5,a,0,a,0,0,0.06,0)_B5.path"
+                },
+                {
+                    "name": "E2",
+                    "points": "paths\/hop_magnetic_(point_robot,6,1,1.5,a,0,a,0,0,0.06,0)_E2.path"
+                },
+                {
+                    "name": "E5",
+                    "points": "paths\/hop_magnetic_(point_robot,6,1,1.5,a,0,a,0,0,0.06,0)_E5.path"
+                },
+                {
+                    "name": "F3",
+                    "points": "paths\/hop_magnetic_(point_robot,6,1,1.5,a,0,a,0,0,0.06,0)_F3.path"
+                },
+                {
+                    "name": "F1",
+                    "points": "paths\/hop_magnetic_(point_robot,6,1,1.5,a,0,a,0,0,0.06,0)_F1.path"
+                },
+                {
+                    "name": "F6",
+                    "points": "paths\/hop_magnetic_(point_robot,6,1,1.5,a,0,a,0,0,0.06,0)_F6.path"
+                },
+                {
+                    "name": "C3",
+                    "points": "paths\/hop_magnetic_(point_robot,6,1,1.5,a,0,a,0,0,0.06,0)_C3.path"
+                },
+                {
+                    "name": "C4",
+                    "points": "paths\/hop_magnetic_(point_robot,6,1,1.5,a,0,a,0,0,0.06,0)_C4.path"
+                }
+            ]
+        },
+        {
+            "robot": "point_robot",
+            "I_k": "0.5",
+            "k_a": "1",
+            "k_d": "2",
+            "filter": "d",
+            "rotation_vector": "a",
+            "follow": "false",
+            "p": "0",
+            "margin": "0.06",
+            "m": "false",
+            "noise": "0",
+            "paths":
+            [
+                {
+                    "name": "A1",
+                    "points": "paths\/hop_magnetic_(point_robot,0.5,1,2,d,0,a,0,0,0.06,0)_A1.path"
+                },
+                {
+                    "name": "A4",
+                    "points": "paths\/hop_magnetic_(point_robot,0.5,1,2,d,0,a,0,0,0.06,0)_A4.path"
+                },
+                {
+                    "name": "A6",
+                    "points": "paths\/hop_magnetic_(point_robot,0.5,1,2,d,0,a,0,0,0.06,0)_A6.path"
+                },
+                {
+                    "name": "D1",
+                    "points": "paths\/hop_magnetic_(point_robot,0.5,1,2,d,0,a,0,0,0.06,0)_D1.path"
+                },
+                {
+                    "name": "D4",
+                    "points": "paths\/hop_magnetic_(point_robot,0.5,1,2,d,0,a,0,0,0.06,0)_D4.path"
+                },
+                {
+                    "name": "D3",
+                    "points": "paths\/hop_magnetic_(point_robot,0.5,1,2,d,0,a,0,0,0.06,0)_D3.path"
+                },
+                {
+                    "name": "B2",
+                    "points": "paths\/hop_magnetic_(point_robot,0.5,1,2,d,0,a,0,0,0.06,0)_B2.path"
+                },
+                {
+                    "name": "B5",
+                    "points": "paths\/hop_magnetic_(point_robot,0.5,1,2,d,0,a,0,0,0.06,0)_B5.path"
+                },
+                {
+                    "name": "E2",
+                    "points": "paths\/hop_magnetic_(point_robot,0.5,1,2,d,0,a,0,0,0.06,0)_E2.path"
+                },
+                {
+                    "name": "E5",
+                    "points": "paths\/hop_magnetic_(point_robot,0.5,1,2,d,0,a,0,0,0.06,0)_E5.path"
+                },
+                {
+                    "name": "F3",
+                    "points": "paths\/hop_magnetic_(point_robot,0.5,1,2,d,0,a,0,0,0.06,0)_F3.path"
+                },
+                {
+                    "name": "F1",
+                    "points": "paths\/hop_magnetic_(point_robot,0.5,1,2,d,0,a,0,0,0.06,0)_F1.path"
+                },
+                {
+                    "name": "F6",
+                    "points": "paths\/hop_magnetic_(point_robot,0.5,1,2,d,0,a,0,0,0.06,0)_F6.path"
+                },
+                {
+                    "name": "C3",
+                    "points": "paths\/hop_magnetic_(point_robot,0.5,1,2,d,0,a,0,0,0.06,0)_C3.path"
+                },
+                {
+                    "name": "C4",
+                    "points": "paths\/hop_magnetic_(point_robot,0.5,1,2,d,0,a,0,0,0.06,0)_C4.path"
+                }
+            ]
+        },
+        {
+            "robot": "point_robot",
+            "I_k": "1",
+            "k_a": "1",
+            "k_d": "2",
+            "filter": "d",
+            "rotation_vector": "a",
+            "follow": "false",
+            "p": "0",
+            "margin": "0.06",
+            "m": "false",
+            "noise": "0",
+            "paths":
+            [
+                {
+                    "name": "A1",
+                    "points": "paths\/hop_magnetic_(point_robot,1,1,2,d,0,a,0,0,0.06,0)_A1.path"
+                },
+                {
+                    "name": "A4",
+                    "points": "paths\/hop_magnetic_(point_robot,1,1,2,d,0,a,0,0,0.06,0)_A4.path"
+                },
+                {
+                    "name": "A6",
+                    "points": "paths\/hop_magnetic_(point_robot,1,1,2,d,0,a,0,0,0.06,0)_A6.path"
+                },
+                {
+                    "name": "D1",
+                    "points": "paths\/hop_magnetic_(point_robot,1,1,2,d,0,a,0,0,0.06,0)_D1.path"
+                },
+                {
+                    "name": "D4",
+                    "points": "paths\/hop_magnetic_(point_robot,1,1,2,d,0,a,0,0,0.06,0)_D4.path"
+                },
+                {
+                    "name": "D3",
+                    "points": "paths\/hop_magnetic_(point_robot,1,1,2,d,0,a,0,0,0.06,0)_D3.path"
+                },
+                {
+                    "name": "B2",
+                    "points": "paths\/hop_magnetic_(point_robot,1,1,2,d,0,a,0,0,0.06,0)_B2.path"
+                },
+                {
+                    "name": "B5",
+                    "points": "paths\/hop_magnetic_(point_robot,1,1,2,d,0,a,0,0,0.06,0)_B5.path"
+                },
+                {
+                    "name": "E2",
+                    "points": "paths\/hop_magnetic_(point_robot,1,1,2,d,0,a,0,0,0.06,0)_E2.path"
+                },
+                {
+                    "name": "E5",
+                    "points": "paths\/hop_magnetic_(point_robot,1,1,2,d,0,a,0,0,0.06,0)_E5.path"
+                },
+                {
+                    "name": "F3",
+                    "points": "paths\/hop_magnetic_(point_robot,1,1,2,d,0,a,0,0,0.06,0)_F3.path"
+                },
+                {
+                    "name": "F1",
+                    "points": "paths\/hop_magnetic_(point_robot,1,1,2,d,0,a,0,0,0.06,0)_F1.path"
+                },
+                {
+                    "name": "F6",
+                    "points": "paths\/hop_magnetic_(point_robot,1,1,2,d,0,a,0,0,0.06,0)_F6.path"
+                },
+                {
+                    "name": "C3",
+                    "points": "paths\/hop_magnetic_(point_robot,1,1,2,d,0,a,0,0,0.06,0)_C3.path"
+                },
+                {
+                    "name": "C4",
+                    "points": "paths\/hop_magnetic_(point_robot,1,1,2,d,0,a,0,0,0.06,0)_C4.path"
+                }
+            ]
+        },
+        {
+            "robot": "point_robot",
+            "I_k": "2",
+            "k_a": "1",
+            "k_d": "2",
+            "filter": "d",
+            "rotation_vector": "a",
+            "follow": "false",
+            "p": "0",
+            "margin": "0.06",
+            "m": "false",
+            "noise": "0",
+            "paths":
+            [
+                {
+                    "name": "A1",
+                    "points": "paths\/hop_magnetic_(point_robot,2,1,2,d,0,a,0,0,0.06,0)_A1.path"
+                },
+                {
+                    "name": "A4",
+                    "points": "paths\/hop_magnetic_(point_robot,2,1,2,d,0,a,0,0,0.06,0)_A4.path"
+                },
+                {
+                    "name": "A6",
+                    "points": "paths\/hop_magnetic_(point_robot,2,1,2,d,0,a,0,0,0.06,0)_A6.path"
+                },
+                {
+                    "name": "D1",
+                    "points": "paths\/hop_magnetic_(point_robot,2,1,2,d,0,a,0,0,0.06,0)_D1.path"
+                },
+                {
+                    "name": "D4",
+                    "points": "paths\/hop_magnetic_(point_robot,2,1,2,d,0,a,0,0,0.06,0)_D4.path"
+                },
+                {
+                    "name": "D3",
+                    "points": "paths\/hop_magnetic_(point_robot,2,1,2,d,0,a,0,0,0.06,0)_D3.path"
+                },
+                {
+                    "name": "B2",
+                    "points": "paths\/hop_magnetic_(point_robot,2,1,2,d,0,a,0,0,0.06,0)_B2.path"
+                },
+                {
+                    "name": "B5",
+                    "points": "paths\/hop_magnetic_(point_robot,2,1,2,d,0,a,0,0,0.06,0)_B5.path"
+                },
+                {
+                    "name": "E2",
+                    "points": "paths\/hop_magnetic_(point_robot,2,1,2,d,0,a,0,0,0.06,0)_E2.path"
+                },
+                {
+                    "name": "E5",
+                    "points": "paths\/hop_magnetic_(point_robot,2,1,2,d,0,a,0,0,0.06,0)_E5.path"
+                },
+                {
+                    "name": "F3",
+                    "points": "paths\/hop_magnetic_(point_robot,2,1,2,d,0,a,0,0,0.06,0)_F3.path"
+                },
+                {
+                    "name": "F1",
+                    "points": "paths\/hop_magnetic_(point_robot,2,1,2,d,0,a,0,0,0.06,0)_F1.path"
+                },
+                {
+                    "name": "F6",
+                    "points": "paths\/hop_magnetic_(point_robot,2,1,2,d,0,a,0,0,0.06,0)_F6.path"
+                },
+                {
+                    "name": "C3",
+                    "points": "paths\/hop_magnetic_(point_robot,2,1,2,d,0,a,0,0,0.06,0)_C3.path"
+                },
+                {
+                    "name": "C4",
+                    "points": "paths\/hop_magnetic_(point_robot,2,1,2,d,0,a,0,0,0.06,0)_C4.path"
+                }
+            ]
+        },
+        {
+            "robot": "point_robot",
+            "I_k": "4",
+            "k_a": "1",
+            "k_d": "2",
+            "filter": "d",
+            "rotation_vector": "a",
+            "follow": "false",
+            "p": "0",
+            "margin": "0.06",
+            "m": "false",
+            "noise": "0",
+            "paths":
+            [
+                {
+                    "name": "A1",
+                    "points": "paths\/hop_magnetic_(point_robot,4,1,2,d,0,a,0,0,0.06,0)_A1.path"
+                },
+                {
+                    "name": "A4",
+                    "points": "paths\/hop_magnetic_(point_robot,4,1,2,d,0,a,0,0,0.06,0)_A4.path"
+                },
+                {
+                    "name": "A6",
+                    "points": "paths\/hop_magnetic_(point_robot,4,1,2,d,0,a,0,0,0.06,0)_A6.path"
+                },
+                {
+                    "name": "D1",
+                    "points": "paths\/hop_magnetic_(point_robot,4,1,2,d,0,a,0,0,0.06,0)_D1.path"
+                },
+                {
+                    "name": "D4",
+                    "points": "paths\/hop_magnetic_(point_robot,4,1,2,d,0,a,0,0,0.06,0)_D4.path"
+                },
+                {
+                    "name": "D3",
+                    "points": "paths\/hop_magnetic_(point_robot,4,1,2,d,0,a,0,0,0.06,0)_D3.path"
+                },
+                {
+                    "name": "B2",
+                    "points": "paths\/hop_magnetic_(point_robot,4,1,2,d,0,a,0,0,0.06,0)_B2.path"
+                },
+                {
+                    "name": "B5",
+                    "points": "paths\/hop_magnetic_(point_robot,4,1,2,d,0,a,0,0,0.06,0)_B5.path"
+                },
+                {
+                    "name": "E2",
+                    "points": "paths\/hop_magnetic_(point_robot,4,1,2,d,0,a,0,0,0.06,0)_E2.path"
+                },
+                {
+                    "name": "E5",
+                    "points": "paths\/hop_magnetic_(point_robot,4,1,2,d,0,a,0,0,0.06,0)_E5.path"
+                },
+                {
+                    "name": "F3",
+                    "points": "paths\/hop_magnetic_(point_robot,4,1,2,d,0,a,0,0,0.06,0)_F3.path"
+                },
+                {
+                    "name": "F1",
+                    "points": "paths\/hop_magnetic_(point_robot,4,1,2,d,0,a,0,0,0.06,0)_F1.path"
+                },
+                {
+                    "name": "F6",
+                    "points": "paths\/hop_magnetic_(point_robot,4,1,2,d,0,a,0,0,0.06,0)_F6.path"
+                },
+                {
+                    "name": "C3",
+                    "points": "paths\/hop_magnetic_(point_robot,4,1,2,d,0,a,0,0,0.06,0)_C3.path"
+                },
+                {
+                    "name": "C4",
+                    "points": "paths\/hop_magnetic_(point_robot,4,1,2,d,0,a,0,0,0.06,0)_C4.path"
+                }
+            ]
+        },
+        {
+            "robot": "point_robot",
+            "I_k": "6",
+            "k_a": "1",
+            "k_d": "2",
+            "filter": "d",
+            "rotation_vector": "a",
+            "follow": "false",
+            "p": "0",
+            "margin": "0.06",
+            "m": "false",
+            "noise": "0",
+            "paths":
+            [
+                {
+                    "name": "A1",
+                    "points": "paths\/hop_magnetic_(point_robot,6,1,2,d,0,a,0,0,0.06,0)_A1.path"
+                },
+                {
+                    "name": "A4",
+                    "points": "paths\/hop_magnetic_(point_robot,6,1,2,d,0,a,0,0,0.06,0)_A4.path"
+                },
+                {
+                    "name": "A6",
+                    "points": "paths\/hop_magnetic_(point_robot,6,1,2,d,0,a,0,0,0.06,0)_A6.path"
+                },
+                {
+                    "name": "D1",
+                    "points": "paths\/hop_magnetic_(point_robot,6,1,2,d,0,a,0,0,0.06,0)_D1.path"
+                },
+                {
+                    "name": "D4",
+                    "points": "paths\/hop_magnetic_(point_robot,6,1,2,d,0,a,0,0,0.06,0)_D4.path"
+                },
+                {
+                    "name": "D3",
+                    "points": "paths\/hop_magnetic_(point_robot,6,1,2,d,0,a,0,0,0.06,0)_D3.path"
+                },
+                {
+                    "name": "B2",
+                    "points": "paths\/hop_magnetic_(point_robot,6,1,2,d,0,a,0,0,0.06,0)_B2.path"
+                },
+                {
+                    "name": "B5",
+                    "points": "paths\/hop_magnetic_(point_robot,6,1,2,d,0,a,0,0,0.06,0)_B5.path"
+                },
+                {
+                    "name": "E2",
+                    "points": "paths\/hop_magnetic_(point_robot,6,1,2,d,0,a,0,0,0.06,0)_E2.path"
+                },
+                {
+                    "name": "E5",
+                    "points": "paths\/hop_magnetic_(point_robot,6,1,2,d,0,a,0,0,0.06,0)_E5.path"
+                },
+                {
+                    "name": "F3",
+                    "points": "paths\/hop_magnetic_(point_robot,6,1,2,d,0,a,0,0,0.06,0)_F3.path"
+                },
+                {
+                    "name": "F1",
+                    "points": "paths\/hop_magnetic_(point_robot,6,1,2,d,0,a,0,0,0.06,0)_F1.path"
+                },
+                {
+                    "name": "F6",
+                    "points": "paths\/hop_magnetic_(point_robot,6,1,2,d,0,a,0,0,0.06,0)_F6.path"
+                },
+                {
+                    "name": "C3",
+                    "points": "paths\/hop_magnetic_(point_robot,6,1,2,d,0,a,0,0,0.06,0)_C3.path"
+                },
+                {
+                    "name": "C4",
+                    "points": "paths\/hop_magnetic_(point_robot,6,1,2,d,0,a,0,0,0.06,0)_C4.path"
+                }
+            ]
+        },
+        {
+            "robot": "point_robot",
+            "I_k": "0.5",
+            "k_a": "1",
+            "k_d": "2",
+            "filter": "a",
+            "rotation_vector": "a",
+            "follow": "false",
+            "p": "0",
+            "margin": "0.06",
+            "m": "false",
+            "noise": "0",
+            "paths":
+            [
+                {
+                    "name": "A1",
+                    "points": "paths\/hop_magnetic_(point_robot,0.5,1,2,a,0,a,0,0,0.06,0)_A1.path"
+                },
+                {
+                    "name": "A4",
+                    "points": "paths\/hop_magnetic_(point_robot,0.5,1,2,a,0,a,0,0,0.06,0)_A4.path"
+                },
+                {
+                    "name": "A6",
+                    "points": "paths\/hop_magnetic_(point_robot,0.5,1,2,a,0,a,0,0,0.06,0)_A6.path"
+                },
+                {
+                    "name": "D1",
+                    "points": "paths\/hop_magnetic_(point_robot,0.5,1,2,a,0,a,0,0,0.06,0)_D1.path"
+                },
+                {
+                    "name": "D4",
+                    "points": "paths\/hop_magnetic_(point_robot,0.5,1,2,a,0,a,0,0,0.06,0)_D4.path"
+                },
+                {
+                    "name": "D3",
+                    "points": "paths\/hop_magnetic_(point_robot,0.5,1,2,a,0,a,0,0,0.06,0)_D3.path"
+                },
+                {
+                    "name": "B2",
+                    "points": "paths\/hop_magnetic_(point_robot,0.5,1,2,a,0,a,0,0,0.06,0)_B2.path"
+                },
+                {
+                    "name": "B5",
+                    "points": "paths\/hop_magnetic_(point_robot,0.5,1,2,a,0,a,0,0,0.06,0)_B5.path"
+                },
+                {
+                    "name": "E2",
+                    "points": "paths\/hop_magnetic_(point_robot,0.5,1,2,a,0,a,0,0,0.06,0)_E2.path"
+                },
+                {
+                    "name": "E5",
+                    "points": "paths\/hop_magnetic_(point_robot,0.5,1,2,a,0,a,0,0,0.06,0)_E5.path"
+                },
+                {
+                    "name": "F3",
+                    "points": "paths\/hop_magnetic_(point_robot,0.5,1,2,a,0,a,0,0,0.06,0)_F3.path"
+                },
+                {
+                    "name": "F1",
+                    "points": "paths\/hop_magnetic_(point_robot,0.5,1,2,a,0,a,0,0,0.06,0)_F1.path"
+                },
+                {
+                    "name": "F6",
+                    "points": "paths\/hop_magnetic_(point_robot,0.5,1,2,a,0,a,0,0,0.06,0)_F6.path"
+                },
+                {
+                    "name": "C3",
+                    "points": "paths\/hop_magnetic_(point_robot,0.5,1,2,a,0,a,0,0,0.06,0)_C3.path"
+                },
+                {
+                    "name": "C4",
+                    "points": "paths\/hop_magnetic_(point_robot,0.5,1,2,a,0,a,0,0,0.06,0)_C4.path"
+                }
+            ]
+        },
+        {
+            "robot": "point_robot",
+            "I_k": "1",
+            "k_a": "1",
+            "k_d": "2",
+            "filter": "a",
+            "rotation_vector": "a",
+            "follow": "false",
+            "p": "0",
+            "margin": "0.06",
+            "m": "false",
+            "noise": "0",
+            "paths":
+            [
+                {
+                    "name": "A1",
+                    "points": "paths\/hop_magnetic_(point_robot,1,1,2,a,0,a,0,0,0.06,0)_A1.path"
+                },
+                {
+                    "name": "A4",
+                    "points": "paths\/hop_magnetic_(point_robot,1,1,2,a,0,a,0,0,0.06,0)_A4.path"
+                },
+                {
+                    "name": "A6",
+                    "points": "paths\/hop_magnetic_(point_robot,1,1,2,a,0,a,0,0,0.06,0)_A6.path"
+                },
+                {
+                    "name": "D1",
+                    "points": "paths\/hop_magnetic_(point_robot,1,1,2,a,0,a,0,0,0.06,0)_D1.path"
+                },
+                {
+                    "name": "D4",
+                    "points": "paths\/hop_magnetic_(point_robot,1,1,2,a,0,a,0,0,0.06,0)_D4.path"
+                },
+                {
+                    "name": "D3",
+                    "points": "paths\/hop_magnetic_(point_robot,1,1,2,a,0,a,0,0,0.06,0)_D3.path"
+                },
+                {
+                    "name": "B2",
+                    "points": "paths\/hop_magnetic_(point_robot,1,1,2,a,0,a,0,0,0.06,0)_B2.path"
+                },
+                {
+                    "name": "B5",
+                    "points": "paths\/hop_magnetic_(point_robot,1,1,2,a,0,a,0,0,0.06,0)_B5.path"
+                },
+                {
+                    "name": "E2",
+                    "points": "paths\/hop_magnetic_(point_robot,1,1,2,a,0,a,0,0,0.06,0)_E2.path"
+                },
+                {
+                    "name": "E5",
+                    "points": "paths\/hop_magnetic_(point_robot,1,1,2,a,0,a,0,0,0.06,0)_E5.path"
+                },
+                {
+                    "name": "F3",
+                    "points": "paths\/hop_magnetic_(point_robot,1,1,2,a,0,a,0,0,0.06,0)_F3.path"
+                },
+                {
+                    "name": "F1",
+                    "points": "paths\/hop_magnetic_(point_robot,1,1,2,a,0,a,0,0,0.06,0)_F1.path"
+                },
+                {
+                    "name": "F6",
+                    "points": "paths\/hop_magnetic_(point_robot,1,1,2,a,0,a,0,0,0.06,0)_F6.path"
+                },
+                {
+                    "name": "C3",
+                    "points": "paths\/hop_magnetic_(point_robot,1,1,2,a,0,a,0,0,0.06,0)_C3.path"
+                },
+                {
+                    "name": "C4",
+                    "points": "paths\/hop_magnetic_(point_robot,1,1,2,a,0,a,0,0,0.06,0)_C4.path"
+                }
+            ]
+        },
+        {
+            "robot": "point_robot",
+            "I_k": "2",
+            "k_a": "1",
+            "k_d": "2",
+            "filter": "a",
+            "rotation_vector": "a",
+            "follow": "false",
+            "p": "0",
+            "margin": "0.06",
+            "m": "false",
+            "noise": "0",
+            "paths":
+            [
+                {
+                    "name": "A1",
+                    "points": "paths\/hop_magnetic_(point_robot,2,1,2,a,0,a,0,0,0.06,0)_A1.path"
+                },
+                {
+                    "name": "A4",
+                    "points": "paths\/hop_magnetic_(point_robot,2,1,2,a,0,a,0,0,0.06,0)_A4.path"
+                },
+                {
+                    "name": "A6",
+                    "points": "paths\/hop_magnetic_(point_robot,2,1,2,a,0,a,0,0,0.06,0)_A6.path"
+                },
+                {
+                    "name": "D1",
+                    "points": "paths\/hop_magnetic_(point_robot,2,1,2,a,0,a,0,0,0.06,0)_D1.path"
+                },
+                {
+                    "name": "D4",
+                    "points": "paths\/hop_magnetic_(point_robot,2,1,2,a,0,a,0,0,0.06,0)_D4.path"
+                },
+                {
+                    "name": "D3",
+                    "points": "paths\/hop_magnetic_(point_robot,2,1,2,a,0,a,0,0,0.06,0)_D3.path"
+                },
+                {
+                    "name": "B2",
+                    "points": "paths\/hop_magnetic_(point_robot,2,1,2,a,0,a,0,0,0.06,0)_B2.path"
+                },
+                {
+                    "name": "B5",
+                    "points": "paths\/hop_magnetic_(point_robot,2,1,2,a,0,a,0,0,0.06,0)_B5.path"
+                },
+                {
+                    "name": "E2",
+                    "points": "paths\/hop_magnetic_(point_robot,2,1,2,a,0,a,0,0,0.06,0)_E2.path"
+                },
+                {
+                    "name": "E5",
+                    "points": "paths\/hop_magnetic_(point_robot,2,1,2,a,0,a,0,0,0.06,0)_E5.path"
+                },
+                {
+                    "name": "F3",
+                    "points": "paths\/hop_magnetic_(point_robot,2,1,2,a,0,a,0,0,0.06,0)_F3.path"
+                },
+                {
+                    "name": "F1",
+                    "points": "paths\/hop_magnetic_(point_robot,2,1,2,a,0,a,0,0,0.06,0)_F1.path"
+                },
+                {
+                    "name": "F6",
+                    "points": "paths\/hop_magnetic_(point_robot,2,1,2,a,0,a,0,0,0.06,0)_F6.path"
+                },
+                {
+                    "name": "C3",
+                    "points": "paths\/hop_magnetic_(point_robot,2,1,2,a,0,a,0,0,0.06,0)_C3.path"
+                },
+                {
+                    "name": "C4",
+                    "points": "paths\/hop_magnetic_(point_robot,2,1,2,a,0,a,0,0,0.06,0)_C4.path"
+                }
+            ]
+        },
+        {
+            "robot": "point_robot",
+            "I_k": "4",
+            "k_a": "1",
+            "k_d": "2",
+            "filter": "a",
+            "rotation_vector": "a",
+            "follow": "false",
+            "p": "0",
+            "margin": "0.06",
+            "m": "false",
+            "noise": "0",
+            "paths":
+            [
+                {
+                    "name": "A1",
+                    "points": "paths\/hop_magnetic_(point_robot,4,1,2,a,0,a,0,0,0.06,0)_A1.path"
+                },
+                {
+                    "name": "A4",
+                    "points": "paths\/hop_magnetic_(point_robot,4,1,2,a,0,a,0,0,0.06,0)_A4.path"
+                },
+                {
+                    "name": "A6",
+                    "points": "paths\/hop_magnetic_(point_robot,4,1,2,a,0,a,0,0,0.06,0)_A6.path"
+                },
+                {
+                    "name": "D1",
+                    "points": "paths\/hop_magnetic_(point_robot,4,1,2,a,0,a,0,0,0.06,0)_D1.path"
+                },
+                {
+                    "name": "D4",
+                    "points": "paths\/hop_magnetic_(point_robot,4,1,2,a,0,a,0,0,0.06,0)_D4.path"
+                },
+                {
+                    "name": "D3",
+                    "points": "paths\/hop_magnetic_(point_robot,4,1,2,a,0,a,0,0,0.06,0)_D3.path"
+                },
+                {
+                    "name": "B2",
+                    "points": "paths\/hop_magnetic_(point_robot,4,1,2,a,0,a,0,0,0.06,0)_B2.path"
+                },
+                {
+                    "name": "B5",
+                    "points": "paths\/hop_magnetic_(point_robot,4,1,2,a,0,a,0,0,0.06,0)_B5.path"
+                },
+                {
+                    "name": "E2",
+                    "points": "paths\/hop_magnetic_(point_robot,4,1,2,a,0,a,0,0,0.06,0)_E2.path"
+                },
+                {
+                    "name": "E5",
+                    "points": "paths\/hop_magnetic_(point_robot,4,1,2,a,0,a,0,0,0.06,0)_E5.path"
+                },
+                {
+                    "name": "F3",
+                    "points": "paths\/hop_magnetic_(point_robot,4,1,2,a,0,a,0,0,0.06,0)_F3.path"
+                },
+                {
+                    "name": "F1",
+                    "points": "paths\/hop_magnetic_(point_robot,4,1,2,a,0,a,0,0,0.06,0)_F1.path"
+                },
+                {
+                    "name": "F6",
+                    "points": "paths\/hop_magnetic_(point_robot,4,1,2,a,0,a,0,0,0.06,0)_F6.path"
+                },
+                {
+                    "name": "C3",
+                    "points": "paths\/hop_magnetic_(point_robot,4,1,2,a,0,a,0,0,0.06,0)_C3.path"
+                },
+                {
+                    "name": "C4",
+                    "points": "paths\/hop_magnetic_(point_robot,4,1,2,a,0,a,0,0,0.06,0)_C4.path"
+                }
+            ]
+        },
+        {
+            "robot": "point_robot",
+            "I_k": "6",
+            "k_a": "1",
+            "k_d": "2",
+            "filter": "a",
+            "rotation_vector": "a",
+            "follow": "false",
+            "p": "0",
+            "margin": "0.06",
+            "m": "false",
+            "noise": "0",
+            "paths":
+            [
+                {
+                    "name": "A1",
+                    "points": "paths\/hop_magnetic_(point_robot,6,1,2,a,0,a,0,0,0.06,0)_A1.path"
+                },
+                {
+                    "name": "A4",
+                    "points": "paths\/hop_magnetic_(point_robot,6,1,2,a,0,a,0,0,0.06,0)_A4.path"
+                },
+                {
+                    "name": "A6",
+                    "points": "paths\/hop_magnetic_(point_robot,6,1,2,a,0,a,0,0,0.06,0)_A6.path"
+                },
+                {
+                    "name": "D1",
+                    "points": "paths\/hop_magnetic_(point_robot,6,1,2,a,0,a,0,0,0.06,0)_D1.path"
+                },
+                {
+                    "name": "D4",
+                    "points": "paths\/hop_magnetic_(point_robot,6,1,2,a,0,a,0,0,0.06,0)_D4.path"
+                },
+                {
+                    "name": "D3",
+                    "points": "paths\/hop_magnetic_(point_robot,6,1,2,a,0,a,0,0,0.06,0)_D3.path"
+                },
+                {
+                    "name": "B2",
+                    "points": "paths\/hop_magnetic_(point_robot,6,1,2,a,0,a,0,0,0.06,0)_B2.path"
+                },
+                {
+                    "name": "B5",
+                    "points": "paths\/hop_magnetic_(point_robot,6,1,2,a,0,a,0,0,0.06,0)_B5.path"
+                },
+                {
+                    "name": "E2",
+                    "points": "paths\/hop_magnetic_(point_robot,6,1,2,a,0,a,0,0,0.06,0)_E2.path"
+                },
+                {
+                    "name": "E5",
+                    "points": "paths\/hop_magnetic_(point_robot,6,1,2,a,0,a,0,0,0.06,0)_E5.path"
+                },
+                {
+                    "name": "F3",
+                    "points": "paths\/hop_magnetic_(point_robot,6,1,2,a,0,a,0,0,0.06,0)_F3.path"
+                },
+                {
+                    "name": "F1",
+                    "points": "paths\/hop_magnetic_(point_robot,6,1,2,a,0,a,0,0,0.06,0)_F1.path"
+                },
+                {
+                    "name": "F6",
+                    "points": "paths\/hop_magnetic_(point_robot,6,1,2,a,0,a,0,0,0.06,0)_F6.path"
+                },
+                {
+                    "name": "C3",
+                    "points": "paths\/hop_magnetic_(point_robot,6,1,2,a,0,a,0,0,0.06,0)_C3.path"
+                },
+                {
+                    "name": "C4",
+                    "points": "paths\/hop_magnetic_(point_robot,6,1,2,a,0,a,0,0,0.06,0)_C4.path"
+                }
+            ]
+        }
+    ]
+}

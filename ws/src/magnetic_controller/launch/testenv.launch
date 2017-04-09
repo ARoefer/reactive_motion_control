@@ -16,41 +16,20 @@
     <param name="watchdog_period" value="0.2"/>
   </node>
 
+  <node pkg="magnetic_controller" type="pr2_r_vel_controller" name="pr2_controller" output="screen">
+    <rosparam param="joint_names"
+      file="$(find magnetic_controller)/robots/controlled_joints.yaml" />
+    <param name="controller_description" 
+      textfile="$(find magnetic_controller)/controller_specs/point_robot_vel_controller.yaml" />
+    <param name="frame_id" value="link0" />
+    <remap from="~joint_states" to="/joint_states" />
+    <param name="nWSR" value="1000"/>
+  </node>
+
   <node pkg="robot_state_publisher" type="robot_state_publisher"
         name="robot_state_publisher" />
 
-  <node
-    name="shelf_joint_state_publisher"
-    pkg="joint_state_publisher"
-    type="joint_state_publisher" >
-    <remap from="robot_description" to="shelf_description"/>
-    <remap from="joint_states" to="shelf_joint_states"/>
-  </node>
-
-  <node
-    name="shelf_state_publisher"
-    pkg="robot_state_publisher"
-    type="state_publisher" >
-    <!--param name="tf_prefix" value="iai_shelf"/-->
-    <remap from="robot_description" to="shelf_description"/>
-    <remap from="joint_states" to="shelf_joint_states"/>
-    <param name="publish_frequency" value="3"/>
-
-  </node>
-
   <node pkg="tf" type="static_transform_publisher" name="fake_odometry"
         output="screen" args="0 0 0 0 0 0 1 odom_combined link0 100" />
-
-  <node pkg="tf" type="static_transform_publisher" name="cube1"
-        output="screen" args="2 0 0 0 0 0 1 odom_combined cube1 100" />
-
-  <node pkg="tf" type="static_transform_publisher" name="cylinder1"
-        output="screen" args="2 1 0 0 0 0 1 odom_combined cylinder1 100" />
-
-  <node pkg="tf" type="static_transform_publisher" name="cylinder2" 
-        output="screen" args="2 -1 0 0 0 0 1 odom_combined cylinder2 100" />
-
-  <node pkg="tf" type="static_transform_publisher" name="shelf_root" 
-        output="screen" args="2 0 0 0 0 0 1 odom_combined shelf_root 100" />
 
 </launch>

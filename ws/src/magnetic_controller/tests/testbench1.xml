@@ -1,115 +1,139 @@
 <testbench>
-	<test name="test1" file="meshes/2D_Wall_Test.xml" rate="100">
+	<test name="test1" file="meshes/2D_Wall_Test.xml" rate="100" controller="circular">
+		<robots>
+			<robot package="magnetic_controller" urdf="robots/simple_robot.urdf" srdf="robots/simple_robot.srdf" controlled_joints="robots/controlled_joints.yaml" giskard="controller_specs/point_robot_vel_controller.yaml"/>
+		</robots>
 		<paths>
 			<path name="Path1" maxTime="20">
-				<node name="Start"/>
-				<node name="Goal"/>
+				<initial_states>
+					<state robot="point_robot" package="magnetic_controller" file="robots/start_config.yaml"/>
+				</initial_states>
+				<nodes>
+					<node name="Start"/>
+					<node name="Goal"/>
+				</nodes>
 			</path>
 		</paths>
 		<configs>
-			<config I_k="2" k_a="1" k_d="1" filter="n" surfFollow="0"/>
-			<config I_k="4" k_a="1" k_d="1" filter="n" surfFollow="0"/>
-			<config I_k="8" k_a="1" k_d="1" filter="n" surfFollow="0"/>
-			<config I_k="16" k_a="1" k_d="1" filter="n" surfFollow="0"/>
-			<config I_k="32" k_a="1" k_d="1" filter="n" surfFollow="0"/>
-			<config I_k="32" k_a="1" k_d="1.5" filter="n" surfFollow="0"/>
-			<config I_k="32" k_a="1" k_d="2" filter="n" surfFollow="0"/>
-			<config I_k="2" k_a="1" k_d="1" filter="d" surfFollow="0"/>
-			<config I_k="4" k_a="1" k_d="1" filter="d" surfFollow="0"/>
-			<config I_k="8" k_a="1" k_d="1" filter="d" surfFollow="0"/>
-			<config I_k="16" k_a="1" k_d="1" filter="d" surfFollow="0"/>
-			<config I_k="16" k_a="1" k_d="1.5" filter="d" surfFollow="0"/>
-			<config I_k="16" k_a="1" k_d="2" filter="d" surfFollow="0"/>
-			<config I_k="16" k_a="1" k_d="1" filter="g" surfFollow="0"/>
-			<config I_k="16" k_a="1" k_d="1.5" filter="g" surfFollow="0"/>
-			<config I_k="16" k_a="1" k_d="2" filter="g" surfFollow="0"/>
+			<config I_k="2" k_a="1" k_d="1" filter="n" surfFollow="0" p="0" m="0.025" noise="0" rotation_vector="a"/>
+			<config I_k="4" k_a="1" k_d="1" filter="n" surfFollow="0" p="0" m="0.025" noise="0" rotation_vector="a"/>
+			<config I_k="8" k_a="1" k_d="1" filter="n" surfFollow="0" p="0" m="0.025" noise="0" rotation_vector="a"/>
+			<config I_k="16" k_a="1" k_d="1" filter="n" surfFollow="0" p="0" m="0.025" noise="0" rotation_vector="a"/>
+			<config I_k="32" k_a="1" k_d="1" filter="n" surfFollow="0" p="0" m="0.025" noise="0" rotation_vector="a"/>
+			<config I_k="32" k_a="1" k_d="1.5" filter="n" surfFollow="0" p="0" m="0.025" noise="0" rotation_vector="a"/>
+			<config I_k="32" k_a="1" k_d="2" filter="n" surfFollow="0" p="0" m="0.025" noise="0" rotation_vector="a"/>
+			<config I_k="2" k_a="1" k_d="1" filter="d" surfFollow="0" p="0" m="0.025" noise="0" rotation_vector="a"/>
+			<config I_k="4" k_a="1" k_d="1" filter="d" surfFollow="0" p="0" m="0.025" noise="0" rotation_vector="a"/>
+			<config I_k="8" k_a="1" k_d="1" filter="d" surfFollow="0" p="0" m="0.025" noise="0" rotation_vector="a"/>
+			<config I_k="16" k_a="1" k_d="1" filter="d" surfFollow="0" p="0" m="0.025" noise="0" rotation_vector="a"/>
+			<config I_k="16" k_a="1" k_d="1.5" filter="d" surfFollow="0" p="0" m="0.025" noise="0" rotation_vector="a"/>
+			<config I_k="16" k_a="1" k_d="2" filter="d" surfFollow="0" p="0" m="0.025" noise="0" rotation_vector="a"/>
+			<config I_k="16" k_a="1" k_d="1" filter="g" surfFollow="0" p="0" m="0.025" noise="0" rotation_vector="a"/>
+			<config I_k="16" k_a="1" k_d="1.5" filter="g" surfFollow="0" p="0" m="0.025" noise="0" rotation_vector="a"/>
+			<config I_k="16" k_a="1" k_d="2" filter="g" surfFollow="0" p="0" m="0.025" noise="0" rotation_vector="a"/>
 		</configs>
 	</test>
-	<test name="test2" file="meshes/2D_Walls_Test.xml" rate="100">
+	<test name="test2" file="meshes/2D_Walls_Test.xml" rate="100" controller="circular">
+		<robots>
+			<robot package="magnetic_controller" urdf="robots/simple_robot.urdf" srdf="robots/simple_robot.srdf" controlled_joints="robots/controlled_joints.yaml" giskard="controller_specs/point_robot_vel_controller.yaml"/>
+		</robots>
 		<paths>
 			<path name="Path1" maxTime="20">
-				<node name="Start"/>
-				<node name="Goal"/>
+				<initial_states>
+					<state robot="point_robot" package="magnetic_controller" file="robots/start_config.yaml"/>
+				</initial_states>
+				<nodes>
+					<node name="Start"/>
+					<node name="Goal"/>
+				</nodes>
 			</path>
 		</paths>
 		<configs>
-			<config I_k="32" k_a="1" k_d="1" filter="n" surfFollow="0"/>
-			<config I_k="64" k_a="1" k_d="1" filter="n" surfFollow="0"/>
-			<config I_k="16" k_a="1" k_d="1" filter="d" surfFollow="0"/>
-			<config I_k="32" k_a="1" k_d="1" filter="d" surfFollow="0"/>
-			<config I_k="32" k_a="1" k_d="1.5" filter="n" surfFollow="0"/>
-			<config I_k="64" k_a="1" k_d="1.5" filter="n" surfFollow="0"/>
-			<config I_k="16" k_a="1" k_d="1.5" filter="d" surfFollow="0"/>
-			<config I_k="32" k_a="1" k_d="1.5" filter="d" surfFollow="0"/>
-			<config I_k="32" k_a="1" k_d="2" filter="n" surfFollow="0"/>
-			<config I_k="64" k_a="1" k_d="2" filter="n" surfFollow="0"/>
-			<config I_k="16" k_a="1" k_d="2" filter="d" surfFollow="0"/>
-			<config I_k="32" k_a="1" k_d="2" filter="d" surfFollow="0"/>
-			<config I_k="16" k_a="1" k_d="1" filter="g" surfFollow="0"/>
-			<config I_k="16" k_a="1" k_d="1.5" filter="g" surfFollow="0"/>
-			<config I_k="16" k_a="1" k_d="2" filter="g" surfFollow="0"/>
+			<config I_k="32" k_a="1" k_d="1" filter="n" surfFollow="0" p="0" m="0.025" noise="0" rotation_vector="a"/>
+			<config I_k="64" k_a="1" k_d="1" filter="n" surfFollow="0" p="0" m="0.025" noise="0" rotation_vector="a"/>
+			<config I_k="16" k_a="1" k_d="1" filter="d" surfFollow="0" p="0" m="0.025" noise="0" rotation_vector="a"/>
+			<config I_k="32" k_a="1" k_d="1" filter="d" surfFollow="0" p="0" m="0.025" noise="0" rotation_vector="a"/>
+			<config I_k="32" k_a="1" k_d="1.5" filter="n" surfFollow="0" p="0" m="0.025" noise="0" rotation_vector="a"/>
+			<config I_k="64" k_a="1" k_d="1.5" filter="n" surfFollow="0" p="0" m="0.025" noise="0" rotation_vector="a"/>
+			<config I_k="16" k_a="1" k_d="1.5" filter="d" surfFollow="0" p="0" m="0.025" noise="0" rotation_vector="a"/>
+			<config I_k="32" k_a="1" k_d="1.5" filter="d" surfFollow="0" p="0" m="0.025" noise="0" rotation_vector="a"/>
+			<config I_k="32" k_a="1" k_d="2" filter="n" surfFollow="0" p="0" m="0.025" noise="0" rotation_vector="a"/>
+			<config I_k="64" k_a="1" k_d="2" filter="n" surfFollow="0" p="0" m="0.025" noise="0" rotation_vector="a"/>
+			<config I_k="16" k_a="1" k_d="2" filter="d" surfFollow="0" p="0" m="0.025" noise="0" rotation_vector="a"/>
+			<config I_k="32" k_a="1" k_d="2" filter="d" surfFollow="0" p="0" m="0.025" noise="0" rotation_vector="a"/>
+			<config I_k="16" k_a="1" k_d="1" filter="g" surfFollow="0" p="0" m="0.025" noise="0" rotation_vector="a"/>
+			<config I_k="16" k_a="1" k_d="1.5" filter="g" surfFollow="0" p="0" m="0.025" noise="0" rotation_vector="a"/>
+			<config I_k="16" k_a="1" k_d="2" filter="g" surfFollow="0" p="0" m="0.025" noise="0" rotation_vector="a"/>
 
-			<config I_k="16" k_a="1" k_d="1" filter="a" surfFollow="0"/>
-			<config I_k="16" k_a="1" k_d="1.5" filter="a" surfFollow="0"/>
-			<config I_k="16" k_a="1" k_d="2" filter="a" surfFollow="0"/>
-			<config I_k="32" k_a="1" k_d="1" filter="a" surfFollow="0"/>
-			<config I_k="32" k_a="1" k_d="1.5" filter="a" surfFollow="0"/>
-			<config I_k="32" k_a="1" k_d="2" filter="a" surfFollow="0"/>
+			<config I_k="16" k_a="1" k_d="1" filter="a" surfFollow="0" p="0" m="0.025" noise="0" rotation_vector="a"/>
+			<config I_k="16" k_a="1" k_d="1.5" filter="a" surfFollow="0" p="0" m="0.025" noise="0" rotation_vector="a"/>
+			<config I_k="16" k_a="1" k_d="2" filter="a" surfFollow="0" p="0" m="0.025" noise="0" rotation_vector="a"/>
+			<config I_k="32" k_a="1" k_d="1" filter="a" surfFollow="0" p="0" m="0.025" noise="0" rotation_vector="a"/>
+			<config I_k="32" k_a="1" k_d="1.5" filter="a" surfFollow="0" p="0" m="0.025" noise="0" rotation_vector="a"/>
+			<config I_k="32" k_a="1" k_d="2" filter="a" surfFollow="0" p="0" m="0.025" noise="0" rotation_vector="a"/>
 		</configs>
 	</test>
-	<test name="test3" file="meshes/2D_Cave.xml" rate="100">
+	<test name="test3" file="meshes/2D_Cave.xml" rate="100" controller="circular">
+		<robots>
+			<robot package="magnetic_controller" urdf="robots/simple_robot.urdf" srdf="robots/simple_robot.srdf" controlled_joints="robots/controlled_joints.yaml" giskard="controller_specs/point_robot_vel_controller.yaml"/>
+		</robots>
 		<paths>
 			<path name="Path1" maxTime="20">
-				<node name="Start"/>
-				<node name="Goal"/>
+				<initial_states>
+					<state robot="point_robot" package="magnetic_controller" file="robots/start_config_cave_test.yaml"/>
+				</initial_states>
+				<nodes>
+					<node name="Start"/>
+					<node name="Goal"/>
+				</nodes>
 			</path>
 		</paths>
 		<configs>
-			<config I_k="16" k_a="1" k_d="1" filter="n" surfFollow="0"/>
-			<config I_k="16" k_a="1" k_d="1.5" filter="n" surfFollow="0"/>
-			<config I_k="16" k_a="1" k_d="2" filter="n" surfFollow="0"/>
-			<config I_k="32" k_a="1" k_d="1" filter="n" surfFollow="0"/>
-			<config I_k="32" k_a="1" k_d="1.5" filter="n" surfFollow="0"/>
-			<config I_k="32" k_a="1" k_d="2" filter="n" surfFollow="0"/>
-			<config I_k="64" k_a="1" k_d="1" filter="n" surfFollow="0"/>
-			<config I_k="64" k_a="1" k_d="1.5" filter="n" surfFollow="0"/>
-			<config I_k="64" k_a="1" k_d="2" filter="n" surfFollow="0"/>
-			<config I_k="16" k_a="1" k_d="1" filter="d" surfFollow="0"/>
-			<config I_k="16" k_a="1" k_d="1.5" filter="d" surfFollow="0"/>
-			<config I_k="16" k_a="1" k_d="2" filter="d" surfFollow="0"/>
-			<config I_k="32" k_a="1" k_d="1" filter="d" surfFollow="0"/>
-			<config I_k="32" k_a="1" k_d="1.5" filter="d" surfFollow="0"/>
-			<config I_k="32" k_a="1" k_d="2" filter="d" surfFollow="0"/>
-			<config I_k="64" k_a="1" k_d="1" filter="d" surfFollow="0"/>
-			<config I_k="64" k_a="1" k_d="1.5" filter="d" surfFollow="0"/>
-			<config I_k="64" k_a="1" k_d="2" filter="d" surfFollow="0"/>
-			<config I_k="16" k_a="1" k_d="1" filter="g" surfFollow="0"/>
-			<config I_k="16" k_a="1" k_d="1.5" filter="g" surfFollow="0"/>
-			<config I_k="16" k_a="1" k_d="2" filter="g" surfFollow="0"/>
-			<config I_k="32" k_a="1" k_d="1" filter="g" surfFollow="0"/>
-			<config I_k="32" k_a="1" k_d="1.5" filter="g" surfFollow="0"/>
-			<config I_k="32" k_a="1" k_d="2" filter="g" surfFollow="0"/>
-			<config I_k="64" k_a="1" k_d="1" filter="g" surfFollow="0"/>
-			<config I_k="64" k_a="1" k_d="1.5" filter="g" surfFollow="0"/>
-			<config I_k="64" k_a="1" k_d="2" filter="g" surfFollow="0"/>
-			<config I_k="16" k_a="1" k_d="1" filter="a" surfFollow="0"/>
-			<config I_k="16" k_a="1" k_d="1.5" filter="a" surfFollow="0"/>
-			<config I_k="16" k_a="1" k_d="2" filter="a" surfFollow="0"/>
-			<config I_k="32" k_a="1" k_d="1" filter="a" surfFollow="0"/>
-			<config I_k="32" k_a="1" k_d="1.5" filter="a" surfFollow="0"/>
-			<config I_k="32" k_a="1" k_d="2" filter="a" surfFollow="0"/>
-			<config I_k="64" k_a="1" k_d="1" filter="a" surfFollow="0"/>
-			<config I_k="64" k_a="1" k_d="1.5" filter="a" surfFollow="0"/>
-			<config I_k="64" k_a="1" k_d="2" filter="a" surfFollow="0"/>
-			<config I_k="16" k_a="1" k_d="1" filter="a" surfFollow="1"/>
-			<config I_k="16" k_a="1" k_d="1.5" filter="a" surfFollow="1"/>
-			<config I_k="16" k_a="1" k_d="2" filter="a" surfFollow="1"/>
-			<config I_k="32" k_a="1" k_d="1" filter="a" surfFollow="1"/>
-			<config I_k="32" k_a="1" k_d="1.5" filter="a" surfFollow="1"/>
-			<config I_k="32" k_a="1" k_d="2" filter="a" surfFollow="1"/>
-			<config I_k="64" k_a="1" k_d="1" filter="a" surfFollow="1"/>
-			<config I_k="64" k_a="1" k_d="1.5" filter="a" surfFollow="1"/>
-			<config I_k="64" k_a="1" k_d="2" filter="a" surfFollow="1"/>
+			<config I_k="16" k_a="1" k_d="1" filter="n" surfFollow="0" p="0" m="0.025" noise="0" rotation_vector="a"/>
+			<config I_k="16" k_a="1" k_d="1.5" filter="n" surfFollow="0" p="0" m="0.025" noise="0" rotation_vector="a"/>
+			<config I_k="16" k_a="1" k_d="2" filter="n" surfFollow="0" p="0" m="0.025" noise="0" rotation_vector="a"/>
+			<config I_k="32" k_a="1" k_d="1" filter="n" surfFollow="0" p="0" m="0.025" noise="0" rotation_vector="a"/>
+			<config I_k="32" k_a="1" k_d="1.5" filter="n" surfFollow="0" p="0" m="0.025" noise="0" rotation_vector="a"/>
+			<config I_k="32" k_a="1" k_d="2" filter="n" surfFollow="0" p="0" m="0.025" noise="0" rotation_vector="a"/>
+			<config I_k="64" k_a="1" k_d="1" filter="n" surfFollow="0" p="0" m="0.025" noise="0" rotation_vector="a"/>
+			<config I_k="64" k_a="1" k_d="1.5" filter="n" surfFollow="0" p="0" m="0.025" noise="0" rotation_vector="a"/>
+			<config I_k="64" k_a="1" k_d="2" filter="n" surfFollow="0" p="0" m="0.025" noise="0" rotation_vector="a"/>
+			<config I_k="16" k_a="1" k_d="1" filter="d" surfFollow="0" p="0" m="0.025" noise="0" rotation_vector="a"/>
+			<config I_k="16" k_a="1" k_d="1.5" filter="d" surfFollow="0" p="0" m="0.025" noise="0" rotation_vector="a"/>
+			<config I_k="16" k_a="1" k_d="2" filter="d" surfFollow="0" p="0" m="0.025" noise="0" rotation_vector="a"/>
+			<config I_k="32" k_a="1" k_d="1" filter="d" surfFollow="0" p="0" m="0.025" noise="0" rotation_vector="a"/>
+			<config I_k="32" k_a="1" k_d="1.5" filter="d" surfFollow="0" p="0" m="0.025" noise="0" rotation_vector="a"/>
+			<config I_k="32" k_a="1" k_d="2" filter="d" surfFollow="0" p="0" m="0.025" noise="0" rotation_vector="a"/>
+			<config I_k="64" k_a="1" k_d="1" filter="d" surfFollow="0" p="0" m="0.025" noise="0" rotation_vector="a"/>
+			<config I_k="64" k_a="1" k_d="1.5" filter="d" surfFollow="0" p="0" m="0.025" noise="0" rotation_vector="a"/>
+			<config I_k="64" k_a="1" k_d="2" filter="d" surfFollow="0" p="0" m="0.025" noise="0" rotation_vector="a"/>
+			<config I_k="16" k_a="1" k_d="1" filter="g" surfFollow="0" p="0" m="0.025" noise="0" rotation_vector="a"/>
+			<config I_k="16" k_a="1" k_d="1.5" filter="g" surfFollow="0" p="0" m="0.025" noise="0" rotation_vector="a"/>
+			<config I_k="16" k_a="1" k_d="2" filter="g" surfFollow="0" p="0" m="0.025" noise="0" rotation_vector="a"/>
+			<config I_k="32" k_a="1" k_d="1" filter="g" surfFollow="0" p="0" m="0.025" noise="0" rotation_vector="a"/>
+			<config I_k="32" k_a="1" k_d="1.5" filter="g" surfFollow="0" p="0" m="0.025" noise="0" rotation_vector="a"/>
+			<config I_k="32" k_a="1" k_d="2" filter="g" surfFollow="0" p="0" m="0.025" noise="0" rotation_vector="a"/>
+			<config I_k="64" k_a="1" k_d="1" filter="g" surfFollow="0" p="0" m="0.025" noise="0" rotation_vector="a"/>
+			<config I_k="64" k_a="1" k_d="1.5" filter="g" surfFollow="0" p="0" m="0.025" noise="0" rotation_vector="a"/>
+			<config I_k="64" k_a="1" k_d="2" filter="g" surfFollow="0" p="0" m="0.025" noise="0" rotation_vector="a"/>
+			<config I_k="16" k_a="1" k_d="1" filter="a" surfFollow="0" p="0" m="0.025" noise="0" rotation_vector="a"/>
+			<config I_k="16" k_a="1" k_d="1.5" filter="a" surfFollow="0" p="0" m="0.025" noise="0" rotation_vector="a"/>
+			<config I_k="16" k_a="1" k_d="2" filter="a" surfFollow="0" p="0" m="0.025" noise="0" rotation_vector="a"/>
+			<config I_k="32" k_a="1" k_d="1" filter="a" surfFollow="0" p="0" m="0.025" noise="0" rotation_vector="a"/>
+			<config I_k="32" k_a="1" k_d="1.5" filter="a" surfFollow="0" p="0" m="0.025" noise="0" rotation_vector="a"/>
+			<config I_k="32" k_a="1" k_d="2" filter="a" surfFollow="0" p="0" m="0.025" noise="0" rotation_vector="a"/>
+			<config I_k="64" k_a="1" k_d="1" filter="a" surfFollow="0" p="0" m="0.025" noise="0" rotation_vector="a"/>
+			<config I_k="64" k_a="1" k_d="1.5" filter="a" surfFollow="0" p="0" m="0.025" noise="0" rotation_vector="a"/>
+			<config I_k="64" k_a="1" k_d="2" filter="a" surfFollow="0" p="0" m="0.025" noise="0" rotation_vector="a"/>
+			<config I_k="16" k_a="1" k_d="1" filter="a" surfFollow="1" p="0" m="0.025" noise="0" rotation_vector="a"/>
+			<config I_k="16" k_a="1" k_d="1.5" filter="a" surfFollow="1" p="0" m="0.025" noise="0" rotation_vector="a"/>
+			<config I_k="16" k_a="1" k_d="2" filter="a" surfFollow="1" p="0" m="0.025" noise="0" rotation_vector="a"/>
+			<config I_k="32" k_a="1" k_d="1" filter="a" surfFollow="1" p="0" m="0.025" noise="0" rotation_vector="a"/>
+			<config I_k="32" k_a="1" k_d="1.5" filter="a" surfFollow="1" p="0" m="0.025" noise="0" rotation_vector="a"/>
+			<config I_k="32" k_a="1" k_d="2" filter="a" surfFollow="1" p="0" m="0.025" noise="0" rotation_vector="a"/>
+			<config I_k="64" k_a="1" k_d="1" filter="a" surfFollow="1" p="0" m="0.025" noise="0" rotation_vector="a"/>
+			<config I_k="64" k_a="1" k_d="1.5" filter="a" surfFollow="1" p="0" m="0.025" noise="0" rotation_vector="a"/>
+			<config I_k="64" k_a="1" k_d="2" filter="a" surfFollow="1" p="0" m="0.025" noise="0" rotation_vector="a"/>
 		</configs>
 	</test>
 </testbench>

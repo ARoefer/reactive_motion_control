@@ -1,0 +1,656 @@
+{
+    "name": "incompartment_modulation",
+    "file": "scenes\/Compartment_test.xml",
+    "rate": "50",
+    "configs":
+    [
+        {
+            "robot": "point_robot",
+            "I_k": "1",
+            "k_a": "1",
+            "k_d": "1",
+            "filter": "n",
+            "rotation_vector": "a",
+            "follow": "false",
+            "p": "1",
+            "margin": "0.04",
+            "m": "false",
+            "noise": "0",
+            "paths":
+            [
+                {
+                    "name": "Path1",
+                    "points": "paths\/incompartment_modulation_(point_robot,1,1,1,n,0,a,1,0,0.04,0)_Path1.path"
+                },
+                {
+                    "name": "Path2",
+                    "points": "paths\/incompartment_modulation_(point_robot,1,1,1,n,0,a,1,0,0.04,0)_Path2.path"
+                }
+            ]
+        },
+        {
+            "robot": "point_robot",
+            "I_k": "1",
+            "k_a": "1",
+            "k_d": "1",
+            "filter": "n",
+            "rotation_vector": "a",
+            "follow": "false",
+            "p": "0.5",
+            "margin": "0.04",
+            "m": "false",
+            "noise": "0",
+            "paths":
+            [
+                {
+                    "name": "Path1",
+                    "points": "paths\/incompartment_modulation_(point_robot,1,1,1,n,0,a,0.5,0,0.04,0)_Path1.path"
+                },
+                {
+                    "name": "Path2",
+                    "points": "paths\/incompartment_modulation_(point_robot,1,1,1,n,0,a,0.5,0,0.04,0)_Path2.path"
+                }
+            ]
+        },
+        {
+            "robot": "point_robot",
+            "I_k": "1",
+            "k_a": "1",
+            "k_d": "1",
+            "filter": "n",
+            "rotation_vector": "a",
+            "follow": "false",
+            "p": "0.25",
+            "margin": "0.04",
+            "m": "false",
+            "noise": "0",
+            "paths":
+            [
+                {
+                    "name": "Path1",
+                    "points": "paths\/incompartment_modulation_(point_robot,1,1,1,n,0,a,0.25,0,0.04,0)_Path1.path"
+                },
+                {
+                    "name": "Path2",
+                    "points": "paths\/incompartment_modulation_(point_robot,1,1,1,n,0,a,0.25,0,0.04,0)_Path2.path"
+                }
+            ]
+        },
+        {
+            "robot": "point_robot",
+            "I_k": "1",
+            "k_a": "1",
+            "k_d": "1",
+            "filter": "n",
+            "rotation_vector": "a",
+            "follow": "false",
+            "p": "1.5",
+            "margin": "0.04",
+            "m": "false",
+            "noise": "0",
+            "paths":
+            [
+                {
+                    "name": "Path1",
+                    "points": "paths\/incompartment_modulation_(point_robot,1,1,1,n,0,a,1.5,0,0.04,0)_Path1.path"
+                },
+                {
+                    "name": "Path2",
+                    "points": "paths\/incompartment_modulation_(point_robot,1,1,1,n,0,a,1.5,0,0.04,0)_Path2.path"
+                }
+            ]
+        },
+        {
+            "robot": "point_robot",
+            "I_k": "1",
+            "k_a": "1",
+            "k_d": "1",
+            "filter": "n",
+            "rotation_vector": "a",
+            "follow": "false",
+            "p": "2",
+            "margin": "0.04",
+            "m": "false",
+            "noise": "0",
+            "paths":
+            [
+                {
+                    "name": "Path1",
+                    "points": "paths\/incompartment_modulation_(point_robot,1,1,1,n,0,a,2,0,0.04,0)_Path1.path"
+                },
+                {
+                    "name": "Path2",
+                    "points": "paths\/incompartment_modulation_(point_robot,1,1,1,n,0,a,2,0,0.04,0)_Path2.path"
+                }
+            ]
+        },
+        {
+            "robot": "point_robot",
+            "I_k": "1",
+            "k_a": "1",
+            "k_d": "1",
+            "filter": "n",
+            "rotation_vector": "a",
+            "follow": "false",
+            "p": "2.5",
+            "margin": "0.04",
+            "m": "false",
+            "noise": "0",
+            "paths":
+            [
+                {
+                    "name": "Path1",
+                    "points": "paths\/incompartment_modulation_(point_robot,1,1,1,n,0,a,2.5,0,0.04,0)_Path1.path"
+                },
+                {
+                    "name": "Path2",
+                    "points": "paths\/incompartment_modulation_(point_robot,1,1,1,n,0,a,2.5,0,0.04,0)_Path2.path"
+                }
+            ]
+        },
+        {
+            "robot": "point_robot",
+            "I_k": "1",
+            "k_a": "1",
+            "k_d": "1",
+            "filter": "n",
+            "rotation_vector": "a",
+            "follow": "false",
+            "p": "3",
+            "margin": "0.04",
+            "m": "false",
+            "noise": "0",
+            "paths":
+            [
+                {
+                    "name": "Path1",
+                    "points": "paths\/incompartment_modulation_(point_robot,1,1,1,n,0,a,3,0,0.04,0)_Path1.path"
+                },
+                {
+                    "name": "Path2",
+                    "points": "paths\/incompartment_modulation_(point_robot,1,1,1,n,0,a,3,0,0.04,0)_Path2.path"
+                }
+            ]
+        },
+        {
+            "robot": "point_robot",
+            "I_k": "1",
+            "k_a": "1",
+            "k_d": "1",
+            "filter": "n",
+            "rotation_vector": "a",
+            "follow": "false",
+            "p": "3.5",
+            "margin": "0.04",
+            "m": "false",
+            "noise": "0",
+            "paths":
+            [
+                {
+                    "name": "Path1",
+                    "points": "paths\/incompartment_modulation_(point_robot,1,1,1,n,0,a,3.5,0,0.04,0)_Path1.path"
+                },
+                {
+                    "name": "Path2",
+                    "points": "paths\/incompartment_modulation_(point_robot,1,1,1,n,0,a,3.5,0,0.04,0)_Path2.path"
+                }
+            ]
+        },
+        {
+            "robot": "point_robot",
+            "I_k": "1",
+            "k_a": "1",
+            "k_d": "1",
+            "filter": "n",
+            "rotation_vector": "a",
+            "follow": "false",
+            "p": "4",
+            "margin": "0.04",
+            "m": "false",
+            "noise": "0",
+            "paths":
+            [
+                {
+                    "name": "Path1",
+                    "points": "paths\/incompartment_modulation_(point_robot,1,1,1,n,0,a,4,0,0.04,0)_Path1.path"
+                },
+                {
+                    "name": "Path2",
+                    "points": "paths\/incompartment_modulation_(point_robot,1,1,1,n,0,a,4,0,0.04,0)_Path2.path"
+                }
+            ]
+        },
+        {
+            "robot": "point_robot",
+            "I_k": "1",
+            "k_a": "1",
+            "k_d": "1",
+            "filter": "n",
+            "rotation_vector": "a",
+            "follow": "false",
+            "p": "0.5",
+            "margin": "0.05",
+            "m": "false",
+            "noise": "0",
+            "paths":
+            [
+                {
+                    "name": "Path1",
+                    "points": "paths\/incompartment_modulation_(point_robot,1,1,1,n,0,a,0.5,0,0.05,0)_Path1.path"
+                },
+                {
+                    "name": "Path2",
+                    "points": "paths\/incompartment_modulation_(point_robot,1,1,1,n,0,a,0.5,0,0.05,0)_Path2.path"
+                }
+            ]
+        },
+        {
+            "robot": "point_robot",
+            "I_k": "1",
+            "k_a": "1",
+            "k_d": "1",
+            "filter": "n",
+            "rotation_vector": "a",
+            "follow": "false",
+            "p": "0.25",
+            "margin": "0.05",
+            "m": "false",
+            "noise": "0",
+            "paths":
+            [
+                {
+                    "name": "Path1",
+                    "points": "paths\/incompartment_modulation_(point_robot,1,1,1,n,0,a,0.25,0,0.05,0)_Path1.path"
+                },
+                {
+                    "name": "Path2",
+                    "points": "paths\/incompartment_modulation_(point_robot,1,1,1,n,0,a,0.25,0,0.05,0)_Path2.path"
+                }
+            ]
+        },
+        {
+            "robot": "point_robot",
+            "I_k": "1",
+            "k_a": "1",
+            "k_d": "1",
+            "filter": "n",
+            "rotation_vector": "a",
+            "follow": "false",
+            "p": "1",
+            "margin": "0.05",
+            "m": "false",
+            "noise": "0",
+            "paths":
+            [
+                {
+                    "name": "Path1",
+                    "points": "paths\/incompartment_modulation_(point_robot,1,1,1,n,0,a,1,0,0.05,0)_Path1.path"
+                },
+                {
+                    "name": "Path2",
+                    "points": "paths\/incompartment_modulation_(point_robot,1,1,1,n,0,a,1,0,0.05,0)_Path2.path"
+                }
+            ]
+        },
+        {
+            "robot": "point_robot",
+            "I_k": "1",
+            "k_a": "1",
+            "k_d": "1",
+            "filter": "n",
+            "rotation_vector": "a",
+            "follow": "false",
+            "p": "1.5",
+            "margin": "0.05",
+            "m": "false",
+            "noise": "0",
+            "paths":
+            [
+                {
+                    "name": "Path1",
+                    "points": "paths\/incompartment_modulation_(point_robot,1,1,1,n,0,a,1.5,0,0.05,0)_Path1.path"
+                },
+                {
+                    "name": "Path2",
+                    "points": "paths\/incompartment_modulation_(point_robot,1,1,1,n,0,a,1.5,0,0.05,0)_Path2.path"
+                }
+            ]
+        },
+        {
+            "robot": "point_robot",
+            "I_k": "1",
+            "k_a": "1",
+            "k_d": "1",
+            "filter": "n",
+            "rotation_vector": "a",
+            "follow": "false",
+            "p": "2",
+            "margin": "0.05",
+            "m": "false",
+            "noise": "0",
+            "paths":
+            [
+                {
+                    "name": "Path1",
+                    "points": "paths\/incompartment_modulation_(point_robot,1,1,1,n,0,a,2,0,0.05,0)_Path1.path"
+                },
+                {
+                    "name": "Path2",
+                    "points": "paths\/incompartment_modulation_(point_robot,1,1,1,n,0,a,2,0,0.05,0)_Path2.path"
+                }
+            ]
+        },
+        {
+            "robot": "point_robot",
+            "I_k": "1",
+            "k_a": "1",
+            "k_d": "1",
+            "filter": "n",
+            "rotation_vector": "a",
+            "follow": "false",
+            "p": "2.5",
+            "margin": "0.05",
+            "m": "false",
+            "noise": "0",
+            "paths":
+            [
+                {
+                    "name": "Path1",
+                    "points": "paths\/incompartment_modulation_(point_robot,1,1,1,n,0,a,2.5,0,0.05,0)_Path1.path"
+                },
+                {
+                    "name": "Path2",
+                    "points": "paths\/incompartment_modulation_(point_robot,1,1,1,n,0,a,2.5,0,0.05,0)_Path2.path"
+                }
+            ]
+        },
+        {
+            "robot": "point_robot",
+            "I_k": "1",
+            "k_a": "1",
+            "k_d": "1",
+            "filter": "n",
+            "rotation_vector": "a",
+            "follow": "false",
+            "p": "3",
+            "margin": "0.05",
+            "m": "false",
+            "noise": "0",
+            "paths":
+            [
+                {
+                    "name": "Path1",
+                    "points": "paths\/incompartment_modulation_(point_robot,1,1,1,n,0,a,3,0,0.05,0)_Path1.path"
+                },
+                {
+                    "name": "Path2",
+                    "points": "paths\/incompartment_modulation_(point_robot,1,1,1,n,0,a,3,0,0.05,0)_Path2.path"
+                }
+            ]
+        },
+        {
+            "robot": "point_robot",
+            "I_k": "1",
+            "k_a": "1",
+            "k_d": "1",
+            "filter": "n",
+            "rotation_vector": "a",
+            "follow": "false",
+            "p": "3.5",
+            "margin": "0.05",
+            "m": "false",
+            "noise": "0",
+            "paths":
+            [
+                {
+                    "name": "Path1",
+                    "points": "paths\/incompartment_modulation_(point_robot,1,1,1,n,0,a,3.5,0,0.05,0)_Path1.path"
+                },
+                {
+                    "name": "Path2",
+                    "points": "paths\/incompartment_modulation_(point_robot,1,1,1,n,0,a,3.5,0,0.05,0)_Path2.path"
+                }
+            ]
+        },
+        {
+            "robot": "point_robot",
+            "I_k": "1",
+            "k_a": "1",
+            "k_d": "1",
+            "filter": "n",
+            "rotation_vector": "a",
+            "follow": "false",
+            "p": "4",
+            "margin": "0.05",
+            "m": "false",
+            "noise": "0",
+            "paths":
+            [
+                {
+                    "name": "Path1",
+                    "points": "paths\/incompartment_modulation_(point_robot,1,1,1,n,0,a,4,0,0.05,0)_Path1.path"
+                },
+                {
+                    "name": "Path2",
+                    "points": "paths\/incompartment_modulation_(point_robot,1,1,1,n,0,a,4,0,0.05,0)_Path2.path"
+                }
+            ]
+        },
+        {
+            "robot": "point_robot",
+            "I_k": "1",
+            "k_a": "1",
+            "k_d": "1",
+            "filter": "n",
+            "rotation_vector": "a",
+            "follow": "false",
+            "p": "0.5",
+            "margin": "0.06",
+            "m": "false",
+            "noise": "0",
+            "paths":
+            [
+                {
+                    "name": "Path1",
+                    "points": "paths\/incompartment_modulation_(point_robot,1,1,1,n,0,a,0.5,0,0.06,0)_Path1.path"
+                },
+                {
+                    "name": "Path2",
+                    "points": "paths\/incompartment_modulation_(point_robot,1,1,1,n,0,a,0.5,0,0.06,0)_Path2.path"
+                }
+            ]
+        },
+        {
+            "robot": "point_robot",
+            "I_k": "1",
+            "k_a": "1",
+            "k_d": "1",
+            "filter": "n",
+            "rotation_vector": "a",
+            "follow": "false",
+            "p": "0.25",
+            "margin": "0.06",
+            "m": "false",
+            "noise": "0",
+            "paths":
+            [
+                {
+                    "name": "Path1",
+                    "points": "paths\/incompartment_modulation_(point_robot,1,1,1,n,0,a,0.25,0,0.06,0)_Path1.path"
+                },
+                {
+                    "name": "Path2",
+                    "points": "paths\/incompartment_modulation_(point_robot,1,1,1,n,0,a,0.25,0,0.06,0)_Path2.path"
+                }
+            ]
+        },
+        {
+            "robot": "point_robot",
+            "I_k": "1",
+            "k_a": "1",
+            "k_d": "1",
+            "filter": "n",
+            "rotation_vector": "a",
+            "follow": "false",
+            "p": "1.5",
+            "margin": "0.06",
+            "m": "false",
+            "noise": "0",
+            "paths":
+            [
+                {
+                    "name": "Path1",
+                    "points": "paths\/incompartment_modulation_(point_robot,1,1,1,n,0,a,1.5,0,0.06,0)_Path1.path"
+                },
+                {
+                    "name": "Path2",
+                    "points": "paths\/incompartment_modulation_(point_robot,1,1,1,n,0,a,1.5,0,0.06,0)_Path2.path"
+                }
+            ]
+        },
+        {
+            "robot": "point_robot",
+            "I_k": "1",
+            "k_a": "1",
+            "k_d": "1",
+            "filter": "n",
+            "rotation_vector": "a",
+            "follow": "false",
+            "p": "2",
+            "margin": "0.06",
+            "m": "false",
+            "noise": "0",
+            "paths":
+            [
+                {
+                    "name": "Path1",
+                    "points": "paths\/incompartment_modulation_(point_robot,1,1,1,n,0,a,2,0,0.06,0)_Path1.path"
+                },
+                {
+                    "name": "Path2",
+                    "points": "paths\/incompartment_modulation_(point_robot,1,1,1,n,0,a,2,0,0.06,0)_Path2.path"
+                }
+            ]
+        },
+        {
+            "robot": "point_robot",
+            "I_k": "1",
+            "k_a": "1",
+            "k_d": "1",
+            "filter": "n",
+            "rotation_vector": "a",
+            "follow": "false",
+            "p": "1",
+            "margin": "0.06",
+            "m": "false",
+            "noise": "0",
+            "paths":
+            [
+                {
+                    "name": "Path1",
+                    "points": "paths\/incompartment_modulation_(point_robot,1,1,1,n,0,a,1,0,0.06,0)_Path1.path"
+                },
+                {
+                    "name": "Path2",
+                    "points": "paths\/incompartment_modulation_(point_robot,1,1,1,n,0,a,1,0,0.06,0)_Path2.path"
+                }
+            ]
+        },
+        {
+            "robot": "point_robot",
+            "I_k": "1",
+            "k_a": "1",
+            "k_d": "1",
+            "filter": "n",
+            "rotation_vector": "a",
+            "follow": "false",
+            "p": "2.5",
+            "margin": "0.06",
+            "m": "false",
+            "noise": "0",
+            "paths":
+            [
+                {
+                    "name": "Path1",
+                    "points": "paths\/incompartment_modulation_(point_robot,1,1,1,n,0,a,2.5,0,0.06,0)_Path1.path"
+                },
+                {
+                    "name": "Path2",
+                    "points": "paths\/incompartment_modulation_(point_robot,1,1,1,n,0,a,2.5,0,0.06,0)_Path2.path"
+                }
+            ]
+        },
+        {
+            "robot": "point_robot",
+            "I_k": "1",
+            "k_a": "1",
+            "k_d": "1",
+            "filter": "n",
+            "rotation_vector": "a",
+            "follow": "false",
+            "p": "3",
+            "margin": "0.06",
+            "m": "false",
+            "noise": "0",
+            "paths":
+            [
+                {
+                    "name": "Path1",
+                    "points": "paths\/incompartment_modulation_(point_robot,1,1,1,n,0,a,3,0,0.06,0)_Path1.path"
+                },
+                {
+                    "name": "Path2",
+                    "points": "paths\/incompartment_modulation_(point_robot,1,1,1,n,0,a,3,0,0.06,0)_Path2.path"
+                }
+            ]
+        },
+        {
+            "robot": "point_robot",
+            "I_k": "1",
+            "k_a": "1",
+            "k_d": "1",
+            "filter": "n",
+            "rotation_vector": "a",
+            "follow": "false",
+            "p": "3.5",
+            "margin": "0.06",
+            "m": "false",
+            "noise": "0",
+            "paths":
+            [
+                {
+                    "name": "Path1",
+                    "points": "paths\/incompartment_modulation_(point_robot,1,1,1,n,0,a,3.5,0,0.06,0)_Path1.path"
+                },
+                {
+                    "name": "Path2",
+                    "points": "paths\/incompartment_modulation_(point_robot,1,1,1,n,0,a,3.5,0,0.06,0)_Path2.path"
+                }
+            ]
+        },
+        {
+            "robot": "point_robot",
+            "I_k": "1",
+            "k_a": "1",
+            "k_d": "1",
+            "filter": "n",
+            "rotation_vector": "a",
+            "follow": "false",
+            "p": "4",
+            "margin": "0.06",
+            "m": "false",
+            "noise": "0",
+            "paths":
+            [
+                {
+                    "name": "Path1",
+                    "points": "paths\/incompartment_modulation_(point_robot,1,1,1,n,0,a,4,0,0.06,0)_Path1.path"
+                },
+                {
+                    "name": "Path2",
+                    "points": "paths\/incompartment_modulation_(point_robot,1,1,1,n,0,a,4,0,0.06,0)_Path2.path"
+                }
+            ]
+        }
+    ]
+}
