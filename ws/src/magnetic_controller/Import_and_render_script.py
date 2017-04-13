@@ -44,6 +44,21 @@ class AutoTester_PT(View3DPanel, Panel):
 		col.operator("import_tests.test_data", text="Import data")
 		col.operator("render.render_paths", text="Render Paths")
 
+		col.separator()
+
+		col.operator("autotester.mark_scene", text="Mark Scene")
+		col.operator("autotester.demark_scene", text="Demark Scene")
+		col.separator()		
+		col.operator("autotester.mark_start", text="Mark Start")
+		col.operator("autotester.demark_start", text="Demark Start")
+		col.separator()
+		col.operator("autotester.mark_goal", text="Mark Goal")
+		col.operator("autotester.demark_goal", text="Demark Goal")
+		col.separator()
+		col.operator("autotester.mark_ignore", text="Mark Ignore")
+		col.operator("autotester.demark_ignore", text="Demark Ignore")		
+
+
 
 class PathReader(Operator, ImportHelper):
 	bl_idname = "import_tests.test_data"  # important since its how bpy.ops.import_test.some_data is constructed
@@ -338,7 +353,12 @@ class CVExporter(Operator):
 		self.closeTag(f)
 
 	def exportScene(self, root):
-		filename = os.path.join(self.basedir, 'scenes/' + root.name)
+		scenePath = os.path.join(self.basedir, 'scenes')
+		if not os.path.exists(scenePath):
+			os.makedirs(scenePath)
+			os.makedirs(os.path.join(scenePath, 'meshes'))
+
+		filename = os.path.join(scenePath, root.name)
 		f = open(filename+'.xml', 'w')
 		self.openTag(f, 'scene')
 		self.writeAttribute(f, 'name', root.name)
@@ -395,13 +415,106 @@ class CVExporter(Operator):
 			obj.select = True
 	
 		return {'FINISHED'}
+			
+
+class MarkScene(Operator):
+	bl_idname = "autotester.mark_scene"  # important since its how bpy.ops.import_test.some_data is constructed
+	bl_label = "Autotester Mark Scene"    
 	
+	def execute(self, context):
+		for o in context.selected_objects:
+			o['scene'] = True		
+					
+		return {'FINISHED'}
+
+class DemarkScene(Operator):
+	bl_idname = "autotester.demark_scene"  # important since its how bpy.ops.import_test.some_data is constructed
+	bl_label = "Autotester Mark Scene"    
+	
+	def execute(self, context):
+		for o in context.selected_objects:
+			if 'scene' in o:
+				del o['scene']	
+					
+		return {'FINISHED'}
+
+class MarkStart(Operator):
+	bl_idname = "autotester.mark_start"  # important since its how bpy.ops.import_test.some_data is constructed
+	bl_label = "Autotester Mark Start"    
+	
+	def execute(self, context):
+		for o in context.selected_objects:
+			o['start'] = True		
+					
+		return {'FINISHED'}
+
+class DemarkStart(Operator):
+	bl_idname = "autotester.demark_start"  # important since its how bpy.ops.import_test.some_data is constructed
+	bl_label = "Autotester Mark Start"    
+	
+	def execute(self, context):
+		for o in context.selected_objects:
+			if 'start' in o:
+				del o['start']	
+					
+		return {'FINISHED'}
+
+class MarkGoal(Operator):
+	bl_idname = "autotester.mark_goal"  # important since its how bpy.ops.import_test.some_data is constructed
+	bl_label = "Autotester Mark Goal"    
+	
+	def execute(self, context):
+		for o in context.selected_objects:
+			o['goal'] = True		
+					
+		return {'FINISHED'}
+
+class DemarkGoal(Operator):
+	bl_idname = "autotester.demark_goal"  # important since its how bpy.ops.import_test.some_data is constructed
+	bl_label = "Autotester Mark Goal"    
+	
+	def execute(self, context):
+		for o in context.selected_objects:
+			if 'goal' in o:
+				del o['goal']	
+					
+		return {'FINISHED'}
+
+class MarkIgnore(Operator):
+	bl_idname = "autotester.mark_ignore"  # important since its how bpy.ops.import_test.some_data is constructed
+	bl_label = "Autotester Mark Ignore"    
+	
+	def execute(self, context):
+		for o in context.selected_objects:
+			o['ignore'] = True		
+					
+		return {'FINISHED'}
+
+class DemarkIgnore(Operator):
+	bl_idname = "autotester.demark_ignore"  # important since its how bpy.ops.import_test.some_data is constructed
+	bl_label = "Autotester Mark Ignore"    
+	
+	def execute(self, context):
+		for o in context.selected_objects:
+			if 'ignore' in o:
+				del o['ignore']	
+					
+		return {'FINISHED'}
+
 def register():
 	bpy.utils.register_class(PathRenderer)
 	bpy.utils.register_class(PathReader)
 	bpy.utils.register_class(CVExporter)
 	bpy.utils.register_class(AutoTester_PT)
 
+	bpy.utils.register_class(MarkScene)
+	bpy.utils.register_class(DemarkScene)
+	bpy.utils.register_class(MarkStart)
+	bpy.utils.register_class(DemarkStart)
+	bpy.utils.register_class(MarkGoal)
+	bpy.utils.register_class(DemarkGoal)
+	bpy.utils.register_class(MarkIgnore)
+	bpy.utils.register_class(DemarkIgnore)
 
 def unregister():
 	bpy.utils.unregister_class(PathRenderer)
@@ -409,5 +522,13 @@ def unregister():
 	bpy.utils.unregister_class(CVExporter)
 	bpy.utils.unregister_class(AutoTester_PT)
 
+	bpy.utils.unregister_class(MarkScene)
+	bpy.utils.unregister_class(DemarkScene)
+	bpy.utils.unregister_class(MarkStart)
+	bpy.utils.unregister_class(DemarkStart)
+	bpy.utils.unregister_class(MarkGoal)
+	bpy.utils.unregister_class(DemarkGoal)
+	bpy.utils.unregister_class(MarkIgnore)
+	bpy.utils.unregister_class(DemarkIgnore)
 #if __name__ == "__main__":
 #    register()
